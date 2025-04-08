@@ -1,0 +1,111 @@
+<html>
+
+<head>
+    <title>Complex Form</title>
+
+</head>
+
+<body>
+    <form>
+        <fieldset>
+            <legend>
+                <b>Complex Form</b>
+            </legend>
+            <fieldset>
+                <legend>Personal Information:</legend>
+
+                <label for="name">Name: </label>
+                <input type="text" id="name">
+
+                <label for="email">Email: </label>
+                <input type="email" id="email">
+
+                <label for="phone">Phone: </label>
+                <input type="tel" id="phone">
+
+                <label for="bdate">Birt Date: </label>
+                <input type="date" id="bdate">
+
+                <label for="gender">Gender : </label>
+                <label for="male">Male: </label>
+                <input type="radio" name="gender" id="male">
+                <label for="female">Female: </label>
+                <input type="radio" name="gender" id="female">
+
+                <label for="country">Country: </label>
+                <select name="country" id="country">
+                    <option value="ind">India</option>
+                    <option value="us">Usa</option>
+                    <option value="uk">UK</option>
+                    <option value="nepal">Nepal</option>
+                    <option value="other">Other</option>
+                </select>
+            </fieldset>
+
+            <fieldset>
+                <legend>Address:</legend>
+                <label for="street">Street: </label>
+                <input type="text" id="street">
+
+                <label for="city">City: </label>
+                <input type="text" id="city">
+
+                <label for="state">State: </label>
+                <input type="text" id="state">
+
+                <label for="zipCode">Zip Code: </label>
+                <input type="text" id="zipCode">
+            </fieldset>
+
+            <fieldset>
+                <legend>Education:</legend>
+
+                <label for="collegeName">College Name: </label>
+                <input type="text" id="collegeName">
+
+                <label for="degree">Degree: </label>
+                <input type="text" id="degree">
+
+                <label for="year">Year: </label>
+                <select name="year" id="year">
+                    <option value="fy">FY</option>
+                    <option value="sy">SY</option>
+                    <option value="ty">TY</option>
+                    <option value="ly">LY</option>
+                </select>
+
+                <label for="cgpa">CGPA: </label>
+                <input type="number" id="cgpa" min="0" max="10" step="0.01">
+                <br><br>
+
+                <label for="schoolName">School Name: </label>
+                <input type="text" id="schoolName">
+                <label for="board12">12th(sci) % : </label>
+                <input type="number" id="board12" min="0" max="100" step="0.01">
+
+                <label for="passYr">Passing Year: </label>
+                <input type="number" min="1950" max="2024" placeholder="2023">
+
+                <br><br>
+                <label for="schoolName">School Name: </label>
+                <input type="text" id="schoolName">
+
+                <label for="board10">10th % : </label>
+                <input type="number" id="board10" min="0" max="100" step="0.01">
+
+                <label for="passYr">Passing Year: </label>
+                <input type="number" min="1950" max="2024" placeholder="2021">
+                <br><br>
+            </fieldset>
+
+            <fieldset>
+                <legend>Other Information:</legend>
+                <label for="comment">About You: </label>
+                <textarea name="aboutYou" id="comment" cols="150" rows="5" placeholder="I like to.."></textarea>
+            </fieldset>
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+</body>
+
+</html>

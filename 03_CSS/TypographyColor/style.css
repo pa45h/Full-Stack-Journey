@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Boldonse", system-ui;
+    background-color: antiquewhite;
+}
+  
+header{
+    margin: 1vw;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px red,
+    3px 3px 5px blue;
+}
+
+p{
+    margin: 1vw;
+    font-weight: lighter;
+}
+
+main p:first-child{
+    color: red;
+}
+
+main p:nth-child(2){
+    color: blue;
+}
+
+main p:nth-child(3){
+    color: blueviolet;
+}
+
+main p:nth-child(4){
+    color: brown;
+}
+
+main p:nth-child(5){
+    color: darkgreen;
+}

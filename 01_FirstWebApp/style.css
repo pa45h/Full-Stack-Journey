@@ -1,0 +1,21 @@
+body {
+    background-color: darkslateblue;
+    color: white;
+    text-shadow: 1px 1px 10px white,
+        1px 1px 10px red;
+
+}
+
+h1 {
+    border: 2px white double;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5%;
+    margin: 5%;
+}
+
+p {
+    border: 2px white double;
+    border-radius: 10px;
+    text-align: center;
+}

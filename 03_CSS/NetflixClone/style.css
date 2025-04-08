@@ -1,0 +1,561 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: black;
+    font-family: sans-serif;
+}
+
+.netflix_whole_page {
+    width: 100vw;
+    height: 100vh;
+
+}
+
+.background_container {
+    background-image: url(./banner_image.jpg);
+    background-size: max(1580px, 100vw);
+    background-repeat: no-repeat;
+    max-width: 100%;
+    height: 100%;
+    filter: blur(16px);
+    position: relative;
+}
+
+.pink_overlay {
+    background-color: rgba(255, 3, 87, 0.141);
+    height: 100%;
+    width: 100%;
+}
+
+.content_container {
+    position: absolute;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0rem 2rem;
+}
+
+nav {
+    /* border: 3px solid green; */
+    position: fixed;
+    z-index: 100;
+    width: 95vw;
+    height: 20vh;
+    margin: 1rem;
+    /* padding: 1rem; */
+}
+
+.upper_nav {
+    /* border: 3px solid blue; */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 95vw;
+    /* gap: 15rem;  */
+}
+
+.upper_nav_left {
+    /* border: 1.5px solid red; */
+    width: 50%;
+}
+
+.Netflix_Logo {
+    width: 15rem;
+}
+
+.Netflix_Logo_small {
+    display: none;
+    width: 2.5rem;
+}
+
+.Netflix_Logo:hover {
+    transform: scale(1.05);
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.upper_nav_right {
+    /* border: 1.5px solid green; */
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    /* margin: 0 3rem; */
+}
+
+.nav_button_container {
+    /* border: 2px solid rgb(236, 64, 93); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 30vh;
+}
+
+.lang_button {
+    display: flex;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.51);
+    outline: none;
+    color: white;
+}
+
+.lang_button p {
+    margin-left: 0.5rem;
+}
+
+.signin_button {
+    background: white;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    min-width: 6rem;
+    outline: none;
+    margin: 1rem;
+    margin-right: 5rem;
+    border: none;
+}
+
+.lower_nav {
+    /* border: 2px solid red; */
+    height: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lower_nav_menu {
+
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 2px 3px 14px rgba(0, 0, 0, 0.348);
+    /* border: 2px solid green; */
+    border-radius: 50px;
+    width: 30vw;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0.4rem;
+    height: 7vh;
+}
+
+.lower_nav_menu li {
+    /* border: 1px solid red; */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: #ffffff70;
+    backdrop-filter: blur(7px);
+}
+
+.lower_nav_menu li a {
+    text-decoration: none;
+    color: #ffffff70;
+}
+
+.lower_nav_menu li a:hover {
+    color: white;
+    transform: scale(1.1);
+    transition-duration: 0.5s;
+}
+
+main {
+    margin-top: 20vh;
+}
+
+.banner_section {
+    /* border: 2px solid red; */
+    height: 90vh;
+    background-image: url("./banner_image.jpg");
+    background-position: center center;
+    background-size: max(1580px, 100vw);
+    height: 75vh;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5), black);
+    border-radius: 20px;
+}
+
+.banner_container {
+    /* border: 2px solid red; */
+    height: 80%;
+    width: 100%;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner_container h2 {
+    /* border: 2px solid green; */
+    font-size: 3.5rem;
+    width: 55%;
+    text-align: center;
+}
+
+.banner_container h4 {
+    font-size: 1.4rem;
+    margin: 0.5rem;
+    text-align: center;
+}
+
+.banner_container p {
+    font-size: 1rem;
+    margin: 0.5rem;
+    text-align: center;
+}
+
+.input_container {
+    /* border: 2px solid green; */
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.email_input {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    width: 60%;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.email_input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+}
+
+.getStarted_button {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    width: 37%;
+    background-color: red;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.trending_section,
+.plan_section,
+.reasonsToJoin_section,
+.faq_section,
+.getStarted_section,
+.footer_section {
+    /* border: 2px solid red; */
+    width: 90%;
+    margin: auto;
+    color: white;
+}
+
+.trending_section h2,
+.plan_section h2,
+.reasonsToJoin_section h2,
+.faq_section h2 {
+    /* border: 2px solid red; */
+    font-size: 1.5rem;
+    opacity: 75%;
+}
+
+.trending_container,
+.plans_container,
+.reasons_container,
+.faq_cards_container {
+    /* border: 2px solid green; */
+    display: flex;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 100%;
+    margin: 2rem auto;
+    overflow: auto;
+}
+
+.trending_cards {
+    /* border: 2px solid yellow; */
+    width: 12%;
+    height: 40vh;
+    border-radius: 20px;
+    position: relative;
+}
+
+.trending_cards:hover {
+    transform: scale(1.05);
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.cards_number_container {
+    position: absolute;
+    left: -20px;
+    top: -9px;
+}
+
+.cards_number_container span {
+    color: rgba(0, 0, 0, 0.8);
+    -webkit-text-stroke: 0.125rem rgb(255, 255, 255);
+    text-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.5);
+    font-weight: 900;
+    font-size: 4rem;
+}
+
+.cards_image_container {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.cards_image_container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.plan_cards,
+.reason_cards {
+    /* border: 2px solid green; */
+    height: 38vh;
+    width: 23%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 1rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.plan_cards:hover,
+.reason_cards:hover {
+    transform: scale(1.05);
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.plan_card_1 {
+    background: linear-gradient(149deg, #1c4072 6.96%, #172b47 40.17%, #120c1f 73.39%);
+}
+
+.plan_card_2 {
+    background: linear-gradient(149deg, #1d529d 6.96%, #233371 40.17%, #120c1f 73.39%);
+}
+
+.plan_card_3 {
+    background: linear-gradient(149deg, #792a95 6.96%, #38216c 40.17%, #120c1f 73.39%);
+}
+
+.plan_card_4 {
+    background: linear-gradient(149deg, #922556 6.96%, #391945 40.17%, #120c1f 73.39%);
+}
+
+.plan_cards h2 {
+    margin-left: 0;
+    font-size: 1.5rem;
+}
+
+.plan_cards h4 {
+    font-size: 1.3rem;
+}
+
+.plan_cards p {
+    font-size: 1rem;
+}
+
+.reason_cards {
+    background-color: rgba(92, 91, 91, 0.5);
+    height: 33vh;
+}
+
+.reason_cards h2 {
+    font-size: 1.1rem;
+    margin-left: 0;
+    margin-bottom: 10px;
+}
+
+.reason_cards p {
+    font-size: 0.8rem;
+    opacity: 60%;
+}
+
+.reason_cards_lower {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.reason_cards_lower svg {
+    height: 50px;
+    width: 50px;
+}
+
+.faq_section h2 {
+    padding-bottom: 1rem;
+}
+
+.faq_cards_container {
+    display: flex;
+    margin: 0;
+}
+
+.faq_cards {
+    /* border: 2px solid red; */
+    width: 100%;
+}
+
+.faq_que,
+.faq_ans {
+    border: 1px solid white;
+    padding: 1rem;
+    border-radius: 20px;
+    margin-bottom: 0;
+    background-color: rgba(92, 91, 91, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    font-size: 1.2rem;
+}
+
+
+.faq_que {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq_que span {
+    font-size: 2.5rem;
+}
+
+.faq_ans {
+    opacity: 0;
+    max-height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    transition: opacity 0.5s ease, max-height 0.5s ease;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 1rem;
+    border-radius: 20px;
+    background-color: rgba(92, 91, 91, 0.5);
+    font-size: 1.2rem;
+}
+
+.faq_cards:hover .faq_ans {
+    opacity: 1;
+    max-height: 500px;
+    visibility: visible;
+    margin: 1rem 0rem;
+}
+
+.getStarted_section {
+    /* border: 1px solid white; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+}
+
+.getStarted_section h3 {
+    font-size: 1rem;
+}
+
+#getStarted_div {
+    /* border: 1px solid red; */
+    padding: 1rem 0rem;
+    width: 55%;
+}
+
+button:hover {
+    transform: scale(1.05);
+    transition-duration: 0.5s;
+    cursor: pointer;
+    opacity: 90%;
+}
+
+/* .footer_section{
+    border: 2px solid red;
+} */
+
+.footer_section a,
+.footer_netflix_india {
+    color: rgba(255, 255, 255, 0.7);
+    padding: 1rem;
+}
+
+.call_div {
+    /* border: 1px solid white; */
+    margin: 2rem 0rem;
+}
+
+
+.footer_list ul {
+    /* border: 1px solid green; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    list-style: none;
+    gap: 1rem;
+}
+
+/* .footer_list ul li{
+    border: 1px solid blue;
+}*/
+
+#footer_lang_button {
+    margin: 4rem 0rem;
+}
+
+.footer_netflix_india {
+    margin-bottom: 2rem;
+}
+
+@media screen and (max-width:1185px) {
+
+    .Netflix_Logo {
+        display: none;
+    }
+
+    .Netflix_Logo_small {
+        display: block;
+    }
+
+    .lower_nav {
+        display: none;
+    }
+
+    .lang_button p {
+        display: none;
+    }
+
+    .input_container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .email_input,
+    .getStarted_button {
+
+        width: 100%;
+    }
+
+    .footer_list ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}

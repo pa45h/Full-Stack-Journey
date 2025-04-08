@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #ccdbb2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#ground{
+    background-color: #6db58b;
+    margin: 3.5rem;
+    width: 65rem;
+    height: 35rem;
+}
+
+#ball{
+    background-color: #3d848c;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    
+    animation: bounce-x 5s linear infinite, bounce-y 1s ease-out infinite alternate;
+}
+
+@keyframes bounce-x {
+    from{
+        left: 0;
+    }
+    to{
+        left: 100%;
+    }
+}
+
+@keyframes bounce-y {
+    from{
+        bottom: 0;
+    }
+    to{
+        bottom: 100%;
+    }
+}

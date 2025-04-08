@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #0f0f0f;
+}
+
+header{
+    display: flex;
+    margin: 1vw;
+    align-items: center;
+    justify-content: center;
+}
+
+#h1White{
+    display: inline-block;
+    color: white;
+    margin: 5px;
+}
+
+#h1Red
+{
+    display: inline-block;
+    color: red;
+    margin: 5px;
+}
+
+
+main{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+video{
+    width: 30vw;
+    margin: 1vw;
+    border-radius: 50px;
+}
+
+audio{
+    width: 30vw;
+    margin: 1vw;
+}
