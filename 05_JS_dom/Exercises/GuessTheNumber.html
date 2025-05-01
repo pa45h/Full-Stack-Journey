@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Guess The Number</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #2E2C2F;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+            background-color: #729B79;
+        }
+        .game_container{
+            /* border: 5px solid rgb(255, 0, 0); */
+            border-radius: 1rem;
+            box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+            height: 70%;
+            background-color: #BACDB0;
+        }
+        
+        header{
+            /* border: 1px solid red; */
+            margin: 1rem;
+            text-shadow: 1px 1px 4ch #729B79;
+        }
+        
+        h1,h2{
+            color: #475B63;
+        }
+        
+        main{
+            /* border: 1px solid blue; */
+            margin: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        
+        form{
+            /* border: 1px solid green; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem;
+            padding: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        #guess_input{
+            border: #475B63;
+            border-radius: 1rem;
+            box-shadow: 2px 4px 4px hsl(0deg 0% 0% / 0.25);
+            padding: 0.3rem;
+        }
+        
+        #submit{
+            font-size: 1rem;
+            margin: 1rem;
+            padding: 0.2rem;
+            border: 1px solid #475B63;
+            border-radius: 1rem;
+            box-shadow: 2px 2px 4px hsl(0deg 0% 0% / 0.25);
+        }
+        
+        .guess_history{
+            /* border: 1px solid rgb(255, 0, 255); */
+            padding: 1rem;
+            font-size: 1.1rem;
+            border: 1px solid #475B63;
+            border-radius: 1rem;
+            box-shadow: 2px 2px 4px hsl(0deg 0% 0% / 0.25);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="game_container">
+        <header>
+            <h1>Guess The Number</h1>
+        </header>
+        <main>
+            <h2>
+                Guess the number between 1-100 in 10 attemts.
+            </h2>
+            <form>
+                <label id="guess_label" for="guess_input">Write Number</label>
+
+                <input id="guess_input" type="text" name="guess_input">
+                
+                <input id="submit" type="submit" value="Guess">
+
+            </form>
+
+            <div class="guess_history">
+                <p>
+                    All guesses : 
+                    <span class="guesses"></span> 
+                </p>
+                <p>
+                    Remaining Attemts :
+                    <span class="remaining_attemts">10</span> 
+                </p>
+                <p class="result"></p>
+            </div>
+        </main>
+    </div>
+    <script src="GuessTheNumber.js"></script>
+</body>
+</html>
