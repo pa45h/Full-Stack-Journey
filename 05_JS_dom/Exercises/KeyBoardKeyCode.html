@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>KeyBoard Key Code</title>
+    <style>
+        body {
+            background-color: #212121;
+            color: cornsilk;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid white;
+            width: 30vw;
+            height: 5vh;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Key-Code</th>
+                <th>Code</th>
+            </tr>
+        </thead>
+        <tr>
+            <th id="key"></th>
+            <th id="key_code"></th>
+            <th id="code"></th>
+        </tr>
+
+    </table>
+
+    <script>
+        const key = document.querySelector('#key');
+        const keyCode = document.querySelector('#key_code');
+        const code = document.querySelector('#code');
+
+        window.addEventListener('keydown', (e) => {
+            key.textContent = e.keyCode === 32 ? "Space" : e.key;
+            keyCode.textContent = e.keyCode;
+            code.textContent = e.code;
+        });
+    </script>
+</body>
+
+</html>
