@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Unlimited Color Using Async Code</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #212121;
+            color: cornsilk;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        button {
+            padding: 0.3rem 1rem;
+            font-size: 2rem;
+            border-radius: 1rem;
+            margin: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <script>
+
+        function randomColor() {
+            return `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`;
+        }
+
+        let interval;
+        function startChangingColor() {
+            interval = setInterval(() => {
+                document.body.style.backgroundColor = randomColor();
+            }, 500);
+        };
+
+        function stopChangingColor() {
+            clearInterval(interval);
+        }
+
+        document.querySelector('#start').addEventListener('click', startChangingColor);
+
+        document.querySelector('#stop').addEventListener('click', stopChangingColor);
+
+    </script>
+</body>
+
+</html>
