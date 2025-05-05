@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Api Request using XML</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #212121;
+            color: beige;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            gap: 0.3rem;
+            border: 2px solid beige;
+            border-radius: 1rem;
+            width: 30vw;
+            margin: 1rem;
+            padding: 1rem;
+            font-size: 1.1rem;
+        }
+
+        div img {
+            align-self: center;
+            width: 100%;
+            border-radius: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        const url = "https://api.github.com/users/pa45h";
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+
+                const data = JSON.parse(this.responseText);
+
+                const { avatar_url, login, name, bio, followers, following } = data;
+
+                const addIt = document.createElement('div');
+
+                addIt.innerHTML =
+                `
+                <span><b>Profile Pic : </b><img src="${avatar_url}"></span>
+                <span><b>GitHub Profile : </b> ${login}</span>
+                <span><b>Name : </b> ${name}</span>
+                <span><b>Bio : </b> ${bio}</span>
+                <span><b>Followers : </b> ${followers}</span>
+                <span><b>Following : </b> ${following}</span>
+                `;
+                document.body.appendChild(addIt);
+            }
+            else {
+                console.log(`Error ${xhr.statusText}`);
+
+            }
+        };
+        xhr.send();
+
+    </script>
+</body>
+
+</html>
