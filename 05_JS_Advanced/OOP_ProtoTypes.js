@@ -109,3 +109,6 @@ myName.trueLength();
 "Parth Katariya".trueLength();
 
 
+// - Instances(new, this)
+//      this : indicates current context
+//      new : create new instance
