@@ -1,5 +1,5 @@
 
-// Call
+// .call();
 function setUserName(userName) {
     this.userName=userName;
     // complex DB calls
