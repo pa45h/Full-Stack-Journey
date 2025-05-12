@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    overflow: hidden;
+    background-color: #000000;
+    color: white;
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+    }
+}
+
+.left {
+    width: 25vw;
+    padding: 5px;
+}
+
+.right {
+    padding: 10px;
+    width: 75vw;
+    margin: 10px 0;
+    position: relative;
+}
+
+.home {
+    padding: 20px;
+}
+
+.logo {
+    width: 250px;
+    display: flex;
+}
+
+.logo img {
+    width: 100%;
+    cursor: pointer;
+}
+
+.home ul li {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    width: 17px;
+    padding-top: 14px;
+    font-weight: bold;
+}
+
+.heading {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    padding-top: 14px;
+    padding: 23px 14px;
+    font-weight: bold;
+    align-items: center;
+    font-size: 13px;
+}
+
+.heading img {
+    width: 25px;
+}
+
+.library {
+    min-height: 70vh;
+    position: relative;
+}
+
+.footer {
+    display: flex;
+    font-size: 10px;
+    gap: 13px;
+    position: absolute;
+    bottom: 0;
+    padding: 30px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.footer a {
+    color: grey;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #212121;
+}
+
+.header .nav,
+.header .buttons {
+    padding: 5px 20px;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.header img {
+    width: 20px;
+}
+
+.signup_button {
+    background-color: #212121;
+    border: none;
+    color: #a1a1a1;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 0 10px;
+}
+
+.signup_button:hover {
+    color: white;
+}
+
+.login_button {
+    border: none;
+    font-weight: 700;
+    font-size: 16px;
+    width: 100px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.playlists {
+    /* border: 2px solid red; */
+    padding: 16px;
+    background-color: #1a1a1a;
+    margin-top: 16px;
+    border-radius: 10px;
+}
+
+.card_container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: start;
+    margin: 10px;
+    max-height: 65vh;
+    overflow-y: scroll;
+    padding: 20px;
+}
+
+.playlists .card {
+    /* border: 2px solid green; */
+    width: 159px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    font-size: 10px;
+}
+
+.playlists .card:hover {
+    background-color: #212121;
+    border-radius: 10px;
+    box-shadow: #000000 0px 20px 30px -10px;
+    cursor: pointer;
+    transform: scale(1.01);
+
+    .play {
+        opacity: 1;
+        transform: translateY(-10px);
+    }
+}
+
+.play {
+    position: absolute;
+    top: 110px;
+    right: 15px;
+    width: 45px;
+    opacity: 0;
+    transition: all 0.15s ease-in;
+}
+
+.play:hover {
+    cursor: pointer;
+    filter: brightness(1.3);
+}
+
+.playlists .card img {
+    width: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.playBar{
+    position: absolute;
+    bottom: 0;
+}
