@@ -1,8 +1,11 @@
 console.log("welcome to js!");
 
+const songList = document.querySelector(".songList");
+let currSong = new Audio();
+
 async function getSongsUrl() {
   try {
-    console.log("getSongsUrl Called..");
+    console.log("getSongsUrl() Called..");
 
     const response = await fetch(
       `http://127.0.0.1:5500/05_JS_Advanced/Projects/VibeStream/songs`
@@ -33,7 +36,21 @@ async function getSongsUrl() {
   }
 }
 
-const songList = document.querySelector(".songList");
+const playMusic = (song, movie) => {
+  console.log("playMusic() called..");
+
+  currSong.src =
+    "/05_JS_Advanced/Projects/VibeStream/songs/" + song + "-" + movie + ".mp3";
+
+  currSong.play();
+  play_button.src="./imgs/pause.svg";
+  currentSong_name.innerHTML=`${song}`;
+  document.querySelector(".song_info").style.opacity='1';
+  document.querySelector(".playing_songs").style.opacity='1';
+  selectSong.style.opacity='0';
+
+  console.log(`Playing ${song}-${movie}`);
+};
 
 async function main() {
   const songsUrl = await getSongsUrl();
@@ -62,7 +79,37 @@ async function main() {
             </li>
         `;
   }
-  
+
+  Array.from(
+    document.querySelector(".songList").getElementsByTagName("li")
+  ).forEach((e) => {
+    e.addEventListener("click", (element) => {
+      const songName = e.getElementsByTagName("h3")[0].innerHTML;
+      const movieName = e.getElementsByTagName("p")[0].innerHTML;
+      playMusic(songName, movieName);
+    });
+  });
+
+  play_button.addEventListener("click",()=>{
+    console.log("Play Button Clicked..");
+    
+    if(!currSong.src){
+      play_button.src="./imgs/play.svg";
+    }
+    else
+    {
+      if(currSong.paused){
+        currSong.play();
+        console.log("Played Current Song");
+        play_button.src="./imgs/pause.svg";
+      }
+      else{
+        currSong.pause();
+        play_button.src="./imgs/play.svg";
+        console.log("Paused Current Song");
+      }
+    }
+  });
 }
 
 main();

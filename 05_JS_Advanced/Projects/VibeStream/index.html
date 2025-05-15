@@ -37,7 +37,7 @@
                 <div class="songList_container">
 
                     <ul class="songList">
-            
+
                     </ul>
 
                 </div>
@@ -97,22 +97,20 @@
 
                 <div class="playBar">
 
-                    <div class="song_info">
+                    <div class="song_info hover_scale">
                         <img class="musicPlaying" src="./imgs/musicPlaying.gif" alt="playing">
-                        <h4>O Shera Teer Te Taj</h4>
+                        <h4 id="currentSong_name"></h4>
                     </div>
 
                     <div class="song_buttons">
-                        <img class="previous_button hover_scale" src="./imgs/previous.svg" alt="previous">
-                        <img class="play_button hover_scale" src="./imgs/play.svg" alt="play">
-                        <img class="next_button hover_scale" src="./imgs/next.svg" alt="next">
+                        <img id="previous_button" class="hover_scale" src="./imgs/previous.svg" alt="previous">
+                        <img id="play_button" class="hover_scale" src="./imgs/play.svg" alt="play">
+                        <img id="next_button" class="hover_scale" src="./imgs/next.svg" alt="next">
                     </div>
 
+                    <h3 id="selectSong" class=" flex justify_center p1">🎧Select a song to enjoy your Streamed Vibe🎵</h3>
+
                     <div class="playing_songs flex">
-
-                        <div class="playing_songs_info">
-
-                        </div>
 
                         <div class="song_time">0:00</div>
                         <div class="seekbar">
