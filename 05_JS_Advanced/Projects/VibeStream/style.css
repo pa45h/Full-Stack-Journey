@@ -29,9 +29,11 @@ body {
 .left {
     width: 25vw;
     padding: 5px;
+    height: 97.5vh;
 }
 
 .right {
+    height: 97.5vh;
     padding: 10px;
     width: 74.5vw;
     margin: 10px 0;
@@ -40,6 +42,7 @@ body {
 
 .home {
     padding: 20px;
+    height: 30%;
 }
 
 .logo {
@@ -77,7 +80,7 @@ body {
 }
 
 .library {
-    height: 67vh;
+    height: 70%;
     position: relative;
 }
 
@@ -187,6 +190,7 @@ body {
     background-color: #1a1a1a;
     margin-top: 16px;
     border-radius: 10px;
+    height: 75%;
 }
 
 .card_container {
@@ -196,7 +200,7 @@ body {
     align-items: center;
     justify-content: start;
     margin: 10px;
-    max-height: 60vh;
+    height: 90%;
     overflow-y: scroll;
     padding: 20px;
 }
@@ -292,7 +296,7 @@ body {
 }
 
 .seekbar_range {
-    width: 30vw;
+    width: 35vw;
 }
 
 input[type="range"] {

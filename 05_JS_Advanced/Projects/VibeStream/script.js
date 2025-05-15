@@ -43,14 +43,28 @@ const playMusic = (song, movie) => {
     "/05_JS_Advanced/Projects/VibeStream/songs/" + song + "-" + movie + ".mp3";
 
   currSong.play();
-  play_button.src="./imgs/pause.svg";
-  currentSong_name.innerHTML=`${song}`;
-  document.querySelector(".song_info").style.opacity='1';
-  document.querySelector(".playing_songs").style.opacity='1';
-  selectSong.style.opacity='0';
+  play_button.src = "./imgs/pause.svg";
+  currentSong_name.innerHTML = `${song}`;
+  document.querySelector(".song_info").style.opacity = "1";
+  selectSong.style.opacity = "0";
+  document.querySelector(".playing_songs").style.opacity = "1";
 
   console.log(`Playing ${song}-${movie}`);
 };
+
+function secondsToMinutesSeconds(seconds) {
+  if (isNaN(seconds) || seconds < 0) {
+    return "00:00";
+  }
+
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+
+  const formattedMinutes = String(minutes).padStart(2, "0");
+  const formattedSeconds = String(remainingSeconds).padStart(2, "0");
+
+  return `${formattedMinutes}:${formattedSeconds}`;
+}
 
 async function main() {
   const songsUrl = await getSongsUrl();
@@ -90,25 +104,38 @@ async function main() {
     });
   });
 
-  play_button.addEventListener("click",()=>{
+  play_button.addEventListener("click", () => {
     console.log("Play Button Clicked..");
-    
-    if(!currSong.src){
-      play_button.src="./imgs/play.svg";
-    }
-    else
-    {
-      if(currSong.paused){
+
+    if (!currSong.src) {
+      play_button.src = "./imgs/play.svg";
+    } else {
+      if (currSong.paused) {
         currSong.play();
         console.log("Played Current Song");
-        play_button.src="./imgs/pause.svg";
-      }
-      else{
+        play_button.src = "./imgs/pause.svg";
+      } else {
         currSong.pause();
-        play_button.src="./imgs/play.svg";
+        play_button.src = "./imgs/play.svg";
         console.log("Paused Current Song");
       }
     }
+  });
+
+  currSong.addEventListener("timeupdate", () => {
+    song_time.innerHTML = `${secondsToMinutesSeconds(currSong.currentTime)}`;
+    song_duration.innerHTML = `${secondsToMinutesSeconds(currSong.duration)}`;
+
+    document.querySelector(".seekbar_range").value =
+      (currSong.currentTime / currSong.duration) * 100;
+  });
+
+  document.querySelector(".seekbar_range").addEventListener("click", (e) => {
+    let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
+
+    currSong.currentTime = (currSong.duration * percent) / 100;
+
+    document.querySelector(".seekbar_range").value = `${percent}`;
   });
 }
 
