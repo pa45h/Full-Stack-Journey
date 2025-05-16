@@ -352,3 +352,29 @@ input[type="range"] {
     cursor: pointer;
     border-radius: 10px;
 }
+
+
+@media (max-width:1400px) {
+
+    .container{
+        height: 100vh;
+    }
+
+    .left{
+        background-color: red;
+        width: 400px;
+        position: absolute;
+        left: -450px;
+        transition: all .3s;
+        z-index: 1;
+    }
+    
+    .right{
+        width: 100vw;
+    }
+
+    .playBar{
+        width: 98%;
+    }
+
+}
