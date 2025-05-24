@@ -55,7 +55,8 @@
 }
 
 body {
-    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
     background-color: #000000;
     color: white;
 
@@ -74,26 +75,37 @@ body {
 }
 
 .left {
-    width: 25vw;
+    width: 25%;
+    min-height: 97.5%;
     padding: 5px;
-    height: 97.5vh;
 }
 
 .right {
-    height: 97.5vh;
+    width: 74.5%;
+    min-height: 97.5%;
     padding: 10px;
-    width: 74.5vw;
     margin: 10px 0;
     position: relative;
 }
 
 .home {
+    height: 25%;
     padding: 20px;
-    height: 30%;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    display: none;
+}
+
+.close img {
+    width: 30px;
 }
 
 .logo {
-    width: 100%;
+    width: 80%;
     display: flex;
 }
 
@@ -127,15 +139,15 @@ body {
 }
 
 .library {
-    height: 70%;
+    height: 73.5%;
     position: relative;
 }
 
 .songList_container {
     /* border: 2px solid red; */
+    height: 48vh;
     font-size: 10px;
     overflow: scroll;
-    height: 70%;
     border-radius: 10px;
 }
 
@@ -171,14 +183,13 @@ body {
 }
 
 .footer {
+    /* border: 2px solid red; */
+    max-height: 8vh;
     display: flex;
     font-size: 10px;
     gap: 13px;
-    position: absolute;
-    bottom: 0;
     padding: 30px;
     width: 100%;
-    height: 20%;
     flex-wrap: wrap;
 }
 
@@ -205,7 +216,12 @@ body {
     gap: 20px;
 }
 
-.header img {
+#hamburger {
+    display: none;
+}
+
+.header .left-arrow,
+.header .right-arrow {
     width: 20px;
 }
 
@@ -237,7 +253,7 @@ body {
     background-color: #1a1a1a;
     margin-top: 16px;
     border-radius: 10px;
-    height: 75%;
+    height: 73%;
 }
 
 .card_container {
@@ -247,23 +263,24 @@ body {
     align-items: center;
     justify-content: start;
     margin: 10px;
-    height: 90%;
-    overflow-y: scroll;
+    max-height: 85vh;
+    overflow-y: auto;
     padding: 20px;
 }
 
-.playlists .card {
+.card {
     /* border: 2px solid green; */
-    width: 140px;
+    width: 150px;
+    height: 250px;
     padding: 10px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     position: relative;
-    font-size: 9px;
+    font-size: 10px;
 }
 
-.playlists .card:hover {
+.card:hover {
     background-color: #212121;
     border-radius: 10px;
     box-shadow: #000000 0px 20px 30px -10px;
@@ -278,7 +295,7 @@ body {
 
 .play {
     position: absolute;
-    top: 90px;
+    top: 140px;
     right: 15px;
     width: 40px;
     opacity: 0;
@@ -297,39 +314,64 @@ body {
 }
 
 .playBar {
+    /* border: 2px solid red; */
     position: absolute;
+    flex-direction: column;
     bottom: 10px;
     left: 10px;
     padding: 10px;
     background-color: #1a1a1a;
-    width: 73vw;
-    height: 80px;
+    width: 98%;
+    min-height: 80px;
     border-radius: 10px;
 }
 
-.playBar .musicPlaying{
+.playBar :nth-child(n){
+    /* border: 2px solid green; */
+
+}
+
+.playBar .musicPlaying {
     width: 80px;
 }
 
-.song_info{
+.song_info {
     position: absolute;
     font-size: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    opacity: 0;
+    display: none;
 }
 
 .song_buttons {
-    display: flex;
     align-items: center;
     justify-content: center;
+    gap: 16px;
+    position: relative;
+}
+
+.navi_btns{
     gap: 16px;
 }
 
 .song_buttons img {
     width: 32px;
+}
+
+.volume_bar{
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: none;
+}
+
+.volume_bar img{
+    filter: contrast(0);
 }
 
 .playing_songs {
@@ -339,11 +381,11 @@ body {
     gap: 10px;
     align-items: center;
     justify-content: center;
-    opacity: 0;
+    display: none;
 }
 
 .seekbar_range {
-    width: 35vw;
+    width: 45vw;
 }
 
 input[type="range"] {
@@ -354,26 +396,35 @@ input[type="range"] {
 }
 
 
-@media (max-width:1400px) {
+@media (max-width:1214px) {
 
-    .container{
-        height: 100vh;
-    }
-
-    .left{
-        background-color: red;
+    .left {
         width: 400px;
+        height: 100%;
         position: absolute;
-        left: -450px;
-        transition: all .3s;
+        left: -100%;
+        transition: all 0.5s;
         z-index: 1;
-    }
-    
-    .right{
-        width: 100vw;
+        background-color: #000000;
     }
 
-    .playBar{
+    .right {
+        height: 100%;
+        width: 100%;
+    }
+
+    .header .left-arrow,
+    .header .right-arrow {
+        display: none;
+    }
+
+    #hamburger {
+        display: inline-block;
+        /* border: 2px solid red; */
+        width: 35px;
+    }
+
+    .playBar {
         width: 98%;
     }
 
