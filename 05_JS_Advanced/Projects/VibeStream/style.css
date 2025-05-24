@@ -326,11 +326,6 @@ body {
     border-radius: 10px;
 }
 
-.playBar :nth-child(n){
-    /* border: 2px solid green; */
-
-}
-
 .playBar .musicPlaying {
     width: 80px;
 }
