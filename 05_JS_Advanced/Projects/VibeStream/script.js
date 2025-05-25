@@ -110,8 +110,6 @@ async function listDownAlbumSongs(currFolder) {
 }
 
 async function listDownAlbums(currFolder) {
-  console.log(cardContainer);
-  console.log(currFolder);
   try {
     const response = await fetch(
       `http://127.0.0.1:5500/05_JS_Advanced/Projects/VibeStream/${currFolder}`
@@ -127,7 +125,6 @@ async function listDownAlbums(currFolder) {
         albumsUrl.push(a.href);
       }
     }
-    console.log(albumsUrl);
     for (const album of albumsUrl) {
       const albumSongsRes = await fetch(album);
       const albumSongsText = await albumSongsRes.text();
@@ -215,7 +212,7 @@ async function main() {
   });
 
   document.querySelector(".close").addEventListener("click", () => {
-    document.querySelector(".left").style.left = "-100%";
+    document.querySelector(".left").style.left = "-140%";
   });
 
   previous_button.addEventListener("click", () => {
