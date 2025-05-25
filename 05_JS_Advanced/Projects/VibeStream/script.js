@@ -4,6 +4,7 @@ const songList = document.querySelector(".songList");
 let currSong = new Audio();
 let currFolder = "songs";
 let songsUrl;
+const cardContainer = document.querySelector(".card_container");
 
 async function getSongsUrl(folder) {
   try {
@@ -108,6 +109,54 @@ async function listDownAlbumSongs(currFolder) {
   return songsUrl;
 }
 
+async function listDownAlbums(currFolder) {
+  console.log(cardContainer);
+  console.log(currFolder);
+  try {
+    const response = await fetch(
+      `http://127.0.0.1:5500/05_JS_Advanced/Projects/VibeStream/${currFolder}`
+    );
+    const responseText = await response.text();
+    const div = document.createElement("div");
+    div.innerHTML = responseText;
+    const as = div.querySelectorAll("a");
+    let albumsUrl = [];
+
+    for (const a of as) {
+      if (a.href.includes("/songs/") && !a.href.endsWith(".mp3")) {
+        albumsUrl.push(a.href);
+      }
+    }
+    console.log(albumsUrl);
+    for (const album of albumsUrl) {
+      const albumSongsRes = await fetch(album);
+      const albumSongsText = await albumSongsRes.text();
+      const div = document.createElement("div");
+      div.innerHTML = albumSongsText;
+      const as = div.getElementsByTagName("a");
+      let albumSongs = [];
+      for (const a of as) {
+        if (a.href.includes(album) && a.href.endsWith(".mp3")) {
+          albumSongs.push(a.href);
+        }
+      }
+
+      cardContainer.innerHTML += `
+      <div class="card">
+        <div class="play">
+          <img src="./imgs/play.png" alt="play">
+        </div>
+        <img src="${album}/cover.jpg" alt="card">
+        <h2>${album.split("/")[7].replaceAll("%20", " ")}</h2>
+        <p>${albumSongs.length} Songs</p>
+      </div>
+      `;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 function getPlaySongMovieName() {
   Array.from(
     document.querySelector(".songList").getElementsByTagName("li")
@@ -122,6 +171,7 @@ function getPlaySongMovieName() {
 
 async function main() {
   songsUrl = await listDownAlbumSongs(currFolder);
+  await listDownAlbums(currFolder);
   getPlaySongMovieName();
 
   play_button.addEventListener("click", () => {
@@ -256,7 +306,7 @@ async function main() {
 
   search_input.addEventListener("input", (e) => {
     let search = e.target.value.trim().toLowerCase();
-1332
+
     const songItems = document.querySelectorAll(".songList li");
 
     songItems.forEach((song) => {
