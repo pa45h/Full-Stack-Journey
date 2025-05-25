@@ -236,7 +236,7 @@ async function main() {
 
     card.querySelector(".play").addEventListener("click", async () => {
       console.log("Album Played..");
-      
+
       const cardH2 = card.getElementsByTagName("h2");
       currFolder = `songs/${cardH2[0].innerHTML}`;
 
@@ -252,6 +252,48 @@ async function main() {
     currFolder = "songs";
     songsUrl = await listDownAlbumSongs(currFolder);
     getPlaySongMovieName();
+  });
+
+  search_input.addEventListener("input", (e) => {
+    let search = e.target.value.trim().toLowerCase();
+1332
+    const songItems = document.querySelectorAll(".songList li");
+
+    songItems.forEach((song) => {
+      let songLi = song;
+      song = song.innerText.trim().toLowerCase().replaceAll("play now", "");
+
+      if (song.includes(search)) {
+        songLi.style.display = "";
+      } else {
+        songLi.style.display = "none";
+      }
+    });
+
+    const albums = document.querySelectorAll(".card");
+
+    albums.forEach((album) => {
+      let albumElement = album;
+      let albumTitle = album
+        .getElementsByTagName("h2")[0]
+        .innerHTML.toLowerCase();
+
+      if (albumTitle.includes(search)) {
+        albumElement.style.display = "";
+      } else {
+        albumElement.style.display = "none";
+      }
+    });
+
+    document.querySelector(".home ul li").addEventListener("click", () => {
+      search_input.value = "";
+      songItems.forEach((li) => {
+        li.style.display = "";
+      });
+      albums.forEach((album) => {
+        album.style.display = "";
+      });
+    });
   });
 }
 

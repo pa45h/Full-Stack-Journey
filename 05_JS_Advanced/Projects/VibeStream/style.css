@@ -119,7 +119,7 @@ body {
     gap: 15px;
     list-style: none;
     width: 17px;
-    padding-top: 14px;
+    padding-top: 22px;
     font-weight: bold;
 }
 
@@ -201,9 +201,10 @@ body {
 
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: #212121;
+    position: relative;
 }
 
 .header .nav,
@@ -218,6 +219,9 @@ body {
 
 #hamburger {
     display: none;
+    position: absolute;
+    top: 11px;
+    left: 15px;
 }
 
 .header .left-arrow,
@@ -225,26 +229,24 @@ body {
     width: 20px;
 }
 
-.signup_button {
-    background-color: #212121;
+.search_bar input {
     border: none;
-    color: #a1a1a1;
-    font-weight: 700;
-    font-size: 16px;
-    padding: 0 10px;
-}
-
-.signup_button:hover {
-    color: white;
-}
-
-.login_button {
-    border: none;
-    font-weight: 700;
-    font-size: 16px;
-    width: 100px;
-    height: 45px;
+    width: 350px;
+    height: 40px;
     border-radius: 50px;
+    padding: 20px;
+    background-color: #121212;
+    color: #a1a1a1;
+    font-size: 16px;
+    text-align: center;
+}
+
+.profile img {
+    width: 45px;
+    border-radius: 50%;
+    position: absolute;
+    top: 8px;
+    right: 25px;
 }
 
 .playlists {
@@ -347,7 +349,7 @@ body {
     position: relative;
 }
 
-.navi_btns{
+.navi_btns {
     gap: 16px;
 }
 
@@ -355,7 +357,7 @@ body {
     width: 32px;
 }
 
-.volume_bar{
+.volume_bar {
     justify-content: center;
     align-items: center;
     gap: 5px;
@@ -365,7 +367,7 @@ body {
     display: none;
 }
 
-.volume_bar img{
+.volume_bar img {
     filter: contrast(0);
 }
 
