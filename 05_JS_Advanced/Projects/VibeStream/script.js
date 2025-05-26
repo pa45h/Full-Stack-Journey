@@ -3,6 +3,7 @@ console.log("welcome to js!");
 const songList = document.querySelector(".songList");
 let currSong = new Audio();
 let currFolder = "songs";
+const mainPath = "http://127.0.0.1:5500/05_JS_Advanced/Projects/VibeStream";
 let songsUrl;
 const cardContainer = document.querySelector(".card_container");
 
@@ -10,9 +11,7 @@ async function getSongsUrl(folder) {
   try {
     console.log("getSongsUrl() Called..");
     currFolder = folder;
-    const response = await fetch(
-      `http://127.0.0.1:5500/05_JS_Advanced/Projects/VibeStream/${folder}`
-    );
+    const response = await fetch(`${mainPath}/${folder}`);
 
     if (!response.ok) {
       throw new Error(response.status);
@@ -43,7 +42,7 @@ const playMusic = (song, movie) => {
   console.log("playMusic() called..");
 
   currSong.src =
-    `/05_JS_Advanced/Projects/VibeStream/${currFolder}/` +
+    `${mainPath}/${currFolder}/` +
     song +
     "-" +
     movie +
@@ -112,7 +111,7 @@ async function listDownAlbumSongs(currFolder) {
 async function listDownAlbums(currFolder) {
   try {
     const response = await fetch(
-      `http://127.0.0.1:5500/05_JS_Advanced/Projects/VibeStream/${currFolder}`
+      `${mainPath}/${currFolder}`
     );
     const responseText = await response.text();
     const div = document.createElement("div");
