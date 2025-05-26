@@ -73,10 +73,4 @@ addCard('card_image_2.avif', '23:55', 'card_logo_2.jpg', 'TypeScript Rewritten i
 
 addCard('card_image_1.avif', '23:55', 'card_logo_1.jpg', 'TypeScript Rewritten in Go?! Microsofts shocking move!..', 'Tanay Pratap', 92, '5 minutes ago');
 
-addCard('card_image_4.avif', '1:27:46', 'card_logo_4.jpg', 'Complete HTML & CSS Frontend Project | Full Stack Web Development Series', 'College Wallah', 1300, '3 hours ago');
-
-addCard('card_image_1.avif', '23:55', 'card_logo_1.jpg', 'TypeScript Rewritten in Go?! Microsofts shocking move!..', 'Tanay Pratap', 92, '5 minutes ago');
-
-addCard('card_image_3.avif', '1:27:46', 'card_logo_3.jpg', 'Day 2 | Object-Oriented Programming in Java', 'LetsUpgrade', 821, 'Streamed 2 hours ago');
-
-addCard('card_image_2.avif', '23:55', 'card_logo_2.jpg', 'TypeScript Rewritten in Go?! Microsofts shocking move!..', 'Tanay Pratap', 92, '5 minutes ago');
+addCard("thumbnail.avif", "52:30", "logo.jpg","This is my Heading for the youtube video","Parth Katariya",98765,"1 month ago");
