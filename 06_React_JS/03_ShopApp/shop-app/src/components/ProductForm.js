@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ProductForm.css";
 
-function ProductForm() {
+function ProductForm(props) {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [price, setPrice] = useState("");
@@ -26,7 +26,9 @@ function ProductForm() {
       price: price,
       date: date,
     };
-    console.log(productData);
+
+    props.printNewProduct(productData);
+
     setTitle("");
     setPrice("");
     setDate("");

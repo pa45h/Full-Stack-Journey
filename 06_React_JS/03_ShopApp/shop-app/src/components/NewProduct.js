@@ -1,10 +1,10 @@
 import "./NewProduct.css";
 import ProductForm from "./ProductForm";
 
-function NewProduct() {
+function NewProduct(props) {
   return (
     <div className="new_product">
-      <ProductForm />
+      <ProductForm printNewProduct={props.printNewProduct} />
     </div>
   );
 }
