@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>GenPassWord</title>
+</head>
+<body>
+    
+    <div class="GenPassWord_container">
+
+        <h1>GenPassWord</h1>
+
+        <div class="display_container">
+            <input readonly placeholder="Password" data_password_display>
+            <button data_copyBtn>
+                <span data_copyMsg></span>
+                <img src="./assets/copy.svg" alt="copySvg" width="30" height="30">
+            </button>
+        </div>
+
+        <div class="input_container">
+
+            <div class="password_length_container">
+                <p>Password Length</p>
+                <p data_length>1</p>
+            </div>
+
+            <input data_length_slider class="length_slider" type="range" min="1" max="20" step="1">
+
+            <div class="checkbox_container">
+
+                <div class="check">
+                    <input id="uppercase" type="checkbox" checked>
+                    <label for="uppercase">Includes UpperCase Letters</label>
+                </div>
+
+                <div class="check">
+                    <input id="lowercase" type="checkbox">
+                    <label for="lowercase">Includes LowerCase Letters</label>
+                </div>
+
+                <div class="check">
+                    <input id="numbers" type="checkbox">
+                    <label for="numbers">Includes Numbers Letters</label>
+                </div>
+
+                <div class="check">
+                    <input id="symbols" type="checkbox">
+                    <label for="symbols">Includes Symbols Letters</label>
+                </div>
+
+            </div>
+
+            <div class="strength_container">
+                <p>Strength : </p>
+                <div data_indicator class="circle"></div>
+            </div>
+
+            <button id="generate_button">GENERATE PASSWORD</button>
+
+        </div>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
