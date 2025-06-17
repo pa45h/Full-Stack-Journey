@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./assets/SkyGaze_favicon.png" type="image/x-icon">
+    <title>SkyGaze</title>
+</head>
+<body>
+    <div class="SkyGaze_wrapper">
+
+        <div class="logo_container">
+            <img src="./assets/SkyGaze_logo.png" width="300">
+        </div>
+
+        <div class="tab_container">
+            <h2 class="tab" data-userWeather>Your Weather</h2>
+            <h2 class="tab" data-searchWeather>Search By City</h2>
+        </div>
+
+        <div class="weather_container">
+
+            <div class="grant_location_container display_props">
+                <img src="./assets/location.png" width="80" height="80" loading="lazy">
+                <h2>Grant Location Access</h2>
+                <p>Allow Acces to Get Weather Information</p>
+                <button class="btn" data-grantAccess>Allow</button>
+            </div>
+
+            <form class="form_container" data-searchForm>
+                <input placeholder="Search For City..." data-searchInput>
+                <button class="btn" type="submit">
+                    <img src="./assets/search.png" width="20" height="20" loading="lazy">
+                </button>
+            </form>
+
+            <div class="loading_container">
+                <img src="./assets/loading.gif" width="150" height="150">
+                <p>Loading...</p>
+            </div>
+
+            <div class="userInfo_container">
+
+                <div class="name">
+                    <p data-cityName></p>
+                    <img data-countryIcon>
+                </div>
+
+                <p data-weatherDisc></p>
+                <img data-weatherIcon>
+
+                <p data-temp></p>
+
+                <div class="parameter_container">
+
+                    <div class="parameter">
+                        <img src="./assets/wind.gif" width="80" loading="lazy">
+                        <p>Wind-Speed</p>
+                        <p data-windspeed></p>
+                    </div>
+
+                    <div class="parameter">
+                        <img src="./assets/humidity.gif" width="80" loading="lazy">
+                        <p>Humidity</p>
+                        <p data-humidity></p>
+                    </div>
+
+                    <div class="parameter">
+                        <img src="./assets/clouds.gif" width="80" loading="lazy">
+                        <p>Clouds</p>
+                        <p data-cloudiness></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

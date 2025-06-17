@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.SkyGaze_wrapper {
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    background-image: url(./assets/bg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden;
+}
+
+.logo_container {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.tab_container {
+    max-width: 550px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tab {
+    cursor: pointer;
+    padding: 5px 1rem;
+    background-color: rgba(6, 34, 85, 0.5);
+    border-radius: 1rem;
+}
+
+.tab.current_tab {
+    background-color: rgba(6, 34, 85, 0.8);
+}
+
+.weather_container {
+    position: relative;
+    max-width: 550px;
+    margin: 4rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    all: unset;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 5px;
+    background-color: rgba(60, 30, 80, 0.8);
+    color: white;
+    padding: 10px 30px;
+    font-weight: 600;
+    transition: all 200ms ease;
+}
+
+.btn:hover {
+    background-color: rgba(60, 30, 80);
+}
+
+.grant_location_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.grant_location_container.active {
+    display: flex;
+}
