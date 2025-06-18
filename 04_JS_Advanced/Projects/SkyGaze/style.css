@@ -206,3 +206,19 @@
 .form_container .btn img{
     filter: invert(1);
 }
+
+.error_container{
+    display: none;
+    width: 400px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    padding-bottom: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 4px;
+}
+
+.error_container.active{
+    display: flex;
+}

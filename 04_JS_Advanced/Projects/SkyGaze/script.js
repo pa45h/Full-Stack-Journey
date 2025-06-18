@@ -9,6 +9,7 @@ const searchForm = document.querySelector("[data-searchForm]");
 const searchInput = document.querySelector("[data-searchInput]");
 const loadingScreen = document.querySelector(".loading_container");
 const userInfoContainer = document.querySelector(".userInfo_container");
+const errorContainer = document.querySelector(".error_container");
 
 let currTab = userTab;
 const API_KEY = "f355f2e496d84a5aee68bdce588c5bf9";
@@ -90,10 +91,10 @@ function renderWeatherInfo(data) {
   countryIcon.src = `https://flagcdn.com/144x108/${data?.sys?.country.toLowerCase()}.png`;
   weatherDisc.innerText = data?.weather[0]?.description;
   weatherIcon.src = `https://openweathermap.org/img/wn/${data?.weather[0]?.icon}.png`;
-  temp.innerText = data?.main?.temp+" °C";
-  windspeed.innerText = data?.wind?.speed+" m/s";
-  humidity.innerText = data?.main?.humidity+"%";
-  cloudiness.innerText = data?.clouds?.all+"%";
+  temp.innerText = data?.main?.temp + " °C";
+  windspeed.innerText = data?.wind?.speed + " m/s";
+  humidity.innerText = data?.main?.humidity + "%";
+  cloudiness.innerText = data?.clouds?.all + "%";
 }
 
 function getLocation() {
@@ -142,6 +143,7 @@ async function fetchSearchWeatherInfo(city) {
     userInfoContainer.classList.add("active");
   } catch (error) {
     loadingScreen.classList.remove("active");
+    errorContainer.classList.add("active");
     console.log(error);
   }
 }
