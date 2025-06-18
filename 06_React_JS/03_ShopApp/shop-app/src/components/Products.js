@@ -1,31 +1,19 @@
 import ProductItem from "./ProductItems";
 import Card from "./Cards";
-import './Products.css';
+import "./Products.css";
 
 const Products = (props) => {
   return (
     <>
       <Card className="products">
-        <ProductItem
-          title={props.items[0].title}
-          amount={props.items[0].amount}
-          date={props.items[0].date}
-        />
-        <ProductItem
-          title={props.items[1].title}
-          amount={props.items[1].amount}
-          date={props.items[1].date}
-        />
-        <ProductItem
-          title={props.items[2].title}
-          amount={props.items[2].amount}
-          date={props.items[2].date}
-        />
-        <ProductItem
-          title={props.items[3].title}
-          amount={props.items[3].amount}
-          date={props.items[3].date}
-        />
+        {props.items.map((product) => (
+          <ProductItem
+            key={product.id}
+            title={product.title}
+            amount={product.amount}
+            date={product.date}
+          ></ProductItem>
+        ))}
       </Card>
     </>
   );
