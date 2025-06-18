@@ -29,7 +29,8 @@ function switchTab(clickedTab) {
     } else {
       searchForm.classList.remove("active");
       userInfoContainer.classList.remove("active");
-
+      errorContainer.classList.remove("active");
+      searchInput.value="";
       getfromSessionStorage();
     }
   }
