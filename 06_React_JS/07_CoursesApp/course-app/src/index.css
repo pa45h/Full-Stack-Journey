@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+.loader {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #162456;
+    mask: radial-gradient(circle closest-side at 50% 40%, #0000 94%, #000);
+    -webkit-mask: radial-gradient(circle closest-side at 50% 40%, #0000 94%, #000);
+    transform-origin: 50% 40%;
+    animation: spinner-pl92zb 500ms infinite linear;
+}
+
+@keyframes spinner-pl92zb {
+    100% {
+        transform: rotate(1turn);
+    }
+}
