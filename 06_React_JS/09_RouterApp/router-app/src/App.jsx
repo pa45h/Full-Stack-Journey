@@ -20,8 +20,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/aboutus" element={<Aboutus />} />
         <Route path="/contactus" element={<Contactus />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/login"
+          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+        />
+        <Route
+          path="/signup"
+          element={<Signup setIsLoggedIn={setIsLoggedIn} />}
+        />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </div>

@@ -11,6 +11,7 @@ const Navbar = (props) => {
       <Link to="/" className="text-4xl">
         RouteApp
       </Link>
+
       <nav>
         <ul className="flex gap-3">
           <li>
