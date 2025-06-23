@@ -2,7 +2,7 @@ import React from 'react'
 
 const Contactus = () => {
   return (
-    <div>
+    <div className='flex justify-center items-center h-[550px] text-5xl'>
       Contact Us
     </div>
   )

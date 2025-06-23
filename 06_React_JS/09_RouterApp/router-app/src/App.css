@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+.active {
+    text-decoration: underline;
+}
+
+.active-bg {
+    background: #030712;
+}
