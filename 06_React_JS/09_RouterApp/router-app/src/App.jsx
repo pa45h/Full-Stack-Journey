@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Aboutus from "./pages/Aboutus";
 import Contactus from "./pages/Contactus";
 import { useState } from "react";
+import User from "./pages/user";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/aboutus" element={<Aboutus />} />
         <Route path="/contactus" element={<Contactus />} />
+        <Route path="/user/:userId" element={<User />} />
         <Route
           path="/login"
           element={<Login setIsLoggedIn={setIsLoggedIn} />}
