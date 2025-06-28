@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router";
 
 function Navbar() {
-  const { cart } = useSelector((state) => state);
+  const cart = useSelector((state) => state.cart);
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 w-full">
@@ -13,7 +13,7 @@ function Navbar() {
         </NavLink>
 
         <div className="flex justify-center items-center gap-2">
-          <NavLink to="/" className="text-[#C084FC] hover:text-[#8B5CF6]">
+          <NavLink to="/" className="text-[#8045cb] hover:text-[#C084FC]">
             Home
           </NavLink>
 

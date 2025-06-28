@@ -7,7 +7,7 @@ function Product(props) {
   const product = props.product;
   const [added, setAdded] = useState(false);
 
-  const { cart } = useSelector((state) => state);
+  const cart = useSelector((state) => state.cart);
 
   const dispatch = useDispatch();
 

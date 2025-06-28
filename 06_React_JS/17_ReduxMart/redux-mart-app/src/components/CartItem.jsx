@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
 import { remove } from "../redux/slices/cartSlice";
 
-function CartItem({ item, index }) {
-  const { cart } = useSelector((state) => state);
-
+function CartItem({ item }) {
   const dispatch = useDispatch();
 
   function removeFromCart() {

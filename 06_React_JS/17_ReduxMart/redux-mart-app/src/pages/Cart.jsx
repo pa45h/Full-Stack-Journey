@@ -7,7 +7,7 @@ import { clearCart } from "../redux/slices/cartSlice";
 import toast from "react-hot-toast";
 
 function Cart() {
-  const { cart } = useSelector((state) => state);
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const [totalAmount, setTotalAmount] = useState(0);
 

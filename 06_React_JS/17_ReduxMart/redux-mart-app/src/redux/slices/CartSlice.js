@@ -10,7 +10,7 @@ export const CartSlice = createSlice({
     remove: (state, action) =>
       state.filter((product) => product.id !== action.payload),
     clearCart: (state) => {
-      localStorage.removeItem("cartProducts");
+      localStorage.removeItem("cartProduct");
       return [];
     },
   },
