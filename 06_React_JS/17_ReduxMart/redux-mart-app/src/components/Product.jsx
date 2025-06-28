@@ -18,7 +18,7 @@ function Product(props) {
 
   function removeFromCart() {
     dispatch(remove(product.id));
-    toast.warning("Item Removed From Cart");
+    toast.error("Item Removed From Cart");
   }
 
   return (
@@ -27,6 +27,7 @@ function Product(props) {
         className="p-8 rounded-t-lg h-[250px] group-hover:scale-105 transition-all duration-300"
         src={product.image}
         alt="product image"
+        loading="lazy"
       />
       <div className="px-5 pb-5 text-center">
         <h2 className="text-lg font-semibold tracking-tight text-gray-900">

@@ -1,16 +1,24 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router";
 import CartItem from "../components/CartItem";
 import { useState, useEffect } from "react";
+import { clearCart } from "../redux/slices/cartSlice";
+import toast from "react-hot-toast";
 
 function Cart() {
   const { cart } = useSelector((state) => state);
+  const dispatch = useDispatch();
   const [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
     setTotalAmount(cart.reduce((acc, curr) => acc + curr.price, 0));
   }, [cart]);
+
+  function purchasedClickHandler() {
+    dispatch(clearCart());
+    toast.success("Order Placed");
+  }
 
   return (
     <>
@@ -35,7 +43,7 @@ function Cart() {
             </div>
           )}
 
-          {(cart.length > 0) && (
+          {cart.length > 0 && (
             <div className="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
               <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6 mt-10">
                 <p className="text-xl font-semibold text-gray-900">
@@ -64,7 +72,10 @@ function Cart() {
                   </dl>
                 </div>
 
-                <button className="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300">
+                <button
+                  className="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 cursor-pointer"
+                  onClick={purchasedClickHandler}
+                >
                   Proceed to Checkout
                 </button>
 
@@ -85,9 +96,9 @@ function Cart() {
                       >
                         <path
                           stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
                           d="M19 12H5m14 0-4 4m4-4-4-4"
                         />
                       </svg>

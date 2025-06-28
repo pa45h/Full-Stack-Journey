@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { remove } from "../redux/slices/cartSlice";
@@ -11,7 +10,7 @@ function CartItem({ item, index }) {
 
   function removeFromCart() {
     dispatch(remove(item.id));
-    toast.warning("Item Removed From Cart");
+    toast.error("Item Removed From Cart");
   }
 
   return (
@@ -26,6 +25,7 @@ function CartItem({ item, index }) {
                     className="h-20 w-20"
                     src={item.image}
                     alt="product image"
+                    loading="lazy"
                   />
                 </a>
 
@@ -45,9 +45,7 @@ function CartItem({ item, index }) {
                     {item.title}
                   </a>
 
-                  <p className="text-sm text-slate-600">
-                    {item.description}
-                  </p>
+                  <p className="text-sm text-slate-600">{item.description}</p>
 
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex items-center justify-center mt-3">
@@ -83,9 +81,9 @@ function CartItem({ item, index }) {
                       >
                         <path
                           stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
                           d="M6 18 17.94 6M18 18 6.06 6"
                         />
                       </svg>
@@ -97,7 +95,6 @@ function CartItem({ item, index }) {
             </div>
           </div>
         </div>
-
       </div>
     </>
   );
