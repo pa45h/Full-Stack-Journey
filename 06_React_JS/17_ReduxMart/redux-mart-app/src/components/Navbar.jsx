@@ -7,7 +7,7 @@ function Navbar() {
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 w-full">
-      <div className="max-w-3xl flex flex-wrap items-center justify-between mx-auto p-3">
+      <div className="max-w-4xl flex flex-wrap items-center justify-between mx-auto p-3">
         <NavLink to="/">
           <img className="h-12 w-[150px]" src="logo.png"></img>
         </NavLink>

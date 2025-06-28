@@ -67,7 +67,7 @@ function Cart() {
                       Total Amount
                     </dt>
                     <dd className="text-base font-bold text-gray-900">
-                      ${totalAmount}
+                      ${totalAmount.toFixed(2)}
                     </dd>
                   </dl>
                 </div>
