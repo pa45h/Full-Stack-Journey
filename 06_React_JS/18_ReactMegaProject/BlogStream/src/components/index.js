@@ -3,5 +3,6 @@ import Footer from "./Footer/Footer";
 import Container from "./container/Container";
 import Logo from "./Logo";
 import LogOutBtn from "./Header/LogOutBtn";
+import RealTimeEditor from "./RealTimeEditor";
 
-export { Header, Footer, Container, Logo, LogOutBtn };
+export { Header, Footer, Container, Logo, LogOutBtn, RealTimeEditor };
