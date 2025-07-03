@@ -5,6 +5,7 @@ import authService, { AuthService } from "../appwrite/auth.js";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import Service from "../appwrite/db.js";
+import Post from "./pages/Post.jsx";
 
 function PostForm({ post }) {
   const { register, handleSubmit, watch, setValue, control, getValues } =
@@ -18,11 +19,14 @@ function PostForm({ post }) {
     });
 
   const navigate = useNavigate();
-  const { userData } = useSelector((state) => state.user.userData);
+  const userData = useSelector((state) => state.auth.userData);
 
   const submit = async (data) => {
     if (post) {
-      const file = data.image[0] ? Service.uploadFile(data.image[0]) : null;
+      
+      const file = data.image[0]
+        ? await Service.uploadFile(data.image[0])
+        : null;
       if (file) {
         Service.removeFile(post.featuredImage);
       }
@@ -57,8 +61,8 @@ function PostForm({ post }) {
       return value
         .trim()
         .toLowerCase()
-        .replace(/^[a-zA-Z\d\s]+/g, "-")
-        .replace(/\s/g, "-");
+        .replace(/[^\w\s-]/g, "")
+        .replace(/\s+/g, "-");
     }
     return "";
   }, []);
@@ -66,10 +70,7 @@ function PostForm({ post }) {
   useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name === "title") {
-        setValue("slug", slugTransform(value.title));
-        {
-          shouldValidate: true;
-        }
+        setValue("slug", slugTransform(value.title, { shouldValidate: true }));
       }
     });
     return () => {
@@ -96,7 +97,7 @@ function PostForm({ post }) {
             });
           }}
         />
-        <RTE
+        <RealTimeEditor
           label="Content :"
           name="content"
           control={control}

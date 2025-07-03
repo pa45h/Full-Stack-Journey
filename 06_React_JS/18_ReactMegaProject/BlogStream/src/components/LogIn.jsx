@@ -27,6 +27,7 @@ function LogIn() {
       }
     } catch (error) {
       setError(error);
+      console.log(error.message);
     }
   };
 
@@ -53,7 +54,7 @@ function LogIn() {
           </Link>
         </p>
         
-        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+        {error && <p className="text-red-600 mt-8 text-center">{error.message}</p>}
 
         <form onSubmit={handleSubmit(login)} className="mt-8">
           <div className="space-y-5">

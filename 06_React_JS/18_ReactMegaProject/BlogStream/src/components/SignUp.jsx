@@ -25,6 +25,7 @@ function SignUp() {
       }
     } catch (error) {
       setError(error);
+      console.log(error.message);
     }
   };
   return (
@@ -49,7 +50,7 @@ function SignUp() {
             Sign In
           </Link>
         </p>
-        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+        {error && <p className="text-red-600 mt-8 text-center">{error.message}</p>}
 
         <form onSubmit={handleSubmit(create)}>
           <div className="space-y-5">

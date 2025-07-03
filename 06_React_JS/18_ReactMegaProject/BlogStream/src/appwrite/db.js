@@ -24,7 +24,7 @@ export class Service {
         { title, content, featuredImage, status, userId }
       );
     } catch (error) {
-      throw error;
+      console.log(error.message);
     }
   }
 
@@ -37,7 +37,7 @@ export class Service {
         { title, content, featuredImage, status }
       );
     } catch (error) {
-      throw error;
+      console.log(error.message);
     }
   }
 
@@ -50,7 +50,7 @@ export class Service {
       );
       return true;
     } catch (error) {
-      throw error;
+      console.log(error.message);
       return false;
     }
   }
@@ -63,7 +63,7 @@ export class Service {
         slug
       );
     } catch (error) {
-      throw error;
+      console.log(error.message);
       return false;
     }
   }
@@ -76,7 +76,7 @@ export class Service {
         queries
       );
     } catch (error) {
-      throw error;
+      console.log(error.message);
       return false;
     }
   }
@@ -89,7 +89,7 @@ export class Service {
         file
       );
     } catch (error) {
-      throw error;
+      console.log(error.message);
       return false;
     }
   }
@@ -99,15 +99,15 @@ export class Service {
       await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
       return true;
     } catch (error) {
-      throw error;
+      console.log(error.message);
       return false;
     }
   }
 
   getFilePreview(fileId) {
-    return this.bucket.getFilePreview(conf.bucket, fileId);
+    return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
   }
 }
 
 const service = new Service();
-export default Service;
+export default service;
