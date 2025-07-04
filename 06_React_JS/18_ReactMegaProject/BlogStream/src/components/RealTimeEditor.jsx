@@ -22,6 +22,7 @@ export default function RealTimeEditor({
             init={{
               initialValue: defaultValue,
               height: 500,
+              width:950,
               menubar: true,
               plugins: [
                 "image",

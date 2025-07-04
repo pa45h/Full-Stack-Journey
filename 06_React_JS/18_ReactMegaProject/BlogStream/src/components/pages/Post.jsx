@@ -23,17 +23,19 @@ export default function Post() {
     } else navigate("/");
   }, [slug, navigate]);
 
+  const editPost = () => {
+    navigate("/edit-post/:slug");
+  };
+
   const deletePost = () => {
-    service.deletePost(post.$id).then((status) => {
+    service.removePost(post.$id).then((status) => {
       if (status) {
-        service.deleteFile(post.featuredImage);
+        service.removePost(post.featuredImage);
         navigate("/");
       }
     });
   };
-  console.log(post.featuredImage);
-  
-  
+
   return post ? (
     <div className="py-8">
       <Container>
@@ -49,7 +51,11 @@ export default function Post() {
           {isAuthor && (
             <div className="absolute right-6 top-6">
               <Link to={`/edit-post/${post.$id}`}>
-                <Button bgColor="bg-green-500" className="mr-3">
+                <Button
+                  bgColor="bg-green-500"
+                  className="mr-3"
+                  onClick={editPost}
+                >
                   Edit
                 </Button>
               </Link>

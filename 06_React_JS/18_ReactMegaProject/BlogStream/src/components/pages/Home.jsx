@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Service from "../../appwrite/db";
-import { Container, PostCard, PostForm } from "../index";
+import { Container, PostCard } from "../index";
 import { useNavigate } from "react-router";
 import { useParams } from "react-router";
 
 function Home() {
-
-    console.log("Home");
-    
-    
   const [posts, setPosts] = useState([]);
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -27,9 +23,12 @@ function Home() {
         <Container>
           <div className="flex flex-wrap">
             <div className="p-2 w-full">
-              <h1 className="text-2xl font-bold hover:text-gray-500">
+              <button
+                className="text-2xl font-bold hover:text-gray-500"
+                onClick={() => navigate("/login")}
+              >
                 Login to read posts
-              </h1>
+              </button>
             </div>
           </div>
         </Container>

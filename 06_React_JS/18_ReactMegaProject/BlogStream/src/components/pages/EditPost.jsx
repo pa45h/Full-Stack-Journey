@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, PostCard, PostForm } from "../index.js";
-import Service from "../../appwrite/db.js";
+import service from "../../appwrite/db.js";
 import { useNavigate, useParams } from "react-router";
 
 function EditPost() {
@@ -10,7 +10,7 @@ function EditPost() {
 
   useEffect(() => {
     if (slug) {
-      Service.getPost(slug).then((post) => {
+      service.getPost(slug).then((post) => {
         if (post) {
           setPost(post);
         } else {

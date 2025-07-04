@@ -1,14 +1,13 @@
 import React, { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, Select, RealTimeEditor } from "./index.js";
-import authService, { AuthService } from "../appwrite/auth.js";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import Service from "../appwrite/db.js";
+import service from "../appwrite/db.js";
 import Post from "./pages/Post.jsx";
 
 function PostForm({ post }) {
-  const { register, handleSubmit, watch, setValue, control, getValues } =
+  const { register, handleSubmit, watch, setValue, control, getValues, reset } =
     useForm({
       defaultValues: {
         title: post?.title || "",
@@ -18,6 +17,17 @@ function PostForm({ post }) {
       },
     });
 
+    useEffect(() => {
+  if (post) {
+    reset({
+      title: post.title || "",
+      slug: post.slug || "",
+      content: post.content || "",
+      status: post.status || "active",
+    });
+  }
+}, [post, reset]);
+
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
 
@@ -25,12 +35,12 @@ function PostForm({ post }) {
     if (post) {
       
       const file = data.image[0]
-        ? await Service.uploadFile(data.image[0])
+        ? await service.uploadFile(data.image[0])
         : null;
       if (file) {
-        Service.removeFile(post.featuredImage);
+        service.removeFile(post.featuredImage);
       }
-      const dbPost = await Service.updatePost(post.$id, {
+      const dbPost = await service.updatePost(post.$id, {
         ...data,
         featuredImage: file ? file.$id : undefined,
       });
@@ -39,12 +49,12 @@ function PostForm({ post }) {
         navigate(`/post/${dbPost.$id}`);
       }
     } else {
-      const file = await Service.uploadFile(data.image[0]);
+      const file = await service.uploadFile(data.image[0]);
 
       if (file) {
         const fileId = file.$id;
         data.featuredImage = fileId;
-        const dbPost = await Service.createPost({
+        const dbPost = await service.createPost({
           ...data,
           userId: userData.$id,
         });
@@ -78,7 +88,7 @@ function PostForm({ post }) {
     };
   }, [watch, slugTransform, setValue]);
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap w-full justify-center">
       <div className="w-2/3 px-2">
         <Input
           label="Title :"
@@ -112,15 +122,15 @@ function PostForm({ post }) {
           accept="image/png, image/jpg, image/jpeg, image/gif"
           {...register("image", { required: !post })}
         />
-        {post && (
+        {/* {post && (
           <div className="w-full mb-4">
             <img
-              src={appwriteService.getFilePreview(post.featuredImage)}
+              src={service.getFilePreview(post.featuredImage)}
               alt={post.title}
               className="rounded-lg"
             />
           </div>
-        )}
+        )} */}
         <Select
           options={["active", "inactive"]}
           label="Status"
