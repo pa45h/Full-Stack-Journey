@@ -1,18 +1,18 @@
 const Todo = require("../models/Todo");
 
-exports.createTodo = async (req, res) => {
+exports.deleteTodo = async (req, res) => {
   try {
-    const { title, description } = req.body;
-
-    const response = await Todo.create({ title, description });
+    const id = req.params.id;
+    const todo = await Todo.findByIdAndDelete({ _id: id });
 
     res.status(200).json({
       success: true,
-      data: response,
-      message: "Todo Created Successfully!",
+      data: todo,
+      message: `Todo ${id} Deleted Successfully!`,
     });
   } catch (error) {
     console.error(error);
+    console.log(error);
     res.status(500).json({
       success: false,
       data: "Internal Server Error!",
