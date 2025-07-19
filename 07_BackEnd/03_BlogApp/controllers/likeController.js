@@ -13,9 +13,7 @@ exports.likePost = async (req, res) => {
       post,
       { $push: { likes: savedLike._id } },
       { new: true }
-    )
-      .populate("likes")
-      .exec();
+    ).populate("likes");
 
     res.json({
       post: updatedPost,
@@ -23,6 +21,27 @@ exports.likePost = async (req, res) => {
   } catch (error) {
     return res.status(400).json({
       error: "Error while Liking!",
+      message: error.message,
+    });
+  }
+};
+
+exports.dislikePost = async (req, res) => {
+  try {
+    const { post, like } = req.body;
+
+    const updatedPost = await Post.findByIdAndUpdate(
+      post,
+      { $pull: { likes: like } },
+      { new: true }
+    ).populate("likes");
+
+    res.json({
+      post: updatedPost,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: "Error while Dis-Liking!",
       message: error.message,
     });
   }

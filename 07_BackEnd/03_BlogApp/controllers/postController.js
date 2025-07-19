@@ -28,7 +28,8 @@ exports.getAllPosts = async (req, res) => {
     res.json({ posts: posts });
   } catch (error) {
     return res.status(400).json({
-      error: "Error while creating post!",
+      error: "Error while getting post!",
+      message: error.message,
     });
   }
 };
