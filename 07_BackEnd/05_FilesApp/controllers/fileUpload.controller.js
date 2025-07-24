@@ -8,7 +8,7 @@ exports.locallyFileUpload = async (req, res) => {
     const path =
       __dirname +
       "/files/" +
-      file.name +
+      file.name.split(".")[0] +
       "-" +
       Date.now() +
       "." +
