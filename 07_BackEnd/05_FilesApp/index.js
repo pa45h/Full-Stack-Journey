@@ -8,7 +8,12 @@ require("dotenv").config();
 const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
-app.use(fileupload());
+app.use(
+  fileupload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
+  })
+);
 
 database.connectDataBase();
 cloudinary.connectCloudinary();
