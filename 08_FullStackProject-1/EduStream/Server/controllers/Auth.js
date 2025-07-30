@@ -91,7 +91,7 @@ exports.signUp = async (req, res) => {
       });
     }
 
-    const isUserExist = User.findOne({ email });
+    const isUserExist = await User.findOne({ email });
     if (isUserExist) {
       return res.status(400).json({
         success: false,
@@ -116,7 +116,7 @@ exports.signUp = async (req, res) => {
       });
     }
 
-    const hashedPassword = bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const profileData = await Profile.create({
       gender: null,
@@ -174,7 +174,7 @@ exports.login = async (req, res) => {
       const payload = {
         email: user.email,
         password: user.password,
-        role: user.role,
+        accountType: user.accountType,
       };
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: "2h",
@@ -203,6 +203,35 @@ exports.login = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "User Could Not Log In, Please Try Again Later!",
+      error: error.message,
+    });
+  }
+};
+
+
+// Baaaki che..
+exports.changePassword = async (req, res) => {
+  try {
+    const { oldPassword, newPassword, confirmNewPassword } = req.body;
+
+    if (!oldPassword || !newPassword || !confirmNewPassword) {
+      return res.status(400).json({
+        success: false,
+        message: "Enter All Fields Properly!",
+      });
+    }
+
+    if (newPassword !== confirmNewPassword) {
+      return res.status(400).json({
+        success: false,
+        message: "New passwords do not match!",
+      });
+    }
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({
+      success: false,
+      message: "User Could Not Change Password, Please Try Again Later!",
       error: error.message,
     });
   }
