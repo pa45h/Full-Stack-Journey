@@ -1,13 +1,19 @@
 const User = require("../models/User.model");
 const Course = require("../models/Course.model");
 const Category = require("../models/Category.model");
-const { uploadImageToCloudinary } = require("../utils/imageUploader.util");
+const { uploadToCloudinary } = require("../utils/cloudinary.util");
 require("dotenv").config();
 
 exports.createCourse = async (req, res) => {
   try {
-    const { courseName, courseDescription, whatYouWillLearn, price, category } =
-      req.body;
+    const {
+      courseName,
+      courseDescription,
+      whatYouWillLearn,
+      price,
+      category,
+      tags,
+    } = req.body;
 
     const thumbnail = req.files.thumbnailImage;
 
@@ -17,6 +23,7 @@ exports.createCourse = async (req, res) => {
       !whatYouWillLearn ||
       !price ||
       !category ||
+      !tags ||
       !thumbnail
     ) {
       return res.status(400).json({
@@ -43,7 +50,7 @@ exports.createCourse = async (req, res) => {
       });
     }
 
-    const thumbnailImageUrl = await uploadImageToCloudinary(
+    const thumbnailImageUrl = await uploadToCloudinary(
       thumbnail,
       process.env.FOLDER_NAME
     );
@@ -55,6 +62,7 @@ exports.createCourse = async (req, res) => {
       whatYouWillLearn: whatYouWillLearn,
       price,
       category: categoryDetails._id,
+      tags,
       thumbnail: thumbnailImageUrl.secure_url,
     });
 
@@ -79,6 +87,7 @@ exports.createCourse = async (req, res) => {
     console.log(error.message);
     return res.status(500).json({
       success: false,
+      message:"Could Not Create Course, Please Try Again Later!",
       error: error.message,
     });
   }
@@ -108,6 +117,7 @@ exports.getAllCourses = async (req, res) => {
     console.log(error.message);
     return res.status(500).json({
       success: false,
+      message:"Could Not Fetch All Courses, Please Try Again Later!",
       error: error.message,
     });
   }
