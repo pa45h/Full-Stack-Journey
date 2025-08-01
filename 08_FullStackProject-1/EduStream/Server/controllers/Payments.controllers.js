@@ -39,7 +39,7 @@ exports.capturePayment = async (req, res) => {
     const options = {
       amount: amount * 100,
       currency: currency,
-      receipt: Math.random(Date.now()).toString(),
+      receipt: `${Date.now()}`,
       notes: {
         courseId: courseId,
         userId: userId,
@@ -112,7 +112,7 @@ exports.verifySignature = async (req, res) => {
       console.log("enrolledStudent :- ", enrolledStudent);
 
       const emailResponse = await mailSender(
-        enrolledCourse.email,
+        enrolledStudent.email,
         "Congratulations, You are onboard into new course",
         courseEnrollmentEmail(
           enrolledCourse.courseName,
