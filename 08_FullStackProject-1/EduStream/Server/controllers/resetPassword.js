@@ -17,7 +17,7 @@ exports.resetPasswordToken = async (req, res) => {
 
     const token = crypto.randomUUID();
 
-    const updatedUser = await User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       { email },
       { token: token, resetPasswordExpires: Date.now() + 5 * 60 * 1000 }
     );

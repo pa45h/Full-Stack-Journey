@@ -109,7 +109,7 @@ exports.signUp = async (req, res) => {
         success: false,
         message: "OTP Not Found!",
       });
-    } else if (otp !== recentOtp.otp) {
+    } else if (otp !== recentOtp[0].otp) {
       return res.status(400).json({
         success: false,
         message: "Invalid OTP!",
@@ -208,11 +208,10 @@ exports.login = async (req, res) => {
   }
 };
 
-
-// Baaaki che..
 exports.changePassword = async (req, res) => {
   try {
-    const { oldPassword, newPassword, confirmNewPassword } = req.body;
+    const { email, oldPassword, newPassword, confirmNewPassword } = req.body;
+    const user = await User.findOne({ email });
 
     if (!oldPassword || !newPassword || !confirmNewPassword) {
       return res.status(400).json({
@@ -227,6 +226,24 @@ exports.changePassword = async (req, res) => {
         message: "New passwords do not match!",
       });
     }
+
+    if (!(await bcrypt.compare(oldPassword, user.password))) {
+      return res.status(400).json({
+        success: false,
+        message: "Incorrect old password!",
+      });
+    }
+
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+    user.password = hashedNewPassword;
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      user,
+      message: "Password Changed Successfully!",
+    });
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({
