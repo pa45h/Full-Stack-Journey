@@ -55,10 +55,10 @@ exports.createCourse = async (req, res) => {
       process.env.FOLDER_NAME
     );
 
-    const newCourse = await Course({
+    const newCourse = await Course.create({
       courseName,
       courseDescription,
-      instructor: instructorDetails,
+      instructor: instructorDetails._id,
       whatYouWillLearn: whatYouWillLearn,
       price,
       category: categoryDetails._id,
@@ -87,7 +87,7 @@ exports.createCourse = async (req, res) => {
     console.log(error.message);
     return res.status(500).json({
       success: false,
-      message:"Could Not Create Course, Please Try Again Later!",
+      message: "Could Not Create Course, Please Try Again Later!",
       error: error.message,
     });
   }
@@ -95,7 +95,7 @@ exports.createCourse = async (req, res) => {
 
 exports.getAllCourses = async (req, res) => {
   try {
-    const allCourses = Course.find(
+    const allCourses = await Course.find(
       {},
       {
         courseName: true,
@@ -106,7 +106,7 @@ exports.getAllCourses = async (req, res) => {
         ratingAndReviews: true,
       }
     )
-      .populate()
+      .populate("instructor")
       .exec();
     return res.status(200).json({
       success: true,
@@ -117,7 +117,49 @@ exports.getAllCourses = async (req, res) => {
     console.log(error.message);
     return res.status(500).json({
       success: false,
-      message:"Could Not Fetch All Courses, Please Try Again Later!",
+      message: "Could Not Fetch All Courses, Please Try Again Later!",
+      error: error.message,
+    });
+  }
+};
+
+exports.getCourseDetails = async (req, res) => {
+  try {
+    const { courseId } = req.body;
+
+    const courseDetails = await Course.find({ _id: courseId })
+      .populate({
+        path: "instructor",
+        populate: {
+          path: "additionalDetails",
+        },
+      })
+      .populate("category")
+      .populate("ratingAndReviews")
+      .populate({
+        path: "courseContent",
+        populate: {
+          path: "subSection",
+        },
+      });
+
+    if (!courseDetails) {
+      return res.status(400).json({
+        success: false,
+        message: `Could Not Find Course By Id - ${courseId}, Please Try Again Later!`,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: courseDetails,
+      message: "Course details fetched successfully!",
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Could Not Fetch All Courses, Please Try Again Later!",
       error: error.message,
     });
   }
