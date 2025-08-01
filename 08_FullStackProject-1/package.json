@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "cloudinary": "^2.7.0",
-    "cloudinary-build-url": "^0.2.4"
+    "cloudinary-build-url": "^0.2.4",
+    "razorpay": "^2.9.6"
   }
 }
