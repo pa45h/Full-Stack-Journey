@@ -138,7 +138,7 @@ exports.signUp = async (req, res) => {
       contactNo,
       additionalDetails: profileData._id,
       approved: approved,
-      image: `https://api.dicebear.com/9.x/initials/svg?${firstName} ${lastName}`,
+      image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName}_${lastName}`,
     });
 
     return res.status(200).json({
@@ -177,6 +177,7 @@ exports.login = async (req, res) => {
 
     if (await bcrypt.compare(password, user.password)) {
       const payload = {
+        id: user._id,
         email: user.email,
         password: user.password,
         accountType: user.accountType,

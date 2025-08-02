@@ -1,5 +1,5 @@
-const otpTemplate = (otp) => {
-    return `<!DOCTYPE html>
+exports.emailVerification = (otp) => {
+  return `<!DOCTYPE html>
     <html>
     
     <head>
@@ -72,7 +72,7 @@ const otpTemplate = (otp) => {
             <div class="body">
                 <p> Dear User, </p>
                 <p> 
-                    Thank You for registering with StudyNotion. To Complete your registration, 
+                    Thank You for registering with EduStream. To Complete your registration, 
                     Please use the following OTP (One-Time Password) to verify your account: 
                 </p>
                 <h2 class="highlight">${otp} </h2>
@@ -89,5 +89,3 @@ const otpTemplate = (otp) => {
     </body>
     </html>`;
 };
-
-module.exports = otpTemplate;
