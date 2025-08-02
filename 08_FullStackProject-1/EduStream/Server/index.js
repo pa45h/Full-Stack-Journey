@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+require("dotenv").config();
 const PORT = process.env.PORT || 4000;
 
 const userRoutes = require("./routes/User.route");
@@ -12,7 +13,6 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const cloudinary = require("./config/cloudinary.config");
 const fileUpload = require("express-fileupload");
-require("dotenv").config();
 
 app.use(express.json());
 app.use(cookieParser());
