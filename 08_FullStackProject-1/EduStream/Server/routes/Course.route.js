@@ -1,0 +1,76 @@
+const express = require("express");
+const router = express.Router();
+
+const {
+  createCourse,
+  getAllCourses,
+  getCourseDetails,
+} = require("../controllers/Courses.controller");
+
+const {
+  createCategory,
+  getAllCategories,
+  categoryPageDetails,
+} = require("../controllers/Categories.controller");
+
+const {
+  createSection,
+  updateSection,
+  deleteSection,
+} = require("../controllers/Sections.controller");
+
+const {
+  createSubSection,
+  updateSubSection,
+  deleteSubSection,
+} = require("../controllers/SubSections.controller");
+
+const {
+  createRating,
+  getAverageRating,
+  getAllRatings,
+} = require("../controllers/RatingAndReview.controller");
+
+const {
+  auth,
+  isStudent,
+  isInstructor,
+  isAdmin,
+} = require("../middlewares/auth.middleware");
+
+// ==================== ROUTES FOR ALL: ====================
+
+// Category Routes:
+router.get("/getAllCategories", getAllCategories);
+router.get("/categoryPageDetails", categoryPageDetails);
+
+// Course Routes:
+router.get("/getAllCourses", getAllCourses);
+router.get("/getCourseDetails", getCourseDetails);
+
+// Rating Review Routes:
+router.get("/getAverageRating", getAverageRating);
+router.get("/getAllRatings", getAllRatings);
+
+// ==================== ROUTES FOR ADMIN: ====================
+router.post("/createCategory", auth, isAdmin, createCategory);
+
+// ==================== ROUTES FOR INSTRUCTOR: ====================
+
+// Course Routes:
+router.post("/createCourse", auth, isInstructor, createCourse);
+
+// Section Routes:
+router.post("/createSection", auth, isInstructor, createSection);
+router.delete("/deleteSection", auth, isInstructor, deleteSection);
+router.put("/updateSection", auth, isInstructor, updateSection);
+
+// Sub - Section Routes:
+router.post("/createSubSection", auth, isInstructor, createSubSection);
+router.put("/updateSubSection", auth, isInstructor, updateSubSection);
+router.delete("/deleteSubSection", auth, isInstructor, deleteSubSection);
+
+// ==================== ROUTES FOR STUDENT: ====================
+router.post("/createRating", auth, isStudent, createRating);
+
+module.exports = router;

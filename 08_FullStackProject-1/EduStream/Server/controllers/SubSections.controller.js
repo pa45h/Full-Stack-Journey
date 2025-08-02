@@ -75,6 +75,9 @@ exports.updateSubSection = async (req, res) => {
     if (timeDuration) subSection.timeDuration = timeDuration;
 
     if (videoFile) {
+      const odlVideoPublicId = extractPublicId(subSection.videoUrl);
+      await deleteFromCloudinary(odlVideoPublicId);
+
       const videoUrl = await uploadToCloudinary(
         videoFile,
         process.env.FOLDER_NAME

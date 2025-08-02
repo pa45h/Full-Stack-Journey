@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const mailSender = require("../utils/mailSender.util");
+const {emailVerification} = require("../mail/emailVerification.mail");
 
 const otpSchema = new mongoose.Schema(
   {
@@ -13,7 +14,7 @@ const otpSchema = new mongoose.Schema(
     },
     createdAt: {
       type: Date,
-      default: Date.now(),
+      default: Date.now,
       expires: 5 * 60,
     },
   },
@@ -25,18 +26,24 @@ async function sendVerificationEmail(email, otp) {
     const mailResponse = await mailSender(
       email,
       "Verification Email From EduStream",
-      `<h1>Your OTP is: ${otp}</h1><p>It expires in 5 minutes.</p>`
+      emailVerification(otp)
     );
-    console.log(mailResponse);
+    console.log("Email sent successfully", mailResponse.response);
   } catch (error) {
-    console.log("Error Occured While Sending Verification Email!");
+    console.log("Error occurred While Sending Verification Email!");
     console.error(error.message);
   }
 }
 
 otpSchema.pre("save", async function (next) {
-  sendVerificationEmail(this.email, this.otp);
-  next();
+  try {
+    console.log("New document saved to the database");
+    await sendVerificationEmail(this.email, this.otp);
+    next();
+  } catch (error) {
+    console.error("Error in pre-save hook:", error);
+    next(error);
+  }
 });
 
 module.exports = mongoose.model("OTP", otpSchema);

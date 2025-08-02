@@ -49,13 +49,21 @@ const courseSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    tag: {
+      type: [String],
+      required: true,
+    },
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
+      required: true,
     },
-    tags: {
+    instructions: {
+      type: [String],
+    },
+    status: {
       type: String,
-      trim: true,
+      enum: ["Draft", "Published"],
     },
   },
   { timestamps: true }

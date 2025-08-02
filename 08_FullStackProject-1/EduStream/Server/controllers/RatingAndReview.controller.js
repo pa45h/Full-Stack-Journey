@@ -49,7 +49,7 @@ exports.createRating = async (req, res) => {
     return res.status(200).json({
       success: true,
       ratingAndReviews: newRatingAndReviews,
-      message: "Rating-Review Created Successfuly!",
+      message: "Rating-Review Created successfully!",
     });
   } catch (error) {
     console.log(error.message);
@@ -67,7 +67,9 @@ exports.getAverageRating = async (req, res) => {
 
     const result = await RatingAndReviews.aggregate([
       {
-        $match: new mongoose.Types.ObjectId(courseId),
+        $match: {
+          course: new mongoose.Types.ObjectId(courseId),
+        },
       },
       {
         $group: {
@@ -97,7 +99,7 @@ exports.getAverageRating = async (req, res) => {
   }
 };
 
-exports.getAllRatings = async (params) => {
+exports.getAllRatings = async (req, res) => {
   try {
     const allReviews = await RatingAndReviews.find({})
       .sort({ rating: "desc" })

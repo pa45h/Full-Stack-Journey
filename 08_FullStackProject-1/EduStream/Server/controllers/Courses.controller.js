@@ -6,13 +6,14 @@ require("dotenv").config();
 
 exports.createCourse = async (req, res) => {
   try {
-    const {
+    let {
       courseName,
       courseDescription,
       whatYouWillLearn,
       price,
       category,
-      tags,
+      tag,
+      status,
     } = req.body;
 
     const thumbnail = req.files.thumbnailImage;
@@ -23,13 +24,16 @@ exports.createCourse = async (req, res) => {
       !whatYouWillLearn ||
       !price ||
       !category ||
-      !tags ||
+      !tag ||
       !thumbnail
     ) {
       return res.status(400).json({
         success: false,
         message: "All Fields Are Required!",
       });
+    }
+    if (!status || status === undefined) {
+      status = "Draft";
     }
 
     const userId = req.user.id;
@@ -62,8 +66,9 @@ exports.createCourse = async (req, res) => {
       whatYouWillLearn: whatYouWillLearn,
       price,
       category: categoryDetails._id,
-      tags,
+      tag: tag,
       thumbnail: thumbnailImageUrl.secure_url,
+      status: status,
     });
 
     await User.findByIdAndUpdate(
@@ -81,7 +86,7 @@ exports.createCourse = async (req, res) => {
     return res.status(200).json({
       success: true,
       data: newCourse,
-      message: "Course Created Successfuly!",
+      message: "Course Created successfully!",
     });
   } catch (error) {
     console.log(error.message);
@@ -111,7 +116,7 @@ exports.getAllCourses = async (req, res) => {
     return res.status(200).json({
       success: true,
       data: allCourses,
-      message: "Got Courses Successfuly!",
+      message: "Got Courses successfully!",
     });
   } catch (error) {
     console.log(error.message);
@@ -127,7 +132,7 @@ exports.getCourseDetails = async (req, res) => {
   try {
     const { courseId } = req.body;
 
-    const courseDetails = await Course.find({ _id: courseId })
+    const courseDetails = await Course.findById(courseId)
       .populate({
         path: "instructor",
         populate: {

@@ -15,7 +15,7 @@ exports.resetPasswordToken = async (req, res) => {
       });
     }
 
-    const token = crypto.randomUUID();
+    const token = crypto.randomBytes(20).toString("hex");
 
     await User.findOneAndUpdate(
       { email },
@@ -39,7 +39,7 @@ exports.resetPasswordToken = async (req, res) => {
     return res.status(500).json({
       success: false,
       message:
-        "Cannot Generate Token For Resset Password, Please Try Again Later!",
+        "Cannot Generate Token For reset Password, Please Try Again Later!",
       error: error.message,
     });
   }
@@ -52,7 +52,7 @@ exports.resetPassword = async (req, res) => {
     if (password !== confirmPassword) {
       return res.status(400).json({
         success: false,
-        message: "Password Feilds Does Not Match!",
+        message: "Password felids Does Not Match!",
       });
     }
 
@@ -68,7 +68,7 @@ exports.resetPassword = async (req, res) => {
     if (userData.resetPasswordExpires < Date.now()) {
       return res.status(400).json({
         success: false,
-        message: "Token Is Exprired, Please Try Again!",
+        message: "Token Is expired, Please Try Again!",
       });
     }
 

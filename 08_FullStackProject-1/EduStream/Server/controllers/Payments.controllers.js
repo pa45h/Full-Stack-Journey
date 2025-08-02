@@ -2,7 +2,7 @@ const { instance } = require("../config/razorpay.config");
 const Course = require("../models/Course.model");
 const User = require("../models/User.model");
 const mailSender = require("../utils/mailSender.util");
-const { courseEnrollmentEmail } = require("../mails/courseEnrollment.mail");
+const { courseEnrollmentEmail } = require("../mail/courseEnrollment.mail");
 const { default: mongoose } = require("mongoose");
 
 exports.capturePayment = async (req, res) => {
@@ -69,11 +69,11 @@ exports.capturePayment = async (req, res) => {
 
 exports.verifySignature = async (req, res) => {
   try {
-    const webhookSectret = "0987654321";
+    const webhookSecret = "0987654321";
 
     const signature = req.headers["x-razorpay-signature"];
 
-    const shasum = crypto.createHmac("sha256", webhookSectret);
+    const shasum = crypto.createHmac("sha256", webhookSecret);
     shasum.update(JSON.stringify(req.body));
     const digest = shasum.digest("hex");
 
@@ -104,7 +104,7 @@ exports.verifySignature = async (req, res) => {
         { _id: userId },
         {
           $push: {
-            course: courseId,
+            courses: courseId,
           },
         },
         { new: true }
