@@ -9,7 +9,7 @@ import CodeBlocks from "../components/core/HomePage/CodeBlocks";
 function Home() {
   return (
     <div id="HomePage">
-      <div className="Section-1 relative mx-auto flex flex-col max-w-maxContent w-11/12 items-center text-white justify-between">
+      <div className="Section-1 relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center justify-between">
         <Link to={"/signup"}>
           <div className="group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200 transition-all duration-200 hover:scale-95 w-fit shadow-richblack-500 shadow-sm hover:shadow-none">
             <div className="flex flex-row items-center gap-2 rounded-full px-10 py-[5px] transition-all duration-200 group-hover:bg-richblack-900">
@@ -23,7 +23,7 @@ function Home() {
           Empower Your Future with <HighlightText text={"Coding Skills"} />
         </div>
 
-        <div className="w-[90%] text-center text-lg font-bold text-richblue-200 mt-4">
+        <div className="w-[80%] text-center text-lg font-bold text-richblue-200 mt-4">
           With our online coding courses, you can learn at your own pace, from
           anywhere in the world, and get access to a wealth of resources,
           including hands-on projects, quizzes, and personalized feedback from
@@ -46,7 +46,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="Section-2">
+      <div className="Section-2 relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center justify-between">
         <CodeBlocks
           position={"lg:flex-row"}
           heading={
@@ -68,8 +68,52 @@ function Home() {
             linkto: "/login",
             active: false,
           }}
-          codeblock={""}
+          codeblock={`let topics = ["DSA", "DBMS", "OOP", "Web Dev", "AI-ML"];
+                      const instructor = {
+                          name: "Parth Katariya",
+                      };
+                      function greet(user) {
+                        console.log(\`Welcome back, \${user.name}!\`);
+                        console.log(\`Let's start learning 🎯\`);
+                      }
+                      greet(user);
+                    `}
           codeColor={"text-yellow-25"}
+        />
+      </div>
+
+      <div className="Section-3 relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center justify-between">
+        <CodeBlocks
+          position={"lg:flex-row-reverse"}
+          heading={
+            <div className="text-4xl font-semibold">
+              Start <HighlightText text={"coding in second"} />
+            </div>
+          }
+          subheading={
+            "Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."
+          }
+          button1={{
+            btnText: "Continue Lesson",
+            linkto: "/signup",
+            active: true,
+          }}
+          button2={{
+            btnText: "Learn More",
+            linkto: "/login",
+            active: false,
+          }}
+          codeblock={`public class StartCoding {
+                        public static void main(String[] args) {
+                          String today = "Day 1";
+                          String focus = "Understand syntax";
+                          boolean feelingReady = true;
+                          System.out.println("📘 " + today + ": " + focus);
+                          if (feelingReady) {
+                            System.out.println("Let's write your first program! 🚀");
+                          }
+                        }}`}
+          codeColor={"text-caribbeangreen-100"}
         />
       </div>
     </div>
