@@ -7,7 +7,7 @@ body {
     overflow-x: hidden;
 }
 
-.homepage_bg{
+.homepage_bg {
     background: url("../src//assets//Images/bghome.jpg");
     background-size: contain;
 }

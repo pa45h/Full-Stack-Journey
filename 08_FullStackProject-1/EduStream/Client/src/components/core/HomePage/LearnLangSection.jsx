@@ -10,7 +10,7 @@ const LearnLangSection = () => {
     <div className="mt-[130px] mb-32">
       <div className="flex flex-col gap-5 items-center">
         <div className="text-4xl font-semibold text-center">
-          Your swiss knife for
+          Your swiss knife for{" "}
           <HighlightText text={" learning any language"} />
         </div>
         <div className="text-center text-richblack-600 mx-auto text-base font-medium w-[70%]">
@@ -18,10 +18,10 @@ const LearnLangSection = () => {
           realistic voice-over, progress tracking, custom schedule and more.
         </div>
 
-        <div className="flex flex-row items-center mt-5">
-            <img src={img1} className="object-contain -mr-32" />
-            <img src={img2} className="object-contain" />
-            <img src={img3} className="object-contain -ml-36" />
+        <div className="flex flex-row items-center my-16 gap-5">
+            <img src={img1} className="object-contain rotate-12 rounded-3xl shadow-[0px_0px_50px_20px_rgb(180,218,236)] z-0 hover:scale-105 hover:rotate-0 transition-all duration-200" width={300} />
+            <img src={img2} className="object-contain -rotate-12 rounded-3xl shadow-[0px_0px_50px_20px_rgb(251,199,209)] z-10 hover:scale-105 hover:rotate-0 transition-all duration-200" width={300} />
+            <img src={img3} className="object-contain rotate-12 rounded-3xl shadow-[0px_0px_50px_20px_rgb(255,227,149)] z-0 hover:scale-105 hover:rotate-0 transition-all duration-200" width={300} />
         </div>
 
         <div className="w-fit">

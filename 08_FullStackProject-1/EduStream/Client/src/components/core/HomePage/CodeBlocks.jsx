@@ -32,8 +32,10 @@ const CodeBlocks = ({
       </div>
 
       <div>
-        <div className="h-fit flex flex-row text-[14px] w-[100%] py-4 lg:w-[500px] relative shadow-richblue-200 shadow-sm">
-          <div className={`${backgroundGradient} absolute w-[100%] h-[100%]`}></div>
+        <div
+          className={`h-fit flex flex-row text-[14px] w-[100%] py-4 lg:w-[500px] relative ${backgroundGradient} rounded-lg`}
+        >
+          <div className={` absolute w-[100%] h-[100%]`}></div>
 
           <div className="text-center flex flex-col w-[10%] select-none text-richblack-400 font-inter font-bold">
             <p>1</p>

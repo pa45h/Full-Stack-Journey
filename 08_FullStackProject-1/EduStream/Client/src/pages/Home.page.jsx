@@ -9,6 +9,7 @@ import TimelineSection from "../components/core/HomePage/TimelineSection";
 import LearnLangSection from "../components/core/HomePage/LearnLangSection";
 import InstructorSection from "../components/core/HomePage/InstructorSection";
 import Footer from "../components/common/Footer";
+import ExploreMore from "../components/core/HomePage/ExploreMore";
 
 function Home() {
   return (
@@ -83,6 +84,9 @@ function Home() {
                       greet(user);
                     `}
           codeColor={"text-yellow-25"}
+          backgroundGradient={
+            "bg-[rgb(255,232,61,0.1)] shadow-[0px_0px_1000px_0px_rgb(255,232,61),10px_-10px_0px_0px_rgb(255,232,61)]"
+          }
         />
       </div>
 
@@ -118,13 +122,17 @@ function Home() {
                           }
                         }}`}
           codeColor={"text-caribbeangreen-100"}
+          backgroundGradient={
+            "bg-[rgb(6,214,160,0.1)] shadow-[0px_0px_1000px_0px_rgb(6,214,160),-10px_-10px_0px_0px_rgb(6,214,160)]"
+          }
         />
       </div>
 
+      <ExploreMore />
       <div className="Section-2 bg-pure-greys-5 text-richblack-700">
-        <div className="homepage_bg h-[333px]">
+        <div className="homepage_bg h-[333px] -z-10">
           <div className="w-11/12 max-w-maxContent flex flex-col items-center gap-5 mx-auto">
-            <div className="h-[150px]"></div>
+            <div className="h-[200px]"></div>
             <div className="flex gap-7 text-white">
               <Button active={true} linkto={"/signup"}>
                 <div className="flex items-center gap-3">
@@ -155,22 +163,20 @@ function Home() {
               </Button>
             </div>
           </div>
-
           <TimelineSection />
           <LearnLangSection />
         </div>
       </div>
 
-      <div className="Section-3.1 w-11/12 max-w-maxContent flex flex-col items-center mx-auto justify-between gap-8 bg-richblack-900 text-white">
+      <div className="Section-3 w-11/12 max-w-maxContent flex flex-col items-center mx-auto justify-between gap-8 bg-richblack-900 text-white">
+        <InstructorSection />
 
-      <InstructorSection/>
-
-      <h2 className="text-4xl text-center font-semibold mt-10 mb-16">Reviews from other learners</h2>
-
+        <h2 className="text-4xl text-center font-semibold mt-10 mb-16">
+          Reviews from other learners
+        </h2>
       </div>
 
-      <Footer/>
-
+      <Footer />
     </div>
   );
 }
