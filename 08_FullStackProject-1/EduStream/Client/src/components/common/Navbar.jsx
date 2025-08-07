@@ -21,7 +21,8 @@ const Navbar = () => {
     try {
       const result = await apiConnector("GET", categories.CATEGORIES_API);
       console.log("sublinks result :- ", result);
-      setSubLinks(result.data.data);
+      const subLinksArr = await result.data.allCategories;
+      setSubLinks(subLinksArr);
     } catch (error) {
       console.log("Could Not Fetch The Category List :- ", error);
     }
@@ -53,12 +54,14 @@ const Navbar = () => {
                       <p className="text-richblack-500">{link.title}</p>
                       <IoMdArrowDropdown className="text-richblack-500" />
 
-                      <div className="invisible absolute left-[50%] top-[50%] flex flex-col rounded-md bg-richblack-5 text-richblack-900 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 lg:w-[300px] h-10 translate-x-[-50%] translate-y-[50%]">
-                        <div className="absolute left-[50%] top-0 h-6 w-6 rotate-45 rounded bg-richblack-5 translate-y-[-30%] translate-x-[85%]"></div>
-                        {subLinks.length ? (
+                      <div className="invisible absolute left-[50%] top-[50%] flex flex-col rounded-md bg-richblack-5 text-richblack-900 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 lg:w-[300px] translate-x-[-50%] translate-y-[20%] z-50 justify-center p-4 group text-[15px] font-medium">
+                        <div className="absolute left-[50%] top-0 h-6 w-6 rotate-45 rounded bg-richblack-5 translate-y-[-30%] translate-x-[85%] -z-10"></div>
+                        {subLinks ? (
                           subLinks.map((subLink, index) => (
-                            <Link to={`${subLink.link}`}>
-                              <p>{subLink.title}</p>
+                            <Link to={`/${subLink.name}`} key={index}>
+                              <p className="hover:bg-richblue-25 p-4 rounded-md transition-all duration-200">
+                                {subLink.name}
+                              </p>
                             </Link>
                           ))
                         ) : (
