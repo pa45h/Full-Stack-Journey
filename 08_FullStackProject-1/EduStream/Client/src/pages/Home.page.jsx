@@ -14,9 +14,9 @@ import ExploreMore from "../components/core/HomePage/ExploreMore";
 function Home() {
   return (
     <div id="HomePage">
-      <div className="Section-1.1 relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center justify-between">
+      <div className="Section-1.1 relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center justify-between pt-16">
         <Link to={"/signup"}>
-          <div className="group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200 transition-all duration-200 hover:scale-95 w-fit shadow-richblack-500 shadow-sm hover:shadow-none">
+          <div className="group p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200 transition-all duration-200 hover:scale-95 w-fit shadow-richblack-500 shadow-sm hover:shadow-none">
             <div className="flex flex-row items-center gap-2 rounded-full px-10 py-[5px] transition-all duration-200 group-hover:bg-richblack-900">
               <p>Become an Instructor</p>
               <FaRegArrowAltCircleRight />
