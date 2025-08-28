@@ -10,6 +10,7 @@ require("dotenv").config();
 
 exports.sendOtp = async (req, res) => {
   try {
+    
     const { email } = req.body;
 
     const isUserRegistered = await User.findOne({ email });

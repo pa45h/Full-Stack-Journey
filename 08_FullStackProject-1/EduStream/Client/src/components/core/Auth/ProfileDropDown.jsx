@@ -5,7 +5,7 @@ import { VscDashboard, VscSignOut } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-import { logout } from "../../../services/operations/authAPI";
+import { logout } from "../../../services/operations/authAPI.service";
 // import useOnClickOutside from "../../../hooks/useOnClickOutside";
 
 export default function ProfileDropDown() {
