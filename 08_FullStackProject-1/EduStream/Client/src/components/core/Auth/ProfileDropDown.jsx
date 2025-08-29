@@ -20,7 +20,10 @@ export default function ProfileDropDown() {
   if (!user) return null;
 
   return (
-    <button className="realtive" onClick={() => setOpen(true)}>
+    <button
+      className="realtive"
+      onClick={() => setOpen((open) => !open)}
+    >
       <div className="flex items-center gap-x-1">
         <img
           src={user?.image}
