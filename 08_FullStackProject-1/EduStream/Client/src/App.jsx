@@ -3,6 +3,7 @@ import Home from "./pages/Home.page";
 import Navbar from "../src/components/common/Navbar";
 import Login from "./pages/Login.page";
 import Signup from "./pages/Signup.page";
+import ForgotPassword from "./pages/ForgotPassword.page";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </div>
   );

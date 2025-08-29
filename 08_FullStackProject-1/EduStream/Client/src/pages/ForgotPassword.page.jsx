@@ -3,7 +3,6 @@ import { BiArrowBack } from "react-icons/bi";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import "../App.css";
 
 import { getPasswordResetToken } from "../services/operations/authAPI.service";
 
@@ -46,16 +45,16 @@ const ForgotPassword = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter Your Email Address"
-                  className="form-style w-full"
+                  className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
                 />
               </label>
             )}
 
             <button
               type="submit"
-              className="mt-6 w-full rounded-[8px] bg-yellow-50 py-[12px] px-[12px] font-medium text-richblack-900"
+              className="mt-6 w-full rounded-[8px] bg-yellow-50 py-[12px] px-[12px] font-medium text-richblack-900 transition-all duration-200 hover:scale-95"
             >
-              {!emailSent ? "Submit" : "Resend Email"}
+              {!emailSent ? "Reset Password" : "Resend Email"}
             </button>
           </form>
 
