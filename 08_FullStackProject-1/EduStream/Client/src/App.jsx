@@ -4,6 +4,7 @@ import Navbar from "../src/components/common/Navbar";
 import Login from "./pages/Login.page";
 import Signup from "./pages/Signup.page";
 import ForgotPassword from "./pages/ForgotPassword.page";
+import UpdatePassword from "./pages/UpdatePassword.page";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/update-password/:id" element={<UpdatePassword />} />
       </Routes>
     </div>
   );
