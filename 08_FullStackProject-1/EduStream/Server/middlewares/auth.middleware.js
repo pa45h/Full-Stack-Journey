@@ -5,8 +5,8 @@ require("dotenv").config();
 exports.auth = async (req, res, next) => {
   try {
     const token =
-      req.cookies.token ||
-      req.body.token ||
+      req.cookies?.token ||
+      req.body?.token ||
       req.header("Authorization")?.replace("Bearer ", "");
 
     if (!token) {
@@ -18,6 +18,7 @@ exports.auth = async (req, res, next) => {
 
     const decode = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decode;
+    next();
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({
@@ -26,7 +27,6 @@ exports.auth = async (req, res, next) => {
       error: error.message,
     });
   }
-  next();
 };
 
 exports.isStudent = async (req, res, next) => {
@@ -37,6 +37,7 @@ exports.isStudent = async (req, res, next) => {
         message: "This Is The Authorized Route For Student Only!",
       });
     }
+    next();
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({
@@ -45,7 +46,6 @@ exports.isStudent = async (req, res, next) => {
       error: error.message,
     });
   }
-  next();
 };
 
 exports.isInstructor = async (req, res, next) => {
@@ -56,6 +56,7 @@ exports.isInstructor = async (req, res, next) => {
         message: "This Is The Authorized Route For Instructor Only!",
       });
     }
+    next();
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({
@@ -64,7 +65,6 @@ exports.isInstructor = async (req, res, next) => {
       error: error.message,
     });
   }
-  next();
 };
 
 exports.isAdmin = async (req, res, next) => {
@@ -75,6 +75,7 @@ exports.isAdmin = async (req, res, next) => {
         message: "This Is The Authorized Route For Admin Only!",
       });
     }
+    next();
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({
@@ -83,5 +84,4 @@ exports.isAdmin = async (req, res, next) => {
       error: error.message,
     });
   }
-  next();
 };

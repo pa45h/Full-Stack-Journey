@@ -31,7 +31,7 @@ export const sidebarLinks = [
     id: 5,
     name: "Enrolled Courses",
     path: "/dashboard/enrolled-courses",
-    // type: ACCOUNT_TYPE.STUDENT,
+    type: ACCOUNT_TYPE.STUDENT,
     icon: "VscMortarBoard",
   },
   {

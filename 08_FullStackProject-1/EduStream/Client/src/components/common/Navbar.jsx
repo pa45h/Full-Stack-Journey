@@ -97,20 +97,20 @@ const Navbar = () => {
           )}
 
           {token === null && (
-            <Link to={"login"}>
+            <Link to={"/login"}>
               <button className="border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 rounded-md transition-all duration-200 hover:scale-95">
                 Log In
               </button>
             </Link>
           )}
           {token === null && (
-            <Link to={"signup"}>
+            <Link to={"/signup"}>
               <button className="border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 rounded-md transition-all duration-200 hover:scale-95">
                 Sign Up
               </button>
             </Link>
           )}
-          {token !== null && <ProfileDropDown />}
+          {token && <ProfileDropDown />}
         </div>
       </div>
     </div>
