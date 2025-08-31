@@ -41,7 +41,7 @@ const ChangeProfilePicture = () => {
       console.log("Uploading...");
       setLoading(true);
       const formData = new FormData();
-      
+
       formData.append("displayPicture", imageFile);
       dispatch(updateDisplayPicture(token, formData)).then(() => {
         setLoading(false);
