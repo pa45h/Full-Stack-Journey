@@ -16,7 +16,7 @@ const DeleteAccount = () => {
 
   return (
     <>
-      <div className="my-10 flex flex-row gap-x-5 rounded-md border-[1px] border-pink-700 bg-pink-900 p-8 px-12">
+      <div className="my-10 flex flex-row gap-x-5 rounded-md border-[1px] border-pink-700 bg-pink-900 p-8 px-12 shadow-[0_0_5px_0_rgb(255,0,100)]">
         <div className="flex aspect-square h-14 w-14 items-center justify-center rounded-full bg-pink-700">
           <FiTrash2 className="text-3xl text-pink-200" />
         </div>
@@ -26,14 +26,14 @@ const DeleteAccount = () => {
           </h2>
           <div className="w-3/5 text-pink-25">
             <p>Would You Like To Delete Account?</p>
-            <p>
+            <p className="italic">
               This account may contain Paid Courses. Deleting your account is
               permanent and will remove all the contain associated with it.
             </p>
           </div>
           <button
             type="button"
-            className="w-fit cursor-pointer italic text-pink-300"
+            className="w-fit cursor-pointer italic text-pink-300 hover:underline"
             onClick={handleDeleteAccount}
           >
             I want to delete my account

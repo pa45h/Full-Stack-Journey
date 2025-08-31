@@ -31,7 +31,7 @@ const EditProfile = () => {
     return (
     <>
         <form onSubmit={handleSubmit(submitProfileForm)}>
-            <div className='my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12'>
+            <div className='my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblue-900 p-8 px-12 shadow-[0_0_5px_0_rgb(0,255,255)]'>
                 <h1 className='text-lg font-semibold text-richblack-5'>
                     Profile Information
                 </h1>
@@ -133,16 +133,16 @@ const EditProfile = () => {
                 
                 <div className='flex flex-col gap-5 lg:flex-row'>
                     <div className='flex flex-col gap-2 lg:w-[48%]'>
-                        <label htmlFor="contactNumber" className='lable-style'>
+                        <label htmlFor="contactNo" className='lable-style'>
                             Contact Number
                         </label>
                         <input 
                             type='tel' 
-                            name='contactNumber'
-                            id='contactNumber'
+                            name='contactNo'
+                            id='contactNo'
                             placeholder='Enter Contact Number'
                             className='form-style'
-                            {...register('contactNumber', {
+                            {...register('contactNo', {
                                 required: {
                                     value: true,
                                     message: 'Please Enter Your Contact Number',
@@ -150,11 +150,11 @@ const EditProfile = () => {
                                 maxLength: { value: 12, message: 'Invalid Contact Number' },
                                 minLength: { value: 10, message: 'Invalid Contact Number' },
                             })}
-                            defaultValue = {user?.additionalDetails?.contactNumber}
+                            defaultValue = {user?.additionalDetails?.contactNo}
                         />
-                        {errors.contactNumber && (
+                        {errors.contactNo && (
                             <span className='-mt-1 text-[12px] text-yellow-100'>
-                                {errors.contactNumber.message}
+                                {errors.contactNo.message}
                             </span>
                         )}
                     </div>

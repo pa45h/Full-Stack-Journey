@@ -12,7 +12,7 @@ const ChangeProfilePicture = () => {
 
   const [loading, setLoading] = useState(false);
   const [imageFile, setImageFile] = useState(null);
-  const [previewSource, setPreviewSource] = useState(user.image || null);
+  const [previewSource, setPreviewSource] = useState(null);
 
   const fileInputRef = useRef(null);
 
@@ -41,6 +41,7 @@ const ChangeProfilePicture = () => {
       console.log("Uploading...");
       setLoading(true);
       const formData = new FormData();
+      
       formData.append("displayPicture", imageFile);
       dispatch(updateDisplayPicture(token, formData)).then(() => {
         setLoading(false);
@@ -57,7 +58,7 @@ const ChangeProfilePicture = () => {
   }, [imageFile]);
 
   return (
-    <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12 text-richblack-5">
+    <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblue-900 shadow-[0_0_5px_0_rgb(0,255,255)] p-8 px-12 text-richblack-5">
       <div className="flex items-center gap-x-4">
         <img
           src={previewSource || user?.image}

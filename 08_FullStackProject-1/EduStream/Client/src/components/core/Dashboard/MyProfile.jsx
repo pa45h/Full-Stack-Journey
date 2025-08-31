@@ -13,7 +13,7 @@ const MyProfile = () => {
       </h1>
 
       {/* Section-1 */}
-      <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblue-900 p-8 px-12 shadow-[0_0_5px_0_rgb(255,255,255)]">
+      <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblue-900 p-8 px-12 shadow-[0_0_5px_0_rgb(0,255,255)]">
         <div className="flex items-center gap-x-4">
           <img
             src={user?.image}
@@ -36,7 +36,7 @@ const MyProfile = () => {
       </div>
 
       {/* Section-2 */}
-      <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblue-900 p-8 px-12 shadow-[0_0_5px_0_rgb(255,255,255)]">
+      <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblue-900 p-8 px-12 shadow-[0_0_5px_0_rgb(0,255,255)]">
         <div className="flex w-full items-center justify-between">
           <p className="text-lg font-semibold text-richblack-5">About</p>
           <IconBtn
@@ -52,7 +52,7 @@ const MyProfile = () => {
       </div>
 
       {/* Section-3 */}
-      <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblue-900 p-8 px-12 shadow-[0_0_5px_0_rgb(255,255,255)]">
+      <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblue-900 p-8 px-12 shadow-[0_0_5px_0_rgb(0,255,255)]">
         <div className="flex w-full items-center justify-between">
           <p className="text-lg font-semibold text-richblack-5">
             Personal Details
@@ -97,7 +97,7 @@ const MyProfile = () => {
             <div>
               <p className="mb-2 text-sm text-richblack-600">Phone Number</p>
               <p className="text-sm font-medium text-richblack-5">
-                {user?.additionalDetails?.contactNumber ?? "Add Contact Number"}
+                {user?.additionalDetails?.contactNo ?? "Add Contact Number"}
               </p>
             </div>
             <div>

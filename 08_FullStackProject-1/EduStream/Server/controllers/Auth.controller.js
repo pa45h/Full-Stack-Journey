@@ -217,20 +217,13 @@ exports.login = async (req, res) => {
 
 exports.changePassword = async (req, res) => {
   try {
-    const { oldPassword, newPassword, confirmNewPassword } = req.body;
+    const { oldPassword, newPassword} = req.body;
     const user = await User.findById(req.user.id);
 
-    if (!oldPassword || !newPassword || !confirmNewPassword) {
+    if (!oldPassword || !newPassword) {
       return res.status(400).json({
         success: false,
         message: "Enter All Fields Properly!",
-      });
-    }
-
-    if (newPassword !== confirmNewPassword) {
-      return res.status(400).json({
-        success: false,
-        message: "New passwords do not match!",
       });
     }
 
