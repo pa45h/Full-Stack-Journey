@@ -51,10 +51,10 @@ const Navbar = () => {
                 <li key={index}>
                   {link.title === "Catalog" ? (
                     <div className="relative flex items-center gap-1 group cursor-pointer">
-                      <p className="text-richblack-500">{link.title}</p>
-                      <IoMdArrowDropdown className="text-richblack-500" />
+                      <p className="text-richblack-500 transition-all duration-200 group-hover:text-white">{link.title}</p>
+                      <IoMdArrowDropdown className="text-richblack-500 transition-all duration-200 group-hover:text-white" />
 
-                      <div className="invisible absolute left-[50%] top-[50%] flex flex-col rounded-md bg-richblack-5 text-richblack-900 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 lg:w-[300px] translate-x-[-50%] translate-y-[12%] z-50 justify-center p-4 group text-[15px] font-medium">
+                      <div className="invisible absolute left-[50%] top-[50%] flex flex-col rounded-md bg-richblack-5 text-richblack-900 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 lg:w-[200px] translate-x-[-50%] translate-y-[12%] z-50 justify-center p-4 group text-[15px] font-medium">
                         <div className="absolute left-[50%] top-0 h-6 w-6 rotate-45 rounded bg-richblack-5 translate-y-[-30%] translate-x-[85%] -z-10"></div>
                         {subLinks ? (
                           subLinks.map((subLink, index) => (
@@ -76,7 +76,7 @@ const Navbar = () => {
                           matchRoute(link?.path)
                             ? "text-yellow-25"
                             : "text-richblack-500"
-                        }`}
+                        } transition-all duration-200 hover:text-white`}
                       >
                         {link.title}
                       </p>
@@ -88,10 +88,10 @@ const Navbar = () => {
           </ul>
         </nav>
 
-        <div className="flex gap-x-4 items-center justify-center ">
+        <div className="flex gap-x-4 items-center justify-center">
           {user && user?.accountType !== "instrudtor" && (
             <Link to={"/dashboard/cart"} className="relative">
-              <GiShoppingCart />
+              <GiShoppingCart className="transition-all duration-200 scale-150 hover:scale-[1.7]" />
               {totalItems > 0 && <span>{totalItems}</span>}
             </Link>
           )}
