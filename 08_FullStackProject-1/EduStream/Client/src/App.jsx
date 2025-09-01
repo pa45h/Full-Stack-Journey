@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import OpenRoute from "./components/core/Auth/OpenRoute";
 import PrivateRoute from "./components/core/Auth/PrivateRoute";
+import { useSelector } from "react-redux";
 
 import Home from "./pages/Home.page";
 import Navbar from "../src/components/common/Navbar";
@@ -18,8 +19,12 @@ import Sidebar from "./components/core/Dashboard/Sidebar";
 import Settings from "./components/core/Dashboard/Settings";
 import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
 import Cart from "./components/core/Dashboard/Cart";
+import { ACCOUNT_TYPE } from "./utils/constants";
+import MyCourses from "./components/core/Dashboard/MyCourses";
+import AddCourse from "./components/core/Dashboard/AddCourses";
 
 function App() {
+  const { user } = useSelector((state) => state.profile);
   return (
     <div className="App w-screen min-h-screen bg-richblack-900 flex flex-col font-inter text-white">
       <Navbar />
@@ -78,8 +83,28 @@ function App() {
         >
           <Route path="/dashboard/my-profile" element={<MyProfile />} />
           <Route path="/dashboard/settings" element={<Settings />} />
-          <Route path="/dashboard/enrolled-courses" element={<EnrolledCourses />} />
-          <Route path="/dashboard/cart" element={<Cart />} />
+
+          {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+            <>
+              {/* <Route path="dashboard/instructor" element={<Instructor />} /> */}
+              <Route path="dashboard/add-course" element={<AddCourse />} />
+              <Route path="dashboard/my-courses" element={<MyCourses />} />
+              {/* <Route
+                path="dashboard/edit-course/:courseId"
+                element={<EditCourse />}
+              /> */}
+            </>
+          )}
+
+          {user?.accountType === ACCOUNT_TYPE.STUDENT && (
+            <>
+              <Route
+                path="/dashboard/enrolled-courses"
+                element={<EnrolledCourses />}
+              />
+              <Route path="/dashboard/cart" element={<Cart />} />
+            </>
+          )}
         </Route>
       </Routes>
     </div>
