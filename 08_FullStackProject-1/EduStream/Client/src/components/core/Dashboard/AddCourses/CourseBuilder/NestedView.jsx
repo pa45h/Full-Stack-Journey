@@ -57,7 +57,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
         className="rounded-lg bg-richblack-700 p-6 px-8"
         id="nestedViewContainer"
       >
-        {course?.courseContent?.map((section) => {
+        {course?.courseContent?.map((section) => (
           // Section Dropdown
           <details key={section._id} open>
             {/* Section Dropdown Content */}
@@ -150,8 +150,8 @@ export default function NestedView({ handleChangeEditSectionName }) {
                 <p>Add Lecture</p>
               </button>
             </div>
-          </details>;
-        })}
+          </details>
+        ))}
       </div>
       {/* Modal Display */}
       {addSubSection ? (
