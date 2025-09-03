@@ -33,14 +33,11 @@ export default function PublishCourse() {
   };
 
   const handleCoursePublish = async () => {
-    //check if the form  has been updated or not
     if (
       (course?.status === COURSE_STATUS.PUBLISHED &&
         getValues("public") === true) ||
       (course?.status === COURSE_STATUS.DRAFT && getValues("public") === false)
     ) {
-      //form has not been updated
-      //no need to make api call
       gotToCourses();
       return;
     }
