@@ -51,14 +51,22 @@ const Navbar = () => {
                 <li key={index}>
                   {link.title === "Catalog" ? (
                     <div className="relative flex items-center gap-1 group cursor-pointer">
-                      <p className="text-richblack-500 transition-all duration-200 group-hover:text-white">{link.title}</p>
+                      <p className="text-richblack-500 transition-all duration-200 group-hover:text-white">
+                        {link.title}
+                      </p>
                       <IoMdArrowDropdown className="text-richblack-500 transition-all duration-200 group-hover:text-white" />
 
                       <div className="invisible absolute left-[50%] top-[50%] flex flex-col rounded-md bg-richblack-5 text-richblack-900 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-[99%] lg:w-[200px] translate-x-[-50%] translate-y-[12%] z-50 justify-center p-4 group text-[15px] font-medium">
                         <div className="absolute left-[50%] top-0 h-6 w-6 rotate-45 rounded bg-richblack-5 translate-y-[-30%] translate-x-[85%] -z-10"></div>
                         {subLinks ? (
                           subLinks.map((subLink, index) => (
-                            <Link to={`/${subLink.name}`} key={index}>
+                            <Link
+                              to={`catalog/${subLink.name
+                                .split(" ")
+                                .join("-")
+                                .toLowerCase()}`}
+                              key={index}
+                            >
                               <p className="hover:bg-richblue-25 p-4 rounded-md transition-all duration-200">
                                 {subLink.name}
                               </p>

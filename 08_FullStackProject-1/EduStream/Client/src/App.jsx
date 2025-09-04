@@ -22,6 +22,8 @@ import Cart from "./components/core/Dashboard/Cart";
 import { ACCOUNT_TYPE } from "./utils/constants";
 import MyCourses from "./components/core/Dashboard/MyCourses";
 import AddCourse from "./components/core/Dashboard/AddCourses";
+import EditCourse from "./components/core/Dashboard/EditCourse";
+import Catalog from "./pages/Catalog.page";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -31,7 +33,7 @@ function App() {
       <Routes>
         <Route path="*" element={<Error />}></Route>
         <Route path="/" element={<Home />} />
-        {/* <Route path='catalog/:catalogName' element={<Catalog/>} /> */}
+        <Route path="catalog/:catalogName" element={<Catalog />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route
@@ -89,10 +91,10 @@ function App() {
               {/* <Route path="dashboard/instructor" element={<Instructor />} /> */}
               <Route path="dashboard/add-course" element={<AddCourse />} />
               <Route path="dashboard/my-courses" element={<MyCourses />} />
-              {/* <Route
+              <Route
                 path="dashboard/edit-course/:courseId"
                 element={<EditCourse />}
-              /> */}
+              />
             </>
           )}
 
