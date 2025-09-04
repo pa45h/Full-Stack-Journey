@@ -25,7 +25,7 @@ const Catalog = () => {
       )[0]._id;
       setCategoryId(category_id);
     };
-    getCategories();
+    if (!categoryId) getCategories();
   }, [catalogName]);
 
   useEffect(() => {
