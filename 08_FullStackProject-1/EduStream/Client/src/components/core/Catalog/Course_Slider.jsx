@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
-import { FreeMode, Pagination } from "swiper";
+import "swiper/css/effect-cards";
+import { EffectCards } from "swiper/modules";
 import Course_Card from "./Course_Card";
 
 function Course_Slider({ Courses }) {
@@ -11,15 +10,10 @@ function Course_Slider({ Courses }) {
     <>
       {Courses?.length ? (
         <Swiper
-          slidesPerView={1}
-          spaceBetween={25}
           loop={true}
-          modules={[FreeMode, Pagination]}
-          breakpoints={{
-            1024: {
-              slidesPerView: 3,
-            },
-          }}
+          effect={"cards"}
+          grabCursor={true}
+          modules={[EffectCards]}
           className="max-h-[30rem]"
         >
           {Courses?.map((course, i) => (

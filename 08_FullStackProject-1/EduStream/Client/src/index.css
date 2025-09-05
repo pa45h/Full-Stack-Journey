@@ -5,6 +5,12 @@
 html,
 body {
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+::-webkit-scrollbar {
+    scrollbar-width: none;
 }
 
 .homepage_bg {

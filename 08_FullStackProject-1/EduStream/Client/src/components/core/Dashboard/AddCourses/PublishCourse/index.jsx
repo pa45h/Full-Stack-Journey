@@ -27,9 +27,9 @@ export default function PublishCourse() {
     dispatch(setStep(2));
   };
 
-  const gotToCourses = () => {
+  const goToCourses = () => {
     dispatch(resetCourseState());
-    navigate("/dashboard/my-course");
+    navigate("/dashboard/my-courses");
   };
 
   const handleCoursePublish = async () => {
@@ -38,7 +38,7 @@ export default function PublishCourse() {
         getValues("public") === true) ||
       (course?.status === COURSE_STATUS.DRAFT && getValues("public") === false)
     ) {
-      gotToCourses();
+      goToCourses();
       return;
     }
     const formData = new FormData();
@@ -50,13 +50,12 @@ export default function PublishCourse() {
     setLoading(true);
     const result = await editCourseDetails(formData, token);
     if (result) {
-      gotToCourses();
+      goToCourses();
     }
     setLoading(false);
   };
 
   const onSubmit = (data) => {
-    //console.log(data)
     handleCoursePublish();
   };
 
@@ -82,7 +81,7 @@ export default function PublishCourse() {
         </div>
 
         {/* Next Prev Button */}
-        <div>
+        <div className="flex justify-between items-center">
           <button
             disabled={loading}
             type="button"

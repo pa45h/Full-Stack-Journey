@@ -37,12 +37,10 @@ export default function CourseInformationForm() {
       setLoading(true);
       const categories = await fetchCourseCategories();
       if (categories.length > 0) {
-        // console.log("categories", categories)
         setCourseCategories(categories);
       }
       setLoading(false);
     };
-    // if form is in edit mode
     if (editCourse) {
       // console.log("data populated", editCourse)
       setValue("courseTitle", course.courseName);

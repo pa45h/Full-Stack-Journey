@@ -45,7 +45,6 @@ export default function CourseBuilderForm() {
         },
         token
       );
-      // console.log("edit", result)
     } else {
       result = await createSection(
         {
@@ -54,9 +53,9 @@ export default function CourseBuilderForm() {
         },
         token
       );
+      console.log("section result", result);
     }
     if (result) {
-      // console.log("section result", result)
       dispatch(setCourse(result));
       setEditSectionName(null);
       setValue("sectionName", "");
@@ -69,16 +68,18 @@ export default function CourseBuilderForm() {
     setValue("sectionName", "");
   };
 
-  const handleChangeEditSectionName = (sectionId, sectionName) => {
+  const handleChangeEditSectionName = (sectionId, sectionName, courseId) => {
     if (editSectionName === sectionId) {
       cancelEdit();
       return;
     }
-    setEditSectionName(sectionId);
+    setEditSectionName(sectionId, courseId);
     setValue("sectionName", sectionName);
   };
 
   const goToNext = () => {
+    console.log("clicked");
+    
     if (course.courseContent.length === 0) {
       toast.error("Please add atleast one section");
       return;
@@ -139,7 +140,7 @@ export default function CourseBuilderForm() {
         </div>
       </form>
       {course.courseContent.length > 0 && (
-        <NestedView handlechangeEditSectionName={handleChangeEditSectionName} />
+        <NestedView handleChangeEditSectionName={handleChangeEditSectionName} />
       )}
       {/* Next Prev Button */}
       <div className="flex justify-end gap-x-3">

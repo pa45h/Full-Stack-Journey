@@ -9,7 +9,7 @@ import { FaCheck } from "react-icons/fa";
 import { FiEdit2 } from "react-icons/fi";
 import { HiClock } from "react-icons/hi";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { formatDate } from "../../../../services/formatDate";
+import { formatDate } from "../../../../utils/dateFormatter";
 
 import {
   deleteCourse,

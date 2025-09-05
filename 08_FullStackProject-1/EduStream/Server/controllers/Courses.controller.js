@@ -169,3 +169,38 @@ exports.getCourseDetails = async (req, res) => {
     });
   }
 };
+
+exports.editCourse = async (req, res) => {
+  try {
+    const { courseId, status } = req.body;
+
+    if (!courseId) {
+      return res.status(400).json({
+        success: false,
+        message: `Could Not Find Id - ${courseId}, Please Try Again Later!`,
+      });
+    }
+
+    const updatedCourse = await Course.findByIdAndUpdate(courseId, { status })
+      .populate({
+        path: "courseContent",
+        populate: {
+          path: "subSection",
+        },
+      })
+      .exec();
+
+    return res.status(200).json({
+      success: true,
+      updatedCourse,
+      message: "Course Edited successfully!",
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Could Not Edit Course, Please Try Again Later!",
+      error: error.message,
+    });
+  }
+};

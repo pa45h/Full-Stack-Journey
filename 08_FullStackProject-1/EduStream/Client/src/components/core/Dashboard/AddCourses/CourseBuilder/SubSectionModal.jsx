@@ -9,7 +9,7 @@ import {
   updateSubSection,
 } from "../../../../../services/operations/courseDetailsAPI.service";
 
-import { setCourse } from "../../../../../slices/courseSlice";
+import { course, setCourse } from "../../../../../slices/courseSlice";
 import IconBtn from "../../../../common/IconBtn";
 import Upload from "../Upload";
 
@@ -28,10 +28,6 @@ export default function SubSectionModal({
     getValues,
   } = useForm();
 
-  // console.log("view", view)
-  // console.log("edit", edit)
-  // console.log("add", add)
-
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const { token } = useSelector((state) => state.auth);
@@ -39,17 +35,15 @@ export default function SubSectionModal({
 
   useEffect(() => {
     if (view || edit) {
-      // console.log("modalData", modalData)
+      console.log("modalData", modalData)
       setValue("lectureTitle", modalData.title);
       setValue("lectureDesc", modalData.description);
-      setValue("lectureVideo", modalData.videoUrl);
     }
   }, []);
 
-  // detect wheather form is updated or not
   const isFormUpdated = () => {
     const currentValues = getValues();
-    // console.log("changes after editing form values: ", currentValues)
+    console.log("changes after editing form values: ", currentValues);
 
     if (
       currentValues.lectureTitle !== modalData.title ||
@@ -64,9 +58,9 @@ export default function SubSectionModal({
   // handle the editing of subsection
   const handleEditSubSection = async () => {
     const currentValues = getValues();
-    // console.log("changes after editing form values:", currentValues)
+
     const formData = new FormData();
-    // console.log("Values after editing form values", currentValues)
+    formData.append("courseId", course._id);
     formData.append("sectionId", modalData.sectionId);
     formData.append("subSectionId", modalData._id);
     if (currentValues.lectureTitle !== modalData.title) {
@@ -75,19 +69,13 @@ export default function SubSectionModal({
     if (currentValues.lectureDesc !== modalData.description) {
       formData.append("description", currentValues.lectureDesc);
     }
-    if (currentValues.lectureVideo1 !== modalData.videoUrl) {
+    if (currentValues.lectureVideo !== modalData.videoUrl) {
       formData.append("video", currentValues.lectureVideo);
     }
     setLoading(true);
     const result = await updateSubSection(formData, token);
     if (result) {
-      // console.log("result", result)
-      // update the structure of course
-      const updatedCourseContent = course.courseContent.map((section) =>
-        section._id == modalData.sectionId ? result : section
-      );
-      const updatedCourse = { ...course, courseContent: updatedCourseContent };
-      dispatch(setCourse(updatedCourse));
+      dispatch(setCourse(result));
     }
     setModalData(null);
     setLoading(false);
@@ -112,7 +100,7 @@ export default function SubSectionModal({
     formData.append("description", data.lectureDesc);
     formData.append("video", data.lectureVideo);
     setLoading(true);
-    
+
     const result = await createSubSection(formData, token);
 
     if (result) {

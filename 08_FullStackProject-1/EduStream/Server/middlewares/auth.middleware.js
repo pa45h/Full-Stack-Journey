@@ -15,7 +15,7 @@ exports.auth = async (req, res, next) => {
         message: "Token Missing!",
       });
     }
-
+    
     const decode = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decode;
     next();

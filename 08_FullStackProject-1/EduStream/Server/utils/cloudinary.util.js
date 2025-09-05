@@ -15,5 +15,5 @@ exports.uploadToCloudinary = async (file, folder, height, quality) => {
 };
 
 exports.deleteFromCloudinary = async (publicId) => {
-  await cloudinary.uploader.destroy(publicId, { resource_type: "auto" });
+  await cloudinary.uploader.destroy(publicId);
 };

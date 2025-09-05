@@ -7,7 +7,7 @@ import { getCatalogPageData } from "../services/operations/pageAndComponentData.
 import Course_Card from "../components/core/Catalog/Course_Card";
 import Course_Slider from "../components/core/Catalog/Course_Slider";
 import { useSelector } from "react-redux";
-import Error from "./Error";
+import Error from "./Error.page";
 
 const Catalog = () => {
   const { loading } = useSelector((state) => state.profile);

@@ -18,11 +18,11 @@ export default function NestedView({ handleChangeEditSectionName }) {
   const { course } = useSelector((state) => state.course);
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  // States to keep track of mode of modal [add, view, edit]
+
   const [addSubSection, setAddSubSection] = useState(null);
   const [viewSubSection, setViewSubSection] = useState(null);
   const [editSubSection, setEditSubSection] = useState(null);
-  // to keep track of confirmation modal
+
   const [confirmationModal, setConfirmationModal] = useState(null);
 
   const handleDeleteSection = async (sectionId) => {
@@ -73,7 +73,8 @@ export default function NestedView({ handleChangeEditSectionName }) {
                   onClick={() => {
                     handleChangeEditSectionName(
                       section._id,
-                      section.sectionName
+                      section.sectionName,
+                      course._id
                     );
                   }}
                 >
@@ -99,8 +100,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
               </div>
             </summary>
             <div className="px-6 pb-4">
-              {/* Render All Sub Sections Within a Section */}
-              {section.subSection.map((data) => (
+              {section?.subSection?.map((data) => (
                 <div
                   key={data?._id}
                   onClick={() => setViewSubSection(data)}
@@ -118,7 +118,11 @@ export default function NestedView({ handleChangeEditSectionName }) {
                   >
                     <button
                       onClick={() =>
-                        setEditSubSection({ ...data, sectionId: section._id })
+                        setEditSubSection({
+                          ...data,
+                          sectionId: section._id,
+                          courseId: course._id,
+                        })
                       }
                     >
                       <MdEdit className="text-xl text-richblack-300" />

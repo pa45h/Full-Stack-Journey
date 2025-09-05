@@ -1,5 +1,6 @@
 const Section = require("../models/Section.model");
 const SubSection = require("../models/SubSection.model");
+const Course = require("../models/Course.model");
 const {
   uploadToCloudinary,
   deleteFromCloudinary,
@@ -10,9 +11,9 @@ require("dotenv").config();
 exports.createSubSection = async (req, res) => {
   try {
     const { sectionId, title, description, timeDuration } = req.body;
-    const videoFile = req.files?.videoFile;
+    const videoFile = req.files?.video;
 
-    if (!sectionId || !title || !description || !timeDuration) {
+    if (!sectionId || !title || !description) {
       return res.status(400).json({
         success: false,
         message: "All Fields Are Required!",
@@ -59,8 +60,9 @@ exports.createSubSection = async (req, res) => {
 
 exports.updateSubSection = async (req, res) => {
   try {
-    const { subSectionId, title, description, timeDuration } = req.body;
-    const videoFile = req.files?.videoFile;
+    const { subSectionId, title, description, timeDuration, courseId } =
+      req.body;
+    const videoFile = req.files?.video;
 
     const subSection = await SubSection.findById(subSectionId);
     if (!subSection) {
@@ -88,9 +90,19 @@ exports.updateSubSection = async (req, res) => {
 
     await subSection.save();
 
+    const updatedCourse = await Course.findById(courseId)
+      .populate({
+        path: "courseContent",
+        populate: {
+          path: "subSection",
+        },
+      })
+      .exec();
+
     return res.status(200).json({
       success: true,
       subSection,
+      updatedCourse,
       message: "Sub-Section Updated Successfully!",
     });
   } catch (error) {
