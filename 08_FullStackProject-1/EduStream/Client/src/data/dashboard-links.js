@@ -38,6 +38,7 @@ export const sidebarLinks = [
     id: 6,
     name: "Cart",
     path: "/dashboard/cart",
+    type: ACCOUNT_TYPE.STUDENT,
     icon: "VscArchive",
   },
   {

@@ -75,11 +75,11 @@ export default function CourseTable({ courses, setCourses }) {
                     alt={course?.courseName}
                     className="h-[148px] w-[220px] rounded-lg object-cover"
                   />
-                  <div className="flex flex-col justify-between">
+                  <div className="flex flex-col justify-evenly">
                     <p className="text-lg font-semibold text-richblack-5">
                       {course.courseName}
                     </p>
-                    <p>
+                    <p className="text-sm text-richblack-50">
                       {course.courseDescription.split(" ").length >
                       TRUNCATE_LENGTH
                         ? course.courseDescription

@@ -9,6 +9,10 @@ body {
     padding: 0;
 }
 
+.greenBgShadow{
+    @apply shadow-[0_0_5px_0_rgb(0,255,255)] bg-richblue-900;
+}
+
 ::-webkit-scrollbar {
     scrollbar-width: none;
 }
