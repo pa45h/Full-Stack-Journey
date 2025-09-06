@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-cards";
-import { EffectCards } from "swiper/modules";
+import { FreeMode, Keyboard } from "swiper/modules";
 import Course_Card from "./Course_Card";
 
 function Course_Slider({ Courses }) {
@@ -10,11 +10,19 @@ function Course_Slider({ Courses }) {
     <>
       {Courses?.length ? (
         <Swiper
+          slidesPerView={1}
+          spaceBetween={25}
           loop={true}
-          effect={"cards"}
-          grabCursor={true}
-          modules={[EffectCards]}
-          className="max-h-[30rem]"
+          keyboard={{
+            enabled: true,
+          }}
+          modules={[FreeMode, Keyboard]}
+          breakpoints={{
+            1024: {
+              slidesPerView: 3,
+            },
+          }}
+          className="max-h-[35rem]"
         >
           {Courses?.map((course, i) => (
             <SwiperSlide key={i}>

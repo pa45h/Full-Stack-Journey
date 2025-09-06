@@ -53,7 +53,7 @@ exports.getAllCategories = async (req, res) => {
   }
 };
 
-exports.categoryPageDetails = async (req, res) => {
+exports. categoryPageDetails = async (req, res) => {
   try {
     const { categoryId } = req.body;
     const selectedCategory = await Category.findById(categoryId)

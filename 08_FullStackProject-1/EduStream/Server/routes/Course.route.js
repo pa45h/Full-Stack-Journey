@@ -45,7 +45,7 @@ const {
 
 // Category Routes:
 router.get("/getAllCategories", getAllCategories);
-router.get("/categoryPageDetails", categoryPageDetails);
+router.post("/categoryPageDetails", categoryPageDetails);
 
 // Course Routes:
 router.get("/getAllCourses", getAllCourses);

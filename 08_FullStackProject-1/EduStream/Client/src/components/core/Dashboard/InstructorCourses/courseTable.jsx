@@ -80,13 +80,12 @@ export default function CourseTable({ courses, setCourses }) {
                       {course.courseName}
                     </p>
                     <p className="text-sm text-richblack-50">
-                      {course.courseDescription.split(" ").length >
-                      TRUNCATE_LENGTH
-                        ? course.courseDescription
-                            .split(" ")
-                            .splice(0, TRUNCATE_LENGTH)
-                            .join(" ") + "..."
-                        : course.courseDescription}
+                      {(() => {
+                        const words = course.courseDescription.split(" ");
+                        return words.length > TRUNCATE_LENGTH
+                          ? words.slice(0, TRUNCATE_LENGTH).join(" ") + "..."
+                          : course.courseDescription;
+                      })()}
                     </p>
                     <p className="text-[12px] text-white">
                       Created: {formatDate(course.createdAt)}
