@@ -95,7 +95,7 @@ export default function CourseInformationForm() {
           formData.append("courseName", data.courseTitle);
         }
         if (currentValues.courseShortDesc !== course.courseDescription) {
-          formData.append("courseDescription", data.courseShortDescription);
+          formData.append("courseDescription", data.courseShortDesc);
         }
         if (currentValues.coursePrice !== course.price) {
           formData.append("price", data.coursePrice);
@@ -103,7 +103,7 @@ export default function CourseInformationForm() {
         if (currentValues.courseBenefits !== course.whatYouWillLearn) {
           formData.append("whatYouWillLearn", data.courseBenefits);
         }
-        if (currentValues.courseTag.toString() !== course.tag.toString()) {
+        if (currentValues.courseTags.toString() !== course.tag.toString()) {
           formData.append("tag", JSON.stringify(data.courseTags));
         }
         if (currentValues.courseCategory._id !== course.category._id) {

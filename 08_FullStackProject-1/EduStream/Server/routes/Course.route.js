@@ -6,6 +6,8 @@ const {
   getAllCourses,
   getCourseDetails,
   editCourse,
+  getInstructorCourses,
+  deleteCourse,
 } = require("../controllers/Courses.controller");
 
 const {
@@ -47,7 +49,7 @@ router.get("/categoryPageDetails", categoryPageDetails);
 
 // Course Routes:
 router.get("/getAllCourses", getAllCourses);
-router.get("/getCourseDetails", getCourseDetails);
+router.post("/getCourseDetails", getCourseDetails);
 
 // Rating Review Routes:
 router.get("/getAverageRating", getAverageRating);
@@ -61,6 +63,8 @@ router.post("/createCategory", auth, isAdmin, createCategory);
 // Course Routes:
 router.post("/createCourse", auth, isInstructor, createCourse);
 router.put("/editCourse", auth, isInstructor, editCourse);
+router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses);
+router.delete("/deleteCourse", auth, isInstructor, deleteCourse);
 
 // Section Routes:
 router.post("/createSection", auth, isInstructor, createSection);

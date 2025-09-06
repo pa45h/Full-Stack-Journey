@@ -12,13 +12,14 @@ export default function MyCourses() {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
 
+  const fetchCourses = async () => {
+    const result = await fetchInstructorCourses(token);
+    if (result) {
+      setCourses(result);
+    }
+  };
+
   useEffect(() => {
-    const fetchCourses = async () => {
-      const result = await fetchInstructorCourses(token);
-      if (result) {
-        setCourses(result);
-      }
-    };
     fetchCourses();
   }, []);
   return (
