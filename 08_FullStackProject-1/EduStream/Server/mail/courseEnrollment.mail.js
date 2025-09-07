@@ -1,4 +1,4 @@
-exports.courseEnrollment = (courseName, name) => {
+exports.courseEnrollment = async (courseName, name) => {
   return `<!DOCTYPE html>
     <html>
     

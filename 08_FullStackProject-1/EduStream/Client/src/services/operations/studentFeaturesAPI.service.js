@@ -1,10 +1,9 @@
 import { toast } from "react-hot-toast";
-
-import rzpLogo from "../../assets/Logo/rzp_logo.png";
 import { resetCart } from "../../slices/cartSlice";
 import { setPaymentLoading } from "../../slices/courseSlice";
 import { apiConnector } from "../apiConnector.service";
 import { studentEndpoints } from "../apis.service";
+import rzpLogo from "../../assets/Logo/favicon.png";
 
 const {
   COURSE_PAYMENT_API,
@@ -49,9 +48,6 @@ export async function BuyCourse(
       return;
     }
 
-    console.log("courses--", courses);
-    console.log("token--", token);
-
     // Initiating the Order in Backend
     const orderResponse = await apiConnector(
       "POST",
@@ -59,7 +55,6 @@ export async function BuyCourse(
       {
         courses,
       },
-      null,
       {
         Authorization: `Bearer ${token}`,
       }
@@ -67,20 +62,16 @@ export async function BuyCourse(
 
     console.log("orderResponse---", orderResponse);
 
-    if (!orderResponse.data.success) {
+    if (!orderResponse?.data?.success) {
       throw new Error(orderResponse.data.message);
     }
-    console.log(
-      "PAYMENT RESPONSE FROM BACKEND............",
-      orderResponse.data
-    );
 
     // Opening the Razorpay SDK
     const options = {
-      key: process.env.RAZORPAY_KEY,
-      currency: orderResponse.data.data.currency,
-      amount: `${orderResponse.data.data.amount}`,
-      order_id: orderResponse.data.data.id,
+      key: process.env.REACT_APP_RAZORPAY_KEY,
+      currency: orderResponse.data?.message?.currency,
+      amount: `${orderResponse.data?.message?.amount}`,
+      order_id: orderResponse.data?.message?.id,
       name: "EduStream",
       description: "Thank you for Purchasing the Course.",
       image: rzpLogo,
@@ -91,7 +82,7 @@ export async function BuyCourse(
       handler: function (response) {
         sendPaymentSuccessEmail(
           response,
-          orderResponse.data.data.amount,
+          orderResponse.data?.message?.amount,
           token
         );
         verifyPayment({ ...response, courses }, token, navigate, dispatch);
