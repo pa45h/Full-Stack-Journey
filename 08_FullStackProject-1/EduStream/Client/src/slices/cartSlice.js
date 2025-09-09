@@ -19,15 +19,19 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const course = action.payload;
-      const index = state.cart.findIndex((item) => item._id === course._id);
+
+      const index = state?.cart?.findIndex((item) => item?._id === course?._id);
 
       if (index >= 0) {
         toast.error("Course Already In Cart");
         return;
       }
+
+      console.log("course---", course);
+
       state.cart.push(course);
       state.totalItems++;
-      state.total += course.price;
+      state.total += course?.price;
       localStorage.setItem("cart", JSON.stringify(state.cart));
       localStorage.setItem("total", JSON.stringify(state.total));
       localStorage.setItem("totalItems", JSON.stringify(state.totalItems));
@@ -36,7 +40,7 @@ const cartSlice = createSlice({
 
     removeFromCart: (state, action) => {
       const courseId = action.payload;
-      const index = state.cart.findIndex((item) => item._id === courseId);
+      const index = state?.cart?.findIndex((item) => item?._id === courseId);
 
       if (index >= 0) {
         state.totalItems--;

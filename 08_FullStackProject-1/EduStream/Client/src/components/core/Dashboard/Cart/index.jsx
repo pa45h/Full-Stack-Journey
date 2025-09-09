@@ -5,14 +5,14 @@ import RenderTotalAmount from "./RenderTotalAmount";
 
 export default function Cart() {
   const { total, totalItems } = useSelector((state) => state.cart);
-  // const { paymentLoading } = useSelector((state) => state.course);
+  const { paymentLoading } = useSelector((state) => state.course);
 
-  // if (paymentLoading)
-  //   return (
-  //     <div className="flex h-screen items-center justify-center">
-  //       <div className="spinner"></div>
-  //     </div>
-  //   );
+  if (paymentLoading)
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <div className="spinner"></div>
+      </div>
+    );
 
   return (
     <>
@@ -20,7 +20,7 @@ export default function Cart() {
       <p className="border-b border-b-richblack-400 pb-2 font-semibold text-richblack-400">
         {totalItems} Courses in Cart
       </p>
-      {total > 0 ? (
+      {totalItems > 0 ? (
         <div className="mt-8 flex flex-col-reverse items-start gap-x-10 gap-y-6 lg:flex-row">
           <RenderCartCourses />
           <RenderTotalAmount />
