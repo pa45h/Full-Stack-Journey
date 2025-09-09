@@ -9,7 +9,7 @@ body {
     padding: 0;
 }
 
-.greenBgShadow{
+.greenBgShadow {
     @apply shadow-[0_0_5px_0_rgb(0,255,255)] bg-richblue-900;
 }
 
@@ -18,7 +18,7 @@ body {
 }
 
 .homepage_bg {
-    background: url("../src//assets//Images/bghome.jpg");
+    background: url("../src//assets/Images/bghome.jpg");
     background-size: contain;
 }
 
@@ -107,11 +107,22 @@ body {
     }
 }
 
-
 .form-style {
     @apply rounded-lg bg-richblack-700 p-3 text-[16px] leading-[24px] text-richblack-5 shadow-[0_1px_0_0] shadow-white/50 placeholder:text-richblack-400 focus:outline-none;
 }
 
 .lable-style {
     @apply text-[14px] text-richblack-5;
+}
+
+.yellowButton {
+    @apply text-center text-[13px] sm:text-[16px] px-6 py-3 rounded-md font-bold bg-yellow-50 text-black hover:scale-95 transition-all duration-200 shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] hover:shadow-none;
+}
+
+.blackButton{
+    @apply text-center text-[13px] sm:text-[16px] px-6 py-3 rounded-md font-bold  bg-richblack-900 hover:scale-95 transition-all duration-200 shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] hover:shadow-none;
+}
+
+.redButton{
+    @apply text-center text-[13px] sm:text-[16px] px-6 py-3 rounded-md font-bold  bg-pink-900 hover:scale-95 transition-all duration-200 shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] hover:shadow-none;
 }
