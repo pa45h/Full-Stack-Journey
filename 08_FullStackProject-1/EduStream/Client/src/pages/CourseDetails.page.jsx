@@ -168,7 +168,7 @@ function CourseDetails() {
               <img
                 src={thumbnail}
                 alt="course thumbnail"
-                className="aspect-auto w-full"
+                className="aspect-auto w-screen object-center h-full"
               />
             </div>
             <div
