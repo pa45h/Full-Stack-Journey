@@ -8,6 +8,7 @@ const {
   editCourse,
   getInstructorCourses,
   deleteCourse,
+  getFullCourseDetails,
 } = require("../controllers/Courses.controller");
 
 const {
@@ -50,6 +51,7 @@ router.post("/categoryPageDetails", categoryPageDetails);
 // Course Routes:
 router.get("/getAllCourses", getAllCourses);
 router.post("/getCourseDetails", getCourseDetails);
+router.post("/getFullCourseDetails", getFullCourseDetails);
 
 // Rating Review Routes:
 router.get("/getAverageRating", getAverageRating);

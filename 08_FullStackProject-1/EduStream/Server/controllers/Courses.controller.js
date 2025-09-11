@@ -1,6 +1,7 @@
 const User = require("../models/User.model");
 const Course = require("../models/Course.model");
 const Category = require("../models/Category.model");
+const CourseProgress = require("../models/CourseProgress.model");
 const { uploadToCloudinary } = require("../utils/cloudinary.util");
 const { findById } = require("../models/OTP.model");
 require("dotenv").config();
@@ -327,6 +328,66 @@ exports.deleteCourse = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Could Not Delete Course, Please Try Again Later!",
+      error: error.message,
+    });
+  }
+};
+
+exports.getFullCourseDetails = async (req, res) => {
+  try {
+    const { courseId } = req.body;
+    const userId = req.user.id;
+
+    const courseDetails = await Course.findById(courseId)
+      .populate({
+        path: "instructor",
+        populate: {
+          path: "additionalDetails",
+        },
+      })
+      .populate("category")
+      .populate("ratingAndReviews")
+      .populate({
+        path: "courseContent",
+        populate: {
+          path: "subSection",
+        },
+      })
+      .exec();
+
+    let courseProgressCount = await CourseProgress.findOne({
+      courseId: courseId,
+      userId: userId,
+    });
+
+    if (!courseDetails) {
+      return res.status(400).json({
+        success: false,
+        message: `Could not find course with id : ${courseId}`,
+      });
+    }
+
+    let totalDurationSeconds = 0;
+    courseDetails.courseContent.forEach((content) => {
+      content.subSection.forEach((subSection) => {
+        const timeDurationInSeconds = parseInt(subSection.timeDuration);
+        totalDurationSeconds += timeDurationInSeconds;
+      });
+    });
+
+    const totalDuration = convertSecondsToDuration(totalDurationSeconds);
+
+    return res.status(200).json({
+      success: true,
+      data: courseDetails,
+      totalDuration,
+      completedVideos: courseProgressCount?.completedVideos || [],
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Could Not Fetch Full Course Details, Please Try Again Later!",
       error: error.message,
     });
   }
