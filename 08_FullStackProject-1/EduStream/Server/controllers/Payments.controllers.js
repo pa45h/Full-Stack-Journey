@@ -5,6 +5,7 @@ const mailSender = require("../utils/mailSender.util");
 const { courseEnrollment } = require("../mail/courseEnrollment.mail");
 const { default: mongoose } = require("mongoose");
 const crypto = require("crypto");
+const CourseProgress = require("../models/CourseProgress.model");
 
 exports.capturePayment = async (req, res) => {
   const { courses } = req.body;
@@ -145,9 +146,20 @@ enrollStudents = async (courses, userId, res) => {
         });
       }
 
+      const courseProgress = await CourseProgress.create({
+        courseId: course_id,
+        userId: userId,
+        completedVideos: [],
+      });
+
       const enrolledStudent = await User.findByIdAndUpdate(
         userId,
-        { $push: { courses: course_id } },
+        {
+          $push: {
+            courses: course_id,
+            courseProgress: courseProgress._id,
+          },
+        },
         { new: true }
       );
 

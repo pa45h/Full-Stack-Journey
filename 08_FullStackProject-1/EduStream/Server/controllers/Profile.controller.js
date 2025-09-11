@@ -1,4 +1,5 @@
 const Course = require("../models/Course.model");
+const CourseProgress = require("../models/CourseProgress.model");
 const Profile = require("../models/Profile.model");
 const User = require("../models/User.model");
 const { uploadToCloudinary } = require("../utils/cloudinary.util");
@@ -138,15 +139,55 @@ exports.getEnrolledCourses = async (req, res) => {
       _id: userId,
     })
       .populate({
-        path:"courses",
-        populate:({
-          path:"courseContent",
-          populate:({
-            path:"subSection"
-          })
-        })
+        path: "courses",
+        populate: {
+          path: "courseContent",
+          populate: {
+            path: "subSection",
+          },
+        },
       })
       .exec();
+
+    userDetails = userDetails.toObject();
+
+    let SubSectionLength = 0;
+    for (let i = 0; i < userDetails.courses.length; i++) {
+      let totalDurationInSeconds = 0;
+      SubSectionLength = 0;
+
+      for (let j = 0; j < userDetails.courses[i].courseContent.length; j++) {
+        totalDurationInSeconds += userDetails.courses[i].courseContent[
+          j
+        ].subSection.reduce(
+          (acc, curr) => acc + parseInt(curr.timeDuration),
+          0
+        );
+
+        userDetails.courses[i].totalDration = convertSecondsToDuration(
+          totalDurationInSeconds
+        );
+
+        SubSectionLength +=
+          userDetails.courses[i].courseContent[j].subSection.length;
+      }
+      let courseProgressCount = await CourseProgress.findOne({
+        courseId: userDetails.courses[i]._id,
+        userId: userId,
+      });
+
+      courseProgressCount = courseProgressCount?.completedVideos.length;
+
+      if (SubSectionLength === 0) {
+        userDetails.courses[i].progressPercentage = 100;
+      } else {
+        const multiplier = Math.pow(10, 2);
+        userDetails.courses[i].progressPercentage =
+          Math.round(
+            (courseProgressCount / SubSectionLength) * 100 * multiplier
+          ) / multiplier;
+      }
+    }
 
     if (!userDetails) {
       return res.status(400).json({
