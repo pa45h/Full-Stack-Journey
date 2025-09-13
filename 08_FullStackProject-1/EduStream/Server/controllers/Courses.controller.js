@@ -190,6 +190,7 @@ exports.getCourseDetails = async (req, res) => {
     });
   }
 };
+
 exports.editCourse = async (req, res) => {
   try {
     let {
@@ -392,3 +393,5 @@ exports.getFullCourseDetails = async (req, res) => {
     });
   }
 };
+
+

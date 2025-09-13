@@ -10,6 +10,7 @@ import LearnLangSection from "../components/core/HomePage/LearnLangSection";
 import InstructorSection from "../components/core/HomePage/InstructorSection";
 import Footer from "../components/common/Footer";
 import ExploreMore from "../components/core/HomePage/ExploreMore";
+import ReviewSlider from "../components/common/ReviewSlider";
 
 function Home() {
   return (
@@ -174,6 +175,7 @@ function Home() {
         <h2 className="text-4xl text-center font-semibold mt-10 mb-16">
           Reviews from other learners
         </h2>
+        <ReviewSlider />
       </div>
 
       <Footer />
