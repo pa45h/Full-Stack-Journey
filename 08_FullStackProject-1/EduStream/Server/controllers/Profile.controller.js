@@ -132,10 +132,28 @@ exports.updateDisplayPicture = async (req, res) => {
   }
 };
 
+function convertSecondsToDuration(totalSeconds) {
+  if (!totalSeconds || totalSeconds <= 0) return "0s";
+
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = Math.floor(totalSeconds % 60);
+
+  const parts = [];
+
+  if (hours > 0) parts.push(`${hours}h`);
+
+  if (minutes > 0) parts.push(`${minutes}m`);
+
+  if (seconds > 0) parts.push(`${seconds}s`);
+
+  return parts.join(" ");
+}
+
 exports.getEnrolledCourses = async (req, res) => {
   try {
     const userId = req.user.id;
-    const userDetails = await User.findOne({
+    let userDetails = await User.findOne({
       _id: userId,
     })
       .populate({
@@ -195,6 +213,8 @@ exports.getEnrolledCourses = async (req, res) => {
         message: `Could Not Find User With Id: ${userDetails}`,
       });
     }
+    console.log("userDetails---", userDetails);
+
     return res.status(200).json({
       success: true,
       data: userDetails.courses,
