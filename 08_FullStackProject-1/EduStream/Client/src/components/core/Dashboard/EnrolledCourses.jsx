@@ -43,8 +43,8 @@ const EnrolledCourses = () => {
           You have not enrolled in any course yet.
         </p>
       ) : (
-        <div className="my-8 text-richblack-5">
-          <div className="flex rounded-t-lg bg-richblack-500">
+        <div className="my-8 text-richblack-5 greenBgShadow rounded-lg">
+          <div className="flex rounded-t-lg bg-richblack-600">
             <p className="w-[45%] px-5 py-3">Course Name</p>
             <p className="w-1/4 px-2 py-3">Duration</p>
             <p className="flex-1 px-2 py-3">Progress</p>
@@ -72,8 +72,8 @@ const EnrolledCourses = () => {
                 <div className="flex max-w-xs flex-col gap-2">
                   <p className="font-semibold">{course.courseName}</p>
                   <p className="text-xs text-richblack-300">
-                    {course.courseDescription.length > 50
-                      ? `${course.courseDescription.slice(0, 50)}...`
+                    {course.courseDescription.length > 30
+                      ? `${course.courseDescription.slice(0, 30)}...`
                       : course.courseDescription}
                   </p>
                 </div>

@@ -10,13 +10,6 @@ import { addToCart, removeFromCart } from "../../../slices/cartSlice";
 import { ACCOUNT_TYPE } from "../../../utils/constants";
 import { useState } from "react";
 
-// const CourseIncludes = [
-//   "8 hours on-demand video",
-//   "Full Lifetime access",
-//   "Access on Mobile and TV",
-//   "Certificate of completion",
-// ]
-
 function CourseDetailsCard({
   course,
   setConfirmationModal,
@@ -26,6 +19,7 @@ function CourseDetailsCard({
 }) {
   const { user } = useSelector((state) => state.profile);
   const { token } = useSelector((state) => state.auth);
+  const { cart } = useSelector((state) => state.cart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -47,10 +41,10 @@ function CourseDetailsCard({
     }
     if (token) {
       if (addedToCart) {
-        dispatch(removeFromCart(course.courseDetails._id));
+        dispatch(removeFromCart(courseId));
         setAddedToCart(false);
       } else {
-        dispatch(addToCart(course.courseDetails));
+        dispatch(addToCart(course));
         setAddedToCart(true);
       }
       return;
@@ -99,9 +93,15 @@ function CourseDetailsCard({
             {(!user || !course?.studentEnrolled.includes(user?._id)) && (
               <button
                 onClick={handleAddToCart}
-                className={addedToCart ? "redButton" : "blackButton"}
+                className={
+                  addedToCart || cart.some((course) => course?._id === courseId)
+                    ? "redButton"
+                    : "blackButton"
+                }
               >
-                {addedToCart ? "Remove From Cart" : "Add To Cart"}
+                {addedToCart || cart.some((course) => course?._id === courseId)
+                  ? "Remove From Cart"
+                  : "Add To Cart"}
               </button>
             )}
           </div>

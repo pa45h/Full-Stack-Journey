@@ -22,6 +22,7 @@ import { ACCOUNT_TYPE } from "../utils/constants";
 function CourseDetails() {
   const { user } = useSelector((state) => state.profile);
   const { token } = useSelector((state) => state.auth);
+  const { cart } = useSelector((state) => state.cart);
   const { loading } = useSelector((state) => state.profile);
   const { paymentLoading } = useSelector((state) => state.course);
   const dispatch = useDispatch();
@@ -33,7 +34,9 @@ function CourseDetails() {
   // Declear a state to save the course details
   const [course, setCourse] = useState(null);
   const [confirmationModal, setConfirmationModal] = useState(null);
-  const [addedToCart, setAddedToCart] = useState(false);
+  const [addedToCart, setAddedToCart] = useState(
+    cart.some((course) => course?._id === courseId)
+  );
 
   useEffect(() => {
     // Calling fetchCourseDetails fucntion to fetch the details
@@ -227,9 +230,17 @@ function CourseDetails() {
                   )) && (
                   <button
                     onClick={handleAddToCart}
-                    className={addedToCart ? "redButton" : "blackButton"}
+                    className={
+                      addedToCart ||
+                      cart.some((course) => course?._id === courseId)
+                        ? "redButton"
+                        : "blackButton"
+                    }
                   >
-                    {addedToCart ? "Remove From Cart" : "Add To Cart"}
+                    {addedToCart ||
+                    cart.some((course) => course?._id === courseId)
+                      ? "Remove From Cart"
+                      : "Add To Cart"}
                   </button>
                 )}
               </div>

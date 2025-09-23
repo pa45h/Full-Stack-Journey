@@ -8,12 +8,13 @@ import { removeFromCart } from "../../../../slices/cartSlice";
 export default function RenderCartCourses() {
   const { cart } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  
 
   return (
     <div className="flex flex-1 flex-col">
       {cart.map((course, index) => (
         <div
-          key={course._id}
+          key={course?._id}
           className={`flex w-full flex-wrap items-start justify-between gap-6 
                                     ${index !== cart.length - 1 && "pb-6"}
                                     ${index !== 0 && "mt-6"}`}
@@ -49,7 +50,7 @@ export default function RenderCartCourses() {
             </div>
           </div>
           <div className="flex flex-col items-end justify-between gap-4 m-2">
-            <button onClick={() => dispatch(removeFromCart(course._id))} className="flex flex-col justify-center items-center text-pink-500">
+            <button onClick={() => dispatch(removeFromCart(course?._id))} className="flex flex-col justify-center items-center text-pink-500">
               <RiDeleteBin6Line />
               <span>Remove</span>
             </button>

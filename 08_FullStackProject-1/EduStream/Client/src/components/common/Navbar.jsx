@@ -99,9 +99,13 @@ const Navbar = () => {
 
         <div className="flex gap-x-4 items-center justify-center">
           {user && user?.accountType !== "instructor" && (
-            <Link to={"/dashboard/cart"} className="relative">
+            <Link to={"/dashboard/cart"} className="relative p-2">
               <GiShoppingCart className="transition-all duration-200 scale-150 hover:scale-[1.7]" />
-              {totalItems > 0 && <span>{totalItems}</span>}
+              {totalItems > 0 && (
+                <span className="absolute w-[16px] h-[16px] flex items-center justify-center bottom-4 right-0 text-black bg-yellow-100 rounded-full text-xs font-bold animate-bounce">
+                  {totalItems}
+                </span>
+              )}
             </Link>
           )}
 
