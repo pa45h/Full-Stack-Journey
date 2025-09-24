@@ -1,27 +1,44 @@
 import { useEffect, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { IoIosArrowBack } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import IconBtn from "../../common/IconBtn";
+import {
+  markLectureAsComplete,
+  getCourseProgress,
+} from "../../../services/operations/courseDetailsAPI.service";
+import {
+  setCompletedLectures,
+  updateCompletedLectures,
+} from "../../../slices/viewCourseSlice";
 
 export default function VideoDetailsSidebar({ setReviewModal }) {
+  const { token } = useSelector((state) => state.auth);
   const [activeStatus, setActiveStatus] = useState("");
   const [videoBarActive, setVideoBarActive] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const location = useLocation();
-  const { sectionId, subSectionId } = useParams();
+  const { courseId, sectionId, subSectionId } = useParams();
   const {
     courseSectionData,
     courseEntireData,
-    totalNoOfLectures,
     completedLectures,
+    totalNoOfLectures,
   } = useSelector((state) => state.viewCourse);
+
+  const fetchProgress = async () => {
+    if (!courseId || !token) return;
+    const response = await getCourseProgress(courseId, token);
+    dispatch(setCompletedLectures(response));
+  };
 
   useEffect(() => {
     (() => {
-      if (!courseSectionData.length) return;
+      fetchProgress();
+      if (!courseSectionData) return;
       const currentSectionIndx = courseSectionData.findIndex(
         (data) => data._id === sectionId
       );
@@ -35,12 +52,21 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
       setActiveStatus(courseSectionData?.[currentSectionIndx]?._id);
       setVideoBarActive(activeSubSectionId);
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseSectionData, courseEntireData, location.pathname]);
+
+  const handleLectureCompletion = async () => {
+    const res = await markLectureAsComplete(
+      { courseId: courseEntireData._id, subSectionId: subSectionId },
+      token
+    );
+    if (res) {
+      dispatch(updateCompletedLectures(subSectionId));
+    }
+  };
 
   return (
     <>
-      <div className="flex h-[calc(100vh-3.5rem)] w-[320px] max-w-[350px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800">
+      <div className="flex h-[calc(100vh-3.5rem)] w-[320px] max-w-[350px] flex-col greenBgShadow">
         <div className="mx-5 flex flex-col items-start justify-between gap-2 gap-y-4 border-b border-richblack-600 py-5 text-lg font-bold text-richblack-25">
           <div className="flex w-full items-center justify-between ">
             <div
@@ -67,37 +93,37 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
         </div>
 
         <div className="h-[calc(100vh - 5rem)] overflow-y-auto">
-          {courseSectionData.map((course, index) => (
+          {courseSectionData?.map((section, index) => (
             <div
               className="mt-2 cursor-pointer text-sm text-richblack-5"
-              onClick={() => setActiveStatus(course?._id)}
+              onClick={() => setActiveStatus(section?._id)}
               key={index}
             >
               {/* Section */}
-              <div className="flex flex-row justify-between bg-richblack-600 px-5 py-4">
+              <div className="flex flex-row justify-between bg-richblack-700 px-5 py-4 transition-all duration-500">
                 <div className="w-[70%] font-semibold">
-                  {course?.sectionName}
+                  {section?.sectionName}
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-[12px] font-medium">
-                    Lession {course?.subSection.length}
+                    Lession {section?.subSection.length}
                   </span>
-                  <span
-                    className={`${
-                      activeStatus === course?.sectionName
-                        ? "rotate-0"
-                        : "rotate-180"
-                    } transition-all duration-500`}
-                  >
-                    <BsChevronDown />
+                  <span>
+                    <BsChevronDown
+                      className={`${
+                        activeStatus === section?._id
+                          ? "rotate-180"
+                          : "rotate-0"
+                      } transition-all duration-500`}
+                    />
                   </span>
                 </div>
               </div>
 
               {/* Sub Sections */}
-              {activeStatus === course?._id && (
-                <div className="transition-[height] duration-500 ease-in-out">
-                  {course.subSection.map((topic, i) => (
+              {activeStatus === section?._id && (
+                <div className="transition-all duration-500">
+                  {section.subSection.map((topic, i) => (
                     <div
                       className={`flex gap-3  px-5 py-2 ${
                         videoBarActive === topic._id
@@ -107,15 +133,15 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
                       key={i}
                       onClick={() => {
                         navigate(
-                          `/view-course/${courseEntireData?._id}/section/${course?._id}/sub-section/${topic?._id}`
+                          `/view-course/${courseEntireData?._id}/section/${section?._id}/sub-section/${topic?._id}`
                         );
-                        setVideoBarActive(topic._id);
+                        setVideoBarActive(topic?._id);
                       }}
                     >
                       <input
                         type="checkbox"
-                        checked={completedLectures.includes(topic?._id)}
-                        onChange={() => {}}
+                        checked={completedLectures?.includes(topic?._id)}
+                        onChange={handleLectureCompletion}
                       />
                       {topic.title}
                     </div>

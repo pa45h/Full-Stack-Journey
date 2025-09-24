@@ -115,6 +115,7 @@ function App() {
         </Route>
 
         <Route
+          path="view-course/:courseId"
           element={
             <PrivateRoute>
               <ViewCourse />
@@ -124,7 +125,7 @@ function App() {
           {user?.accountType === ACCOUNT_TYPE.STUDENT && (
             <>
               <Route
-                path="view-course/:courseId/section/:sectionId/sub-section/subSectionId"
+                path="section/:sectionId/sub-section/:subSectionId"
                 element={<VideoDetails />}
               ></Route>
             </>

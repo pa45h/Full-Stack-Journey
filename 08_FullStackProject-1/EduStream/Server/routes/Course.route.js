@@ -13,6 +13,7 @@ const {
 
 const {
   updateCourseProgress,
+  getCourseProgress,
 } = require("../controllers/CourseProgress.controller");
 
 const {
@@ -59,6 +60,7 @@ router.post("/getFullCourseDetails", getFullCourseDetails);
 
 // Course Routes for course progress:
 router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
+router.post("/getCourseProgress", auth, isStudent, getCourseProgress);
 
 // Rating Review Routes:
 router.get("/getAverageRating", getAverageRating);

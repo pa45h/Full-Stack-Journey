@@ -1,10 +1,40 @@
 const CourseProgress = require("../models/CourseProgress.model");
 const SubSectionModel = require("../models/SubSection.model");
+const User = require("../models/User.model");
+
+exports.getCourseProgress = async (req, res) => {
+  try {
+    const { courseId } = req?.body;
+    const userId = req?.user?.id;
+
+    const courseProgress = await CourseProgress.findOne({
+      courseId,
+      userId,
+    }).populate("completedVideos");
+
+    if (!courseProgress) {
+      return res.status(404).json({
+        success: false,
+        message: "Course Progress Not Found!",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      completedVideos: courseProgress.completedVideos.map((v) => v._id),
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
 exports.updateCourseProgress = async (req, res) => {
   try {
     const { courseId, subSectionId } = req.body;
-    const userId = req.user.id;
+    const userId = req?.user?.id;
 
     const subSection = await SubSectionModel.findById(subSectionId);
 
@@ -20,10 +50,12 @@ exports.updateCourseProgress = async (req, res) => {
       userId: userId,
     });
 
+    console.log("courseProgress---", courseProgress);
+
     if (!courseProgress) {
       return res.status(404).json({
         success: false,
-        message: "Course Progress Not Found!",
+        message: "Course Progress Not Found 28!",
       });
     } else {
       if (courseProgress.completedVideos.includes(subSectionId)) {

@@ -307,11 +307,10 @@ export const deleteCourse = async (data, token) => {
 //get a full details of a course
 export const getFullDetailsOfCourse = async (courseId, token) => {
   const toastId = toast.loading("Loading...");
-  //  dispatch(setLoading(true));
   let result = null;
   try {
     const response = await apiConnector(
-      "GET",
+      "POST",
       GET_FULL_COURSE_DETAILS_AUTHENTICATED,
       {
         courseId,
@@ -325,20 +324,39 @@ export const getFullDetailsOfCourse = async (courseId, token) => {
       response
     );
 
-    if (!response?.data?.success) {
-      throw new Error(response.data.message);
-    }
+    result = response?.data;
   } catch (error) {
     console.log("COURSE_FULL_DETAILS_API API ERROR...................", error);
     result = error.response.data;
-    // toast.error(error.response.message)
+    toast.error(error.response.message);
   }
   toast.dismiss(toastId);
-  //     dispatch(setLoading(false))
   return result;
 };
 
-//mark a lecture as completed
+export const getCourseProgress = async (courseId, token) => {
+  let result = null;
+  try {
+    const response = await apiConnector(
+      "POST",
+      courseEndpoints.GET_COURSE_PROGRESS_API,
+      { courseId },
+      { Authorization: `Bearer ${token}` }
+    );
+
+    console.log("COURSE_PROGRESS_API RESPONSE.................", response);
+
+    if (!response?.data?.success) {
+      throw new Error("Could Not Fetch Course Progress");
+    }
+
+    result = response?.data?.completedVideos;
+  } catch (error) {
+    console.log("COURSE_PROGRESS_API ERROR....................", error);
+  }
+  return result;
+};
+
 export const markLectureAsComplete = async (data, token) => {
   let result = null;
   console.log("Mark complete data", data);
@@ -356,8 +374,9 @@ export const markLectureAsComplete = async (data, token) => {
     if (!response.data.message) {
       throw new Error(response.data.error);
     }
+
     toast.success("Lecture Completed");
-    result = false;
+    result = true;
   } catch (error) {
     console.log("MARK_LECTURE_AS_COMPLETE_API API ERROR...............", error);
     toast.error(error.message);

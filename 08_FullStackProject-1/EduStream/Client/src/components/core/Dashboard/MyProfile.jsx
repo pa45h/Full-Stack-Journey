@@ -29,7 +29,7 @@ const MyProfile = () => {
         </div>
         <IconBtn
           text="Edit"
-          onclick={() => {
+          onClick={() => {
             navigate("/dashboard/settings");
           }}
         />
@@ -38,15 +38,15 @@ const MyProfile = () => {
       {/* Section-2 */}
       <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblue-900 p-8 px-12 shadow-[0_0_5px_0_rgb(0,255,255)]">
         <div className="flex w-full items-center justify-between">
-          <p className="text-lg font-semibold text-richblack-5">About</p>
+          <p className="text-lg  text-richblack-400">About</p>
           <IconBtn
             text="Edit"
-            onclick={() => {
+            onClick={() => {
               navigate("/dashboard/settings");
             }}
           />
         </div>
-        <p className="text-richblack-400 text-sm font-medium">
+        <p className="text-richblack-5 text-sm font-semibold">
           {user?.additionalDetails?.about ?? "Write Something About Yourself"}
         </p>
       </div>
@@ -60,7 +60,7 @@ const MyProfile = () => {
           <IconBtn
             className="flex items-center bg-yellow-50 cursor-pointer gap-x-2 rounded-md py-2 px-5 font-semibold text-richblack-900 undefined"
             text="Edit"
-            onclick={() => {
+            onClick={() => {
               navigate("/dashboard/settings");
             }}
           />

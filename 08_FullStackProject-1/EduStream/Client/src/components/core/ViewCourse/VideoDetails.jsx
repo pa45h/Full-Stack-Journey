@@ -28,19 +28,18 @@ const VideoDetails = () => {
   useEffect(() => {
     (async () => {
       if (!courseSectionData.length) return;
-      if (!courseId && !sectionId && !subSectionId) {
+      if (!courseId || !sectionId || !subSectionId) {
         navigate(`/dashboard/enrolled-courses`);
       } else {
-        // console.log("courseSectionData", courseSectionData)
         const filteredData = courseSectionData.filter(
           (course) => course._id === sectionId
         );
-        // console.log("filteredData", filteredData)
+
         const filteredVideoData = filteredData?.[0]?.subSection.filter(
           (data) => data._id === subSectionId
         );
-        // console.log("filteredVideoData", filteredVideoData)
-        setVideoData(filteredVideoData[0]);
+
+        setVideoData(filteredVideoData?.[0]);
         setPreviewSource(courseEntireData.thumbnail);
         setVideoEnded(false);
       }
@@ -159,7 +158,7 @@ const VideoDetails = () => {
   const handleLectureCompletion = async () => {
     setLoading(true);
     const res = await markLectureAsComplete(
-      { courseId: courseId, subsectionId: subSectionId },
+      { courseId: courseId, subSectionId: subSectionId },
       token
     );
     if (res) {
@@ -197,16 +196,15 @@ const VideoDetails = () => {
               {!completedLectures.includes(subSectionId) && (
                 <IconBtn
                   disabled={loading}
-                  onclick={() => handleLectureCompletion()}
+                  onClick={handleLectureCompletion}
                   text={!loading ? "Mark As Completed" : "Loading..."}
                   customClasses="text-xl max-w-max px-4 mx-auto"
                 />
               )}
               <IconBtn
                 disabled={loading}
-                onclick={() => {
+                onClick={() => {
                   if (playerRef?.current) {
-                    // set the current time of the video to 0
                     playerRef?.current?.seek(0);
                     setVideoEnded(false);
                   }
@@ -240,10 +238,9 @@ const VideoDetails = () => {
       )}
 
       <h1 className="mt-4 text-3xl font-semibold">{videoData?.title}</h1>
-      <p className="pt-2 pb-6">{videoData?.description}</p>
+      <p className="pb-6">{videoData?.description}</p>
     </div>
   );
 };
 
 export default VideoDetails;
-// video
