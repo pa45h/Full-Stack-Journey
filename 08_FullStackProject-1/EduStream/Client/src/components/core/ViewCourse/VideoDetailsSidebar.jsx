@@ -3,6 +3,7 @@ import { BsChevronDown } from "react-icons/bs";
 import { IoIosArrowBack } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { convertSecondsToDuration } from "../../../utils/timeFormatter";
 
 import IconBtn from "../../common/IconBtn";
 import {
@@ -143,7 +144,12 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
                         checked={completedLectures?.includes(topic?._id)}
                         onChange={handleLectureCompletion}
                       />
-                      {topic.title}
+                      <div className="w-full flex items-center justify-between">
+                        <span>{topic.title}</span>
+                        <span>
+                          {convertSecondsToDuration(topic.timeDuration)}
+                        </span>
+                      </div>
                     </div>
                   ))}
                 </div>

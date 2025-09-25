@@ -78,8 +78,6 @@ export default function CourseBuilderForm() {
   };
 
   const goToNext = () => {
-    console.log("clicked");
-    
     if (course.courseContent.length === 0) {
       toast.error("Please add atleast one section");
       return;

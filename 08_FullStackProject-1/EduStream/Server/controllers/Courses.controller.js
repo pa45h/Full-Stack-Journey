@@ -276,6 +276,20 @@ exports.editCourse = async (req, res) => {
       });
     }
 
+    let totalDurationSeconds = 0;
+    updatedCourse.courseContent.forEach((content) => {
+      content.subSection.forEach((subSection) => {
+        const timeDurationInSeconds = parseInt(subSection.timeDuration);
+        totalDurationSeconds += timeDurationInSeconds;
+      });
+    });
+
+    const totalDuration = convertSecondsToDuration(totalDurationSeconds);
+
+    updatedCourse.timeDuration = totalDuration;
+
+    await updatedCourse.save();
+
     return res.status(200).json({
       success: true,
       updatedCourse,
@@ -296,7 +310,16 @@ exports.getInstructorCourses = async (req, res) => {
     const { id } = req.user;
 
     const instructorDetails = await User.findById(id)
-      .populate("courses")
+      .populate({
+        path: "courses",
+        populate: {
+          path: "courseContent",
+          populate: {
+            path: "subSection",
+          },
+        },
+      })
+      .populate("additionalDetails")
       .exec();
 
     return res.status(200).json({
@@ -344,7 +367,7 @@ function convertSecondsToDuration(totalSeconds) {
   let result = "";
   if (hours > 0) result += `${hours}h `;
   if (minutes > 0) result += `${minutes}m `;
-  if (seconds > 0) result += `${seconds}s`;
+  if (seconds > 0) result += `${Math.floor(seconds)}s`;
 
   return result.trim();
 }
@@ -385,20 +408,9 @@ exports.getFullCourseDetails = async (req, res) => {
       });
     }
 
-    let totalDurationSeconds = 0;
-    courseDetails.courseContent.forEach((content) => {
-      content.subSection.forEach((subSection) => {
-        const timeDurationInSeconds = parseInt(subSection.timeDuration);
-        totalDurationSeconds += timeDurationInSeconds;
-      });
-    });
-
-    const totalDuration = convertSecondsToDuration(totalDurationSeconds);
-
     return res.status(200).json({
       success: true,
       data: courseDetails,
-      totalDuration,
       completedVideos: courseProgressCount?.completedVideos || [],
     });
   } catch (error) {

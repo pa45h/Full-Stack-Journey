@@ -10,7 +10,7 @@ require("dotenv").config();
 
 exports.createSubSection = async (req, res) => {
   try {
-    const { sectionId, title, description, timeDuration } = req.body;
+    const { sectionId, title, description } = req.body;
     const videoFile = req.files?.video;
 
     if (!sectionId || !title || !description) {
@@ -25,10 +25,12 @@ exports.createSubSection = async (req, res) => {
       process.env.FOLDER_NAME
     );
 
+    console.log("videoUrl---", videoUrl);
+
     const newSubSection = await SubSection.create({
       title: title,
       description: description,
-      timeDuration: timeDuration,
+      timeDuration: videoUrl.duration,
       videoUrl: videoUrl.secure_url,
     });
 
@@ -74,7 +76,6 @@ exports.updateSubSection = async (req, res) => {
 
     if (title) subSection.title = title;
     if (description) subSection.description = description;
-    if (timeDuration) subSection.timeDuration = timeDuration;
 
     if (videoFile) {
       const odlVideoPublicId = extractPublicId(subSection.videoUrl);
@@ -86,6 +87,7 @@ exports.updateSubSection = async (req, res) => {
       );
 
       subSection.videoUrl = videoUrl.secure_url;
+      subSection.timeDuration = videoUrl.duration;
     }
 
     await subSection.save();

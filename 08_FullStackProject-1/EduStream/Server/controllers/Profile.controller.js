@@ -182,7 +182,7 @@ exports.getEnrolledCourses = async (req, res) => {
           0
         );
 
-        userDetails.courses[i].totalDration = convertSecondsToDuration(
+        userDetails.courses[i].totalDuration = convertSecondsToDuration(
           totalDurationInSeconds
         );
 
@@ -213,7 +213,6 @@ exports.getEnrolledCourses = async (req, res) => {
         message: `Could Not Find User With Id: ${userDetails}`,
       });
     }
-    console.log("userDetails---", userDetails);
 
     return res.status(200).json({
       success: true,

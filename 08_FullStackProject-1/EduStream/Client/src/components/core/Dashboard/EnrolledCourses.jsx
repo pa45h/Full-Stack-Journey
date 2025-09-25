@@ -44,7 +44,7 @@ const EnrolledCourses = () => {
         </p>
       ) : (
         <div className="my-8 text-richblack-5 greenBgShadow rounded-lg">
-          <div className="flex rounded-t-lg bg-richblack-600">
+          <div className="flex rounded-t-lg bg-richblack-800">
             <p className="w-[45%] px-5 py-3">Course Name</p>
             <p className="w-1/4 px-2 py-3">Duration</p>
             <p className="flex-1 px-2 py-3">Progress</p>
@@ -78,7 +78,7 @@ const EnrolledCourses = () => {
                   </p>
                 </div>
               </div>
-              <div className="w-1/4 px-2 py-3">{course?.toatalDuration}</div>
+              <div className="w-1/4 px-2 py-3">{course?.totalDuration}</div>
               <div>
                 <p>Progress: {course.progressPercentage || 0}%</p>
                 <ProgressBar
