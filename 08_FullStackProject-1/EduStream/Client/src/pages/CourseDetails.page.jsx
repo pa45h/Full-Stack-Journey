@@ -18,6 +18,7 @@ import GetAvgRating from "../utils/avgRating";
 import Error from "./Error.page";
 import { addToCart, removeFromCart } from "../slices/cartSlice";
 import { ACCOUNT_TYPE } from "../utils/constants";
+import ReviewSlider from "../components/common/ReviewSlider";
 
 function CourseDetails() {
   const { user } = useSelector((state) => state.profile);
@@ -325,6 +326,12 @@ function CourseDetails() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="Section-3 w-11/12 max-w-maxContent flex flex-col items-center mx-auto justify-between gap-8 bg-richblack-900 text-white">
+        <h2 className="text-4xl text-center font-semibold my-10">
+          Reviews from other learners
+        </h2>
+        <ReviewSlider />
       </div>
       <Footer />
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}

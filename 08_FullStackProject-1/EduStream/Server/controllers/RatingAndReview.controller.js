@@ -11,6 +11,7 @@ exports.createRating = async (req, res) => {
       _id: courseId,
       studentEnrolled: userId,
     });
+
     if (!courseDetails) {
       return res.status(404).json({
         success: false,
@@ -45,7 +46,6 @@ exports.createRating = async (req, res) => {
       },
       { new: true }
     );
-
     return res.status(200).json({
       success: true,
       ratingAndReviews: newRatingAndReviews,
@@ -103,11 +103,13 @@ exports.getAllRatings = async (req, res) => {
   try {
     const allReviews = await RatingAndReviews.find({})
       .sort({ rating: "desc" })
-      .populate({ path: "user", select: "firstName lastName email image" })
       .populate({
-        path: "course",
-        select: "courseName",
+        path: "user",
+        populate: {
+          path: "courses",
+        },
       })
+      .populate("course")
       .exec();
 
     return res.status(200).json({

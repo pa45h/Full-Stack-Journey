@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 
 import { createRating } from "../../../services/operations/courseDetailsAPI.service";
 import IconBtn from "../../common/IconBtn";
+import { apiConnector } from "../../../services/apiConnector.service";
 
 export default function CourseReviewModal({ setReviewModal }) {
   const { user } = useSelector((state) => state.profile);
@@ -22,7 +23,6 @@ export default function CourseReviewModal({ setReviewModal }) {
   useEffect(() => {
     setValue("courseExperience", "");
     setValue("courseRating", 0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const ratingChanged = (newRating) => {
@@ -33,7 +33,7 @@ export default function CourseReviewModal({ setReviewModal }) {
   const onSubmit = async (data) => {
     await createRating(
       {
-        courseId: courseEntireData._id,
+        courseId: courseEntireData?._id,
         rating: data.courseRating,
         review: data.courseExperience,
       },

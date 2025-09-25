@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-cards";
-import { FreeMode, Keyboard } from "swiper/modules";
+import { Autoplay, FreeMode, Keyboard } from "swiper/modules";
 import Course_Card from "./Course_Card";
 
 function Course_Slider({ Courses }) {
@@ -13,10 +13,14 @@ function Course_Slider({ Courses }) {
           slidesPerView={1}
           spaceBetween={25}
           loop={true}
+          freeMode={true}
           keyboard={{
             enabled: true,
           }}
-          modules={[FreeMode, Keyboard]}
+          autoplay={{
+            delay: 2500,
+          }}
+          modules={[FreeMode, Keyboard, Autoplay]}
           breakpoints={{
             1024: {
               slidesPerView: 3,

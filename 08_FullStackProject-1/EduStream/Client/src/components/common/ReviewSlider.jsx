@@ -10,7 +10,6 @@ import { FaStar } from "react-icons/fa";
 
 const ReviewSlider = () => {
   const [reviews, setReviews] = useState([]);
-  const truncateWords = 15;
 
   useEffect(() => {
     const fetchAllReviews = async () => {
@@ -20,19 +19,18 @@ const ReviewSlider = () => {
       );
       console.log("res fetchAllReviews---", res);
 
-      const { data } = res;
-
-      if (data?.success) {
-        setReviews(data?.data);
+      if (res?.data?.success) {
+        setReviews(res?.data?.data);
       }
     };
     fetchAllReviews();
   }, []);
+
   return (
-    <div className="text-white">
-      <div className="h-[190px] max-w-maxContent">
+    <div className="w-full text-white">
+      <div className="h-[250px] max-w-maxContent">
         <Swiper
-          slidesPerView={4}
+          slidesPerView={1}
           spaceBetween={24}
           loop={true}
           freeMode={true}
@@ -40,34 +38,51 @@ const ReviewSlider = () => {
             delay: 2500,
           }}
           modules={[FreeMode, Pagination, Autoplay]}
-          className="w-full"
+          breakpoints={{
+            708: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+          }}
         >
-          {reviews.map((review, index) => {
+          {reviews.map((review, index) => (
             <SwiperSlide key={index}>
-              <img
-                src={
-                  review?.user.image ||
-                  `https://api.dicebear.com/5.x/initials/svg?seed=${review?.user?.firstName}_${review?.user?.lastName}`
-                }
-                className="h-9 w-9 object-cover rounded-full"
-              />
-              <p>
-                {review?.user?.firstName} {review?.user?.lastName}
-              </p>
-              <p>{review?.course?.courseName}</p>
-              <p>{review?.review}</p>
-              <p>{review?.rating.tofixed(1)}</p>
-              <ReactStars
-                count={5}
-                value={review.rating}
-                size={20}
-                edit={false}
-                activeColor="#ffd700"
-                emptyIcon={<FaStar />}
-                fullIcon={<FaStar />}
-              />
-            </SwiperSlide>;
-          })}
+              <div className="greenBgShadow p-3 m-2 rounded-lg min-h-[200px] flex flex-col justify-around">
+                <div className="flex gap-2 items-center">
+                  <img
+                    src={
+                      review?.user?.image ||
+                      `https://api.dicebear.com/5.x/initials/svg?seed=${review?.user?.firstName}_${review?.user?.lastName}`
+                    }
+                    className="h-9 w-9 object-cover rounded-full"
+                  />
+                  <div className="text-xs flex flex-col justify-center">
+                    <p className="font-semibold">
+                      {review?.user?.firstName} {review?.user?.lastName}
+                    </p>
+                    <p className="text-pure-greys-400">{review?.user?.email}</p>
+                  </div>
+                </div>
+                <div className="text-pure-greys-50">
+                  <p className="text-sm">{review?.review}</p>
+                </div>
+                <div className="flex gap-2 items-center text-sm">
+                  <p className="text-yellow-50">{review?.rating}</p>
+                  <ReactStars
+                    count={5}
+                    value={review?.rating}
+                    size={20}
+                    edit={false}
+                    activeColor="#ffd700"
+                    emptyIcon={<FaStar />}
+                    fullIcon={<FaStar />}
+                  />
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </div>
