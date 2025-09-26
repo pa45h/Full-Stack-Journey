@@ -30,12 +30,12 @@ export default function Instructor() {
   }, []);
 
   const totalAmount = instructorData?.reduce(
-    (acc, curr) => acc + curr.totalAmountGenerated,
+    (acc, curr) => acc + curr?.totalAmountGenerated,
     0
   );
 
   const totalStudents = instructorData?.reduce(
-    (acc, curr) => acc + curr.totalStudentsEnrolled,
+    (acc, curr) => acc + curr?.totalStudentsEnrolled,
     0
   );
 
@@ -46,19 +46,19 @@ export default function Instructor() {
           Hi {user?.firstName} 👋
         </h1>
         <p className="font-medium text-richblack-200">
-          Let's start something new
+          Welcome Back!
         </p>
       </div>
       {loading ? (
         <div className="spinner"></div>
       ) : courses.length > 0 ? (
         <div>
-          <div className="my-4 flex h-[450px] space-x-4">
+          <div className="my-4 flex space-x-4">
             {/* Render chart / graph */}
             {totalAmount > 0 || totalStudents > 0 ? (
               <InstructorChart courses={instructorData} />
             ) : (
-              <div className="flex-1 rounded-md bg-richblack-800 p-6">
+              <div className="flex-1 rounded-md greenBgShadow p-6">
                 <p className="text-lg font-bold text-richblack-5">Visualize</p>
                 <p className="mt-4 text-xl font-medium text-richblack-50">
                   Not Enough Data To Visualize
@@ -66,13 +66,13 @@ export default function Instructor() {
               </div>
             )}
             {/* Total Statistics */}
-            <div className="flex min-w-[250px] flex-col rounded-md bg-richblack-800 p-6">
+            <div className="flex min-w-[25%] flex-col rounded-md greenBgShadow p-6">
               <p className="text-lg font-bold text-richblack-5">Statistics</p>
               <div className="mt-4 space-y-4">
                 <div>
                   <p className="text-lg text-richblack-200">Total Courses</p>
                   <p className="text-3xl font-semibold text-richblack-50">
-                    {courses.length}
+                    {courses?.length}
                   </p>
                 </div>
                 <div>
@@ -90,7 +90,7 @@ export default function Instructor() {
               </div>
             </div>
           </div>
-          <div className="rounded-md bg-richblack-800 p-6">
+          <div className="rounded-md greenBgShadow p-6">
             {/* Render 3 courses */}
             <div className="flex items-center justify-between">
               <p className="text-lg font-bold text-richblack-5">Your Courses</p>
@@ -112,7 +112,7 @@ export default function Instructor() {
                     </p>
                     <div className="mt-1 flex items-center space-x-2">
                       <p className="text-xs font-medium text-richblack-300">
-                        {course.totalStudentsEnrolleded.length} students
+                        {course?.studentEnrolled?.length} students
                       </p>
                       <p className="text-xs font-medium text-richblack-300">
                         |

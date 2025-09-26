@@ -228,10 +228,10 @@ exports.getEnrolledCourses = async (req, res) => {
 
 exports.fetchInstructorDashboardData = async (req, res) => {
   try {
-    const courseDetails = await Course.find({ instructor: req.user.id });
+    const courseDetails = await Course.find({ instructor: req?.user?.id });
 
     const courseData = courseDetails.map((course) => {
-      const totalStudentsEnrolled = course?.studentsEnrolled?.length;
+      const totalStudentsEnrolled = course?.studentEnrolled?.length;
       const totalAmountGenerated = totalStudentsEnrolled * course.price;
 
       const courseDataWithStats = {
