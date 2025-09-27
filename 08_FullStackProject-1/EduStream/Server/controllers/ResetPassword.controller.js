@@ -2,6 +2,7 @@ const User = require("../models/User.model");
 const mailSender = require("../utils/mailSender.util");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
+const { resetPasswordMail } = require("../mail/passwordUpdate.mail");
 
 exports.resetPasswordToken = async (req, res) => {
   try {
@@ -27,7 +28,7 @@ exports.resetPasswordToken = async (req, res) => {
     await mailSender(
       email,
       "Reset Password Link",
-      `<h1>Hello ${user.firstName},</h1><h2>Here is your reset password link :- ${url}</h2>`
+      resetPasswordMail(user.firstName, url)
     );
 
     res.status(200).json({
