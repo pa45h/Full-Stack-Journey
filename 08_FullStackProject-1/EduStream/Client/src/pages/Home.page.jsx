@@ -45,7 +45,7 @@ function Home() {
           </Button>
         </div>
 
-        <div className="mx-3 my-12 shadow-[20px_20px_0px_0px_rgba(17,138,178),-1px_0px_80px_0px_rgb(17,138,178)] rounded-full">
+        <div className="mx-3 my-12 shadow-[-1px_0px_80px_0px_rgb(17,138,178)] sm:shadow-[20px_20px_0px_0px_rgb(17,138,178),-1px_0px_80px_0px_rgb(17,138,178)] rounded-full">
           <video muted loop autoPlay width={854} className="rounded-full">
             <source src={Banner} type="video/mp4"></source>
           </video>
@@ -65,7 +65,7 @@ function Home() {
             "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
           }
           button1={{
-            btnText: "Try it Yourself",
+            btnText: "Try It",
             linkto: "/signup",
             active: true,
           }}
@@ -103,7 +103,7 @@ function Home() {
             "Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."
           }
           button1={{
-            btnText: "Continue Lesson",
+            btnText: "Lessons",
             linkto: "/signup",
             active: true,
           }}
@@ -130,11 +130,12 @@ function Home() {
       </div>
 
       <ExploreMore />
+
       <div className="Section-2 bg-pure-greys-5 text-richblack-700">
         <div className="homepage_bg h-[333px] -z-10">
-          <div className="w-11/12 max-w-maxContent flex flex-col items-center gap-5 mx-auto">
-            <div className="h-[200px]"></div>
-            <div className="flex gap-7 text-white">
+          <div className="w-11/12 max-w-maxContent h-[333px] flex flex-col items-center justify-center lg:gap-5 mx-auto">
+            <div className="lg:h-[200px]"></div>
+            <div className="flex gap-7 text-white mx-auto">
               <Button active={true} linkto={"/signup"}>
                 <div className="flex items-center gap-3">
                   Explore Full Catalog
@@ -142,19 +143,19 @@ function Home() {
                 </div>
               </Button>
               <Button active={false} linkto={"/login"}>
-                <div className="flex items-center gap-3">Learn More</div>
+                <div>Learn More</div>
               </Button>
             </div>
           </div>
         </div>
 
         <div className="mx-auto w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-7">
-          <div className="flex flex-row gap-5 mb-10 mt-[95px] justify-center">
-            <div className="text-4xl font-semibold w-[45%]">
+          <div className=" w-full flex flex-col lg:flex-row gap-5 mb-10 lg:mt-[95px] justify-center items-center mx-auto">
+            <div className="text-4xl font-semibold lg:w-[45%]">
               Get the skills you need for a{" "}
               <HighlightText text={"job that is in demand."} />
             </div>
-            <div className="flex flex-col gap-10 w-[40%] items-start">
+            <div className="flex flex-col gap-10 lg:w-[40%] md:items-start">
               <div className="text-[16px]">
                 The modern EduStream is the dictates its own terms. Today, to be
                 a competitive specialist requires more than professional skills.

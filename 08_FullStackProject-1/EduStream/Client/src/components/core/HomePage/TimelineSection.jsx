@@ -28,11 +28,11 @@ const timeLine = [
   },
 ];
 
-const TimelineSection = () => {
+const TimelineSection = () => { 
   return (
     <div>
-      <div className="flex flex-row gap-14 items-center">
-        <div className="w-[45%] flex flex-col gap-12">
+      <div className="flex flex-col md:flex-row gap-14 items-center">
+        <div className="md:w-[45%] flex flex-col gap-12">
           {timeLine.map((element, index) => {
             return (
               <div className="flex flex-row gap-6" key={index}>
@@ -53,13 +53,13 @@ const TimelineSection = () => {
         <div className="relative shadow-[-1px_0px_50px_0px_rgb(17,138,255)] rounded-3xl">
           <img src={timelineImg} width={500} className="rounded-2xl" />
           <div className="absolute bg-richblue-900 flex flex-row text-white uppercase py-7 items-center justify-center left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-xl">
-            <div className="flex flex-row gap-5 items-center border-r border-richblack-500 px-7">
+            <div className="flex flex-row gap-5 items-center border-r border-richblack-500 px-5">
               <p className="text-2xl font-bold">15</p>
               <p className="text-sm font-bold text-richblue-50">
                 Years of experience
               </p>
             </div>
-            <div className="flex flex-row gap-5 items-center px-7">
+            <div className="flex flex-row gap-5 items-center px-5">
               <p className="text-2xl font-bold">100+</p>
               <p className="text-sm font-bold text-richblue-50">
                 valuable courses

@@ -35,7 +35,7 @@ const ExploreMore = () => {
         Learn to Build Anything You Can Imagine
       </p>
 
-      <div className="text-center flex flex-row rounded-full bg-richblack-800 mb-5 mt-5 border-richblack-100 p-1 w-fit mx-auto gap-6 shadow-sm shadow-richblack-400">
+      <div className="hidden lg:flex text-center flex-row rounded-full bg-richblack-800 mb-5 mt-5 border-richblack-100 p-1 w-fit mx-auto gap-6 shadow-sm shadow-richblack-400">
         {tabNames.map((tabName, index) => {
           return (
             <div
@@ -54,7 +54,7 @@ const ExploreMore = () => {
       </div>
       <div className="lg:h-[200px]"></div>
 
-      <div className="absolute flex flex-row gap-16 justify-center w-full -bottom-36">
+      <div className="lg:absolute mt-16 flex flex-col items-center lg:flex-row gap-16 justify-center w-full lg:-bottom-36">
         {courses.map((course, index) => {
           return (
             <CourseCard
