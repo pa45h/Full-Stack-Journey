@@ -124,11 +124,7 @@ const About = () => {
         <h1 className="text-center text-4xl font-semibold mt-8">
           Review from other learners
         </h1>
-        <div className="text-white">
-          <div className="my-[50px] h-[184px] max-w-maxContentTab lg:max-w-maxContent">
-            <ReviewSlider />
-          </div>
-        </div>
+        <ReviewSlider />
       </div>
 
       <Footer />
