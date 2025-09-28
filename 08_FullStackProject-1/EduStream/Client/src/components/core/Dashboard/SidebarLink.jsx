@@ -32,7 +32,7 @@ const SidebarLink = ({ link, iconName }) => {
       ></span>
 
       <div className="flex items-center gap-x-2">
-        <Icon className="text-lg" />
+        <Icon className="text-xl" />
         <span className="hidden md:block">{link.name}</span>
       </div>
     </NavLink>

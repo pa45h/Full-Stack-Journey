@@ -168,7 +168,7 @@ const VideoDetails = () => {
   };
 
   return (
-    <div className="flex flex-col gap-5 text-white">
+    <div className="w-full mx-auto mt-40 sm:mt-20 lg:mt-10 flex flex-col gap-5 text-white">
       {!videoData ? (
         <img
           src={previewSource}

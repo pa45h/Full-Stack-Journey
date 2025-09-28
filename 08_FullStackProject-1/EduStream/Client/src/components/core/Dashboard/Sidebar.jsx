@@ -51,7 +51,7 @@ const Sidebar = () => {
           className="px-2 md:px-8 py-2 text-sm font-medium text-richblack-300"
         >
           <div className="flex items-center gap-x-2 transition-all duration-200 hover:text-pink-500">
-            <VscSignOut className="text-lg" />
+            <VscSignOut className="text-xl" />
             <span className="hidden md:block">Logout</span>
           </div>
         </button>

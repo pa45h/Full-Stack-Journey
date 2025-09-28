@@ -14,6 +14,8 @@ import {
   setCompletedLectures,
   updateCompletedLectures,
 } from "../../../slices/viewCourseSlice";
+import { BiMenuAltLeft } from "react-icons/bi";
+import { IoClose } from "react-icons/io5";
 
 export default function VideoDetailsSidebar({ setReviewModal }) {
   const { token } = useSelector((state) => state.auth);
@@ -29,6 +31,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
     completedLectures,
     totalNoOfLectures,
   } = useSelector((state) => state.viewCourse);
+  const [sidebar, setSidebar] = useState(false);
 
   const fetchProgress = async () => {
     if (!courseId || !token) return;
@@ -52,6 +55,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
         ]?._id;
       setActiveStatus(courseSectionData?.[currentSectionIndx]?._id);
       setVideoBarActive(activeSubSectionId);
+      setSidebar(false);
     })();
   }, [courseSectionData, courseEntireData, location.pathname]);
 
@@ -67,18 +71,27 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
 
   return (
     <>
-      <div className="flex h-[calc(100vh-3.5rem)] w-[320px] max-w-[350px] flex-col greenBgShadow">
+      <button
+        className="absolute top-2 left-1 text-5xl z-[51] greenBgShadow hover:scale-95 transition-all duration-300"
+        onClick={() => setSidebar((prev) => !prev)}
+      >
+        <div className="transition-transform duration-300">
+          {sidebar ? <IoClose /> : <BiMenuAltLeft />}
+        </div>
+      </button>
+
+      <div
+        className={`fixed top-14 left-0 z-50 h-[calc(100vh-3rem)] w-[344px] max-w-[350px] 
+                    flex-col greenBgShadow bg-richblack-800
+                    transform transition-all duration-300 ease-in-out
+                    ${
+                      sidebar
+                        ? "translate-x-0 opacity-100"
+                        : "-translate-x-[110%] opacity-0"
+                    }`}
+      >
         <div className="mx-5 flex flex-col items-start justify-between gap-2 gap-y-4 border-b border-richblack-600 py-5 text-lg font-bold text-richblack-25">
           <div className="flex w-full items-center justify-between ">
-            <div
-              onClick={() => {
-                navigate(`/dashboard/enrolled-courses`);
-              }}
-              className="flex h-[35px] w-[35px] items-center justify-center rounded-full bg-richblack-100 p-1 text-richblack-700 hover:scale-90"
-              title="back"
-            >
-              <IoIosArrowBack size={30} />
-            </div>
             <IconBtn
               text="Add Review"
               customClasses="ml-auto"
