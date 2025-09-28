@@ -8,13 +8,13 @@ const MyProfile = () => {
   const navigate = useNavigate();
   return (
     <div className="text-richblack-5">
-      <h1 className="mb-10 md:my-14 text-3xl font-medium text-richblack-5">
+      <h1 className="mb-10 sm:my-14 text-3xl font-medium text-richblack-5">
         My Profile
       </h1>
 
       {/* Section-1 */}
-      <div className="flex flex-col md:flex-row gap-4 items-center justify-between rounded-md greenBgShadow p-3 md:p-8 md:px-12">
-        <div className="flex items-center gap-x-2 md:gap-x-4">
+      <div className="flex flex-col sm:flex-row gap-4 items-center justify-between rounded-sm greenBgShadow p-3 sm:p-8 sm:px-12">
+        <div className="flex items-center gap-x-2 sm:gap-x-4">
           <img
             src={user?.image}
             alt={`profile-${user?.firstName}`}
@@ -36,7 +36,7 @@ const MyProfile = () => {
       </div>
 
       {/* Section-2 */}
-      <div className="my-10 flex flex-col gap-y-10 rounded-md greenBgShadow p-3 md:p-8 md:px-12">
+      <div className="my-10 flex flex-col gap-y-10 rounded-sm greenBgShadow p-3 sm:p-8 sm:px-12">
         <div className="flex w-full items-center justify-between">
           <p className="text-lg  text-richblack-400">About</p>
           <IconBtn
@@ -52,13 +52,13 @@ const MyProfile = () => {
       </div>
 
       {/* Section-3 */}
-      <div className="my-10 flex flex-col gap-y-10 rounded-md greenBgShadow p-3 md:p-8 md:px-12">
+      <div className="my-10 flex flex-col gap-y-10 rounded-sm greenBgShadow p-3 sm:p-8 sm:px-12">
         <div className="flex w-full items-center justify-between">
           <p className="text-lg font-semibold text-richblack-5">
             Personal Details
           </p>
           <IconBtn
-            className="flex items-center bg-yellow-50 cursor-pointer gap-x-2 rounded-md py-2 px-5 font-semibold text-richblack-900"
+            className="flex items-center bg-yellow-50 cursor-pointer gap-x-2 rounded-sm py-2 px-5 font-semibold text-richblack-900"
             text="Edit"
             onClick={() => {
               navigate("/dashboard/settings");

@@ -31,7 +31,7 @@ const EditProfile = () => {
   return (
     <>
       <form onSubmit={handleSubmit(submitProfileForm)}>
-        <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblue-900 p-8 px-12 shadow-[0_0_5px_0_rgb(0,255,255)]">
+        <div className="my-10 flex flex-col gap-y-6 rounded-md greenBgShadow p-3 sm:p-8 sm:px-12">
           <h1 className="text-lg font-semibold text-richblack-5">
             Profile Information
           </h1>
