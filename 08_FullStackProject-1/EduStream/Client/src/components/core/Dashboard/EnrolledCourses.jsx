@@ -11,7 +11,6 @@ const EnrolledCourses = () => {
   const navigate = useNavigate();
 
   const [enrolledCourses, setEnrolledCourses] = useState(null);
-  // console.log("enrolledCourses---", enrolledCourses);
 
   useEffect(() => {
     (async () => {
@@ -19,10 +18,6 @@ const EnrolledCourses = () => {
         const res = await getUserEnrolledCourses(token);
 
         const filterPublishCourse = res.filter((ele) => ele.status !== "Draft");
-        // console.log(
-        //   "Viewing all the couse that is Published",
-        //   filterPublishCourse
-        // )
 
         setEnrolledCourses(filterPublishCourse);
       } catch (error) {
@@ -45,7 +40,7 @@ const EnrolledCourses = () => {
       ) : (
         <div className="my-8 text-richblack-5 greenBgShadow rounded-lg">
           <div className="flex rounded-t-lg bg-richblack-800">
-            <p className="w-[45%] px-5 py-3">Course Name</p>
+            <p className="w-[45%] px-2 md:px-5 py-3">Course Name</p>
             <p className="w-1/4 px-2 py-3">Duration</p>
             <p className="flex-1 px-2 py-3">Progress</p>
           </div>
@@ -57,7 +52,7 @@ const EnrolledCourses = () => {
               key={i}
             >
               <div
-                className="flex w-[45%] cursor-pointer items-center gap-4 px-5 py-3"
+                className="flex flex-col sm:flex-row w-[45%] cursor-pointer items-center gap-4 px-2 md:px-5 py-3"
                 onClick={() => {
                   navigate(
                     `/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]?._id}`
@@ -67,7 +62,7 @@ const EnrolledCourses = () => {
                 <img
                   src={course.thumbnail}
                   alt="course_img"
-                  className="h-14 w-14 rounded-lg object-cover"
+                  className="h-16 w-[90%] sm:w-16 rounded-lg object-cover"
                 />
                 <div className="flex max-w-xs flex-col gap-2">
                   <p className="font-semibold">{course.courseName}</p>
@@ -80,10 +75,13 @@ const EnrolledCourses = () => {
               </div>
               <div className="w-1/4 px-2 py-3">{course?.totalDuration}</div>
               <div>
-                <p>Progress: {course.progressPercentage || 0}%</p>
+                <p className="w-1/4 mx-auto text-base">
+                  {course.progressPercentage || 0}/100
+                </p>
                 <ProgressBar
                   completed={course.progressPercentage || 0}
                   height="8px"
+                  width="85px"
                   isLabelVisible={false}
                 />
               </div>
