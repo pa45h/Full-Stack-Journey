@@ -53,11 +53,16 @@ exports.getAllCategories = async (req, res) => {
   }
 };
 
-exports. categoryPageDetails = async (req, res) => {
+exports.categoryPageDetails = async (req, res) => {
   try {
     const { categoryId } = req.body;
     const selectedCategory = await Category.findById(categoryId)
-      .populate("courses")
+      .populate({
+        path: "courses",
+        populate: {
+          path: "ratingAndReviews",
+        },
+      })
       .exec();
     if (!selectedCategory) {
       return res.status(404).json({
@@ -69,12 +74,18 @@ exports. categoryPageDetails = async (req, res) => {
     const differentCategories = await Category.find({
       _id: { $ne: categoryId },
     })
-      .populate("courses")
+      .populate({
+        path: "courses",
+        populate: {
+          path: "ratingAndReviews",
+        },
+      })
       .exec();
 
     const topSellingCourses = await Course.find({})
       .sort({ studentEnrolled: -1 })
       .limit(10)
+      .populate("ratingAndReviews")
       .exec();
 
     return res.status(200).json({

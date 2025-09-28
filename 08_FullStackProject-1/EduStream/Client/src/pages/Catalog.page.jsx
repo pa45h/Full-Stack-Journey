@@ -32,7 +32,6 @@ const Catalog = () => {
   const getCategoryDetails = async () => {
     try {
       const res = await getCatalogPageData(categoryId);
-      console.log("Printing res : ", res);
       setCatalogPageData(res);
     } catch (error) {
       console.log(error);
@@ -45,6 +44,11 @@ const Catalog = () => {
       getCategoryDetails();
     }
   }, [categoryId]);
+
+  const differentCategoriesCourses =
+    catalogPageData?.data?.differentCategories?.flatMap(
+      (category) => category?.courses || []
+    ) || [];
 
   if (loading) {
     return (
@@ -78,7 +82,7 @@ const Catalog = () => {
       </div>
 
       {/* Section-1 */}
-      <div className="mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
+      <div className="mx-auto box-content w-11/12 max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
         <div className="section_heading">Courses To Get You Started</div>
         <div className="my-4 flex border-b border-b-richblack-600 text-sm">
           <p
@@ -102,7 +106,7 @@ const Catalog = () => {
             New
           </p>
         </div>
-        <div>
+        <div className="w-11/12 mx-auto">
           <Course_Slider
             Courses={catalogPageData?.data?.selectedCategory?.courses}
           />
@@ -110,22 +114,24 @@ const Catalog = () => {
       </div>
 
       {/* Section-2 */}
-      <div className="mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
+      <div className="mx-auto box-content w-11/12 max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
         <div className="section_heading">
-          Top Courses In {catalogPageData?.data?.differentCategory?.name}
+          Top Courses In{" "}
+          {catalogPageData?.data?.differentCategories?.map(
+            (category) => category?.name + ", "
+          )}
+          etc..
         </div>
-        <div className="py-8">
-          <Course_Slider
-            Courses={catalogPageData?.data?.differentCategory?.courses}
-          />
+        <div className="w-11/12 mx-auto py-8">
+          <Course_Slider Courses={differentCategoriesCourses} />
         </div>
       </div>
 
       {/* Section-3 */}
-      <div className="mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
+      <div className="mx-auto box-content w-11/12 max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
         <div className="section_heading">Frequently Bought</div>
         <div className="py-8">
-          <div className="py-8">
+          <div className="w-11/12 mx-auto py-8">
             <Course_Slider
               Courses={catalogPageData?.data?.topSellingCourses?.slice(0, 4)}
             />
