@@ -8,17 +8,17 @@ const MyProfile = () => {
   const navigate = useNavigate();
   return (
     <div className="text-richblack-5">
-      <h1 className="my-14 text-3xl font-medium text-richblack-5">
+      <h1 className="mb-10 md:my-14 text-3xl font-medium text-richblack-5">
         My Profile
       </h1>
 
       {/* Section-1 */}
-      <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblue-900 p-8 px-12 shadow-[0_0_5px_0_rgb(0,255,255)]">
-        <div className="flex items-center gap-x-4">
+      <div className="flex flex-col md:flex-row gap-4 items-center justify-between rounded-md greenBgShadow p-3 md:p-8 md:px-12">
+        <div className="flex items-center gap-x-2 md:gap-x-4">
           <img
             src={user?.image}
             alt={`profile-${user?.firstName}`}
-            className="aspect-square w-[78px] rounded-full object-cover"
+            className="aspect-square w-20 rounded-full object-cover"
           />
           <div className="space-y-1">
             <p className="text-lg font-semibold text-richblack-5">
@@ -36,7 +36,7 @@ const MyProfile = () => {
       </div>
 
       {/* Section-2 */}
-      <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblue-900 p-8 px-12 shadow-[0_0_5px_0_rgb(0,255,255)]">
+      <div className="my-10 flex flex-col gap-y-10 rounded-md greenBgShadow p-3 md:p-8 md:px-12">
         <div className="flex w-full items-center justify-between">
           <p className="text-lg  text-richblack-400">About</p>
           <IconBtn
@@ -52,20 +52,20 @@ const MyProfile = () => {
       </div>
 
       {/* Section-3 */}
-      <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblue-900 p-8 px-12 shadow-[0_0_5px_0_rgb(0,255,255)]">
+      <div className="my-10 flex flex-col gap-y-10 rounded-md greenBgShadow p-3 md:p-8 md:px-12">
         <div className="flex w-full items-center justify-between">
           <p className="text-lg font-semibold text-richblack-5">
             Personal Details
           </p>
           <IconBtn
-            className="flex items-center bg-yellow-50 cursor-pointer gap-x-2 rounded-md py-2 px-5 font-semibold text-richblack-900 undefined"
+            className="flex items-center bg-yellow-50 cursor-pointer gap-x-2 rounded-md py-2 px-5 font-semibold text-richblack-900"
             text="Edit"
             onClick={() => {
               navigate("/dashboard/settings");
             }}
           />
         </div>
-        <div className="flex max-w-[500px] justify-between">
+        <div className="flex flex-col sm:flex-row gap-y-4 max-w-[500px] justify-between">
           <div className="flex flex-col gap-y-5">
             <div>
               <p className="mb-2 text-sm text-richblack-600">First Name</p>

@@ -21,7 +21,7 @@ const Sidebar = () => {
   }
 
   return (
-    <div className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-900 py-10">
+    <div className="flex h-[calc(100vh-3.5rem)] md:min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-900 py-10">
       <div className="flex flex-col">
         {sidebarLinks.map((link) => {
           if (link.type && user?.accountType !== link.type) return null;
@@ -48,11 +48,11 @@ const Sidebar = () => {
               btn2Handler: () => setConfirmationModal(null),
             })
           }
-          className="px-8 py-2 text-sm font-medium text-richblack-300"
+          className="px-2 md:px-8 py-2 text-sm font-medium text-richblack-300"
         >
           <div className="flex items-center gap-x-2 transition-all duration-200 hover:text-pink-500">
             <VscSignOut className="text-lg" />
-            <span>Logout</span>
+            <span className="hidden md:block">Logout</span>
           </div>
         </button>
       </div>

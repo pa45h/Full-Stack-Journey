@@ -15,7 +15,7 @@ const SidebarLink = ({ link, iconName }) => {
   return (
     <NavLink
       to={link.path}
-      className={`relative px-8 py-2 text-sm font-medium hover:text-white  
+      className={`relative px-2 md:px-8 py-2 text-sm font-medium hover:text-white  
                         ${
                           matchRoute(link.path)
                             ? "bg-yellow-800 text-yellow-50"
@@ -33,7 +33,7 @@ const SidebarLink = ({ link, iconName }) => {
 
       <div className="flex items-center gap-x-2">
         <Icon className="text-lg" />
-        <span>{link.name}</span>
+        <span className="hidden md:block">{link.name}</span>
       </div>
     </NavLink>
   );
