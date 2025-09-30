@@ -78,7 +78,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
                     );
                   }}
                 >
-                  <MdEdit className="text-xl text-richblack-300" />
+                  <MdEdit className="text-xl text-richblack-300 hover:text-yellow-300 hover:scale-110 transition-all duration-200" />
                 </button>
                 <button
                   onClick={() => {
@@ -92,10 +92,10 @@ export default function NestedView({ handleChangeEditSectionName }) {
                     });
                   }}
                 >
-                  <RiDeleteBin6Line className="text-xl text-richblack-300" />
+                  <RiDeleteBin6Line className="text-xl text-richblack-300 hover:text-pink-700 hover:scale-110 transition-all duration-200" />
                 </button>
                 <span>
-                  <AiFillCaretDown className={`text-xl text-richblack-300`} />
+                  <AiFillCaretDown className={`text-xl text-richblack-300 hover:text-richblack-500 hover:scale-110 transition-all duration-200`} />
                 </span>
               </div>
             </summary>
@@ -125,7 +125,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
                         })
                       }
                     >
-                      <MdEdit className="text-xl text-richblack-300" />
+                      <MdEdit className="text-xl text-richblack-300 hover:text-yellow-300 hover:scale-110 transition-all duration-200" />
                     </button>
                     <button
                       onClick={() => {
@@ -140,7 +140,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
                         });
                       }}
                     >
-                      <RiDeleteBin6Line className="text-xl text-richblack-300" />
+                      <RiDeleteBin6Line className="text-xl text-richblack-300 hover:text-pink-700 hover:scale-110 transition-all duration-200" />
                     </button>
                   </div>
                 </div>
@@ -148,7 +148,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
               {/* Add New Lectures to Section */}
               <button
                 onClick={() => setAddSubSection(section._id)}
-                className="mt-3 flex items-center gap-x-1 text-yellow-50"
+                className="mt-3 flex items-center gap-x-1 text-yellow-50 hover:text-yellow-300 hover:scale-110 transition-all duration-200"
               >
                 <FaPlus className="text-lg" />
                 <p>Add Lecture</p>

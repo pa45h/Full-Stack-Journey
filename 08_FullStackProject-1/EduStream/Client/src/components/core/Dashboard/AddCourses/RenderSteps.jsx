@@ -26,10 +26,10 @@ export default function RenderSteps() {
 
   return (
     <>
-      <div className="relative mb-2 flex w-full justify-center">
+      <div className="relative mb-2 flex w-full mx-auto justify-center">
         {steps.map((item) => (
           <React.Fragment key={item.id}>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center justify-center gap-2 mb-16">
               <button
                 className={`grid cursor-default aspect-square w-[34px] place-items-center rounded-full border-[1px]
                   ${
@@ -45,6 +45,13 @@ export default function RenderSteps() {
                   item.id
                 )}
               </button>
+              <p
+                className={`text-sm text-center ${
+                  step >= item.id ? "text-richblack-5" : "text-richblack-500"
+                }`}
+              >
+                {item.title}
+              </p>
             </div>
 
             {item.id !== steps.length && (
@@ -59,22 +66,6 @@ export default function RenderSteps() {
                 ></div>
               </>
             )}
-          </React.Fragment>
-        ))}
-      </div>
-
-      <div className="relative mb-16 flex w-full select-none justify-between">
-        {steps.map((item) => (
-          <React.Fragment key={item.id}>
-            <div className="flex min-w-[130px] flex-col items-center gap-y-2">
-              <p
-                className={`text-sm ${
-                  step >= item.id ? "text-richblack-5" : "text-richblack-500"
-                }`}
-              >
-                {item.title}
-              </p>
-            </div>
           </React.Fragment>
         ))}
       </div>

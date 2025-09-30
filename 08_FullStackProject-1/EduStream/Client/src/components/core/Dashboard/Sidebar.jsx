@@ -33,7 +33,7 @@ const Sidebar = () => {
 
       <div className="flex flex-col">
         <SidebarLink
-          link={{ name: "Settings", path: "dashboard/settings" }}
+          link={{ name: "Settings", path: "settings" }}
           iconName="VscSettingsGear"
         />
 

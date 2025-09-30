@@ -32,7 +32,7 @@ import Instructor from "./components/core/Dashboard/InstructorDashboard/Instruct
 function App() {
   const { user } = useSelector((state) => state.profile);
   return (
-    <div className="App w-screen min-h-screen bg-richblack-900 flex flex-col font-inter text-white">
+    <div className="App w-full min-h-screen bg-richblack-900 flex flex-col font-inter text-white">
       <Navbar />
       <Routes>
         <Route path="*" element={<Error />}></Route>
@@ -82,34 +82,29 @@ function App() {
           }
         />
         <Route
+          path="/dashboard"
           element={
             <PrivateRoute>
               <Dashboard />
             </PrivateRoute>
           }
         >
-          <Route path="/dashboard/my-profile" element={<MyProfile />} />
-          <Route path="/dashboard/settings" element={<Settings />} />
+          <Route path="my-profile" element={<MyProfile />} />
+          <Route path="settings" element={<Settings />} />
 
           {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
             <>
-              <Route path="dashboard/add-course" element={<AddCourse />} />
-              <Route path="dashboard/my-courses" element={<MyCourses />} />
-              <Route path="dashboard/instructor" element={<Instructor />} />
-              <Route
-                path="dashboard/edit-course/:courseId"
-                element={<EditCourse />}
-              />
+              <Route path="add-course" element={<AddCourse />} />
+              <Route path="my-courses" element={<MyCourses />} />
+              <Route path="instructor" element={<Instructor />} />
+              <Route path="edit-course/:courseId" element={<EditCourse />} />
             </>
           )}
 
           {user?.accountType === ACCOUNT_TYPE.STUDENT && (
             <>
-              <Route
-                path="/dashboard/enrolled-courses"
-                element={<EnrolledCourses />}
-              />
-              <Route path="/dashboard/cart" element={<Cart />} />
+              <Route path="enrolled-courses" element={<EnrolledCourses />} />
+              <Route path="cart" element={<Cart />} />
             </>
           )}
         </Route>
