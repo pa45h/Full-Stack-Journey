@@ -24,7 +24,7 @@ const MyProfile = () => {
             <p className="text-lg font-semibold text-richblack-5">
               {user?.firstName + " " + user?.lastName}
             </p>
-            <p className="text-sm text-richblack-300">{user?.email}</p>
+            <p className="sm:text-sm text-xs text-richblack-300">{user?.email}</p>
           </div>
         </div>
         <IconBtn
@@ -38,7 +38,7 @@ const MyProfile = () => {
       {/* Section-2 */}
       <div className="my-10 flex flex-col gap-y-10 rounded-sm greenBgShadow p-3 sm:p-8 sm:px-12">
         <div className="flex w-full items-center justify-between">
-          <p className="text-lg  text-richblack-400">About</p>
+          <p className="text-lg  text-richblack-300">About</p>
           <IconBtn
             text="Edit"
             onClick={() => {
@@ -68,19 +68,19 @@ const MyProfile = () => {
         <div className="flex flex-col sm:flex-row gap-y-4 max-w-[500px] justify-between">
           <div className="flex flex-col gap-y-5">
             <div>
-              <p className="mb-2 text-sm text-richblack-600">First Name</p>
+              <p className="mb-2 text-sm text-richblack-300">First Name</p>
               <p className="text-sm font-medium text-richblack-5">
                 {user?.firstName}
               </p>
             </div>
             <div>
-              <p className="mb-2 text-sm text-richblack-600">Email</p>
+              <p className="mb-2 text-sm text-richblack-300">Email</p>
               <p className="text-sm font-medium text-richblack-5">
                 {user?.email}
               </p>
             </div>
             <div>
-              <p className="mb-2 text-sm text-richblack-600">Gender</p>
+              <p className="mb-2 text-sm text-richblack-300">Gender</p>
               <p className="text-sm font-medium text-richblack-5">
                 {user?.additionalDetails?.gender ?? "Add Gender"}
               </p>
@@ -89,19 +89,19 @@ const MyProfile = () => {
 
           <div className="flex flex-col gap-y-5">
             <div>
-              <p className="mb-2 text-sm text-richblack-600">Last Name</p>
+              <p className="mb-2 text-sm text-richblack-300">Last Name</p>
               <p className="text-sm font-medium text-richblack-5">
                 {user?.lastName}
               </p>
             </div>
             <div>
-              <p className="mb-2 text-sm text-richblack-600">Phone Number</p>
+              <p className="mb-2 text-sm text-richblack-300">Phone Number</p>
               <p className="text-sm font-medium text-richblack-5">
                 {user?.additionalDetails?.contactNo ?? "Add Contact Number"}
               </p>
             </div>
             <div>
-              <p className="mb-2 text-sm text-richblack-600">Date Of Birth</p>
+              <p className="mb-2 text-sm text-richblack-300">Date Of Birth</p>
               <p className="text-sm font-medium text-richblack-5">
                 {user?.additionalDetails?.dateOfBirth ?? "Add Date Of Birth"}
               </p>
