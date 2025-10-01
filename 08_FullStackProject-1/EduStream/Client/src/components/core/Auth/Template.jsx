@@ -1,13 +1,25 @@
-import { FcGoogle } from "react-icons/fc";
-import { useSelector } from "react-redux";
-import { toast } from "react-hot-toast";
-
-import frameImg from "../../../assets/Images/frame.png";
+import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
+import { GoogleLogin } from "@react-oauth/google";
+import { googleLogin } from "../../../services/operations/authAPI.service";
+import { useNavigate } from "react-router-dom";
 
 function Template({ title, description1, description2, image, formType }) {
   const { loading } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleGoogleSuccess = async (googleResponse) => {
+    if (googleResponse) {
+      const idToken = googleResponse.credential;
+      dispatch(googleLogin(idToken, navigate));
+    }
+  };
+
+  const handleGoogleError = (googleResponse) => {
+    console.error("googleResponse---", googleResponse);
+  };
 
   return (
     <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
@@ -36,12 +48,16 @@ function Template({ title, description1, description2, image, formType }) {
               <div className="w-full h-[1px] bg-richblack-700"></div>
             </div>
 
-            <button
-              className="w-full flex flex-row justify-center items-center rounded-[8px] font-medium text-richblack-100 border border-richblack-700 px-[12px] py-[8px] gap-x-2 mt-6 transition-all duration-200 hover:scale-95"
-            >
-              <FcGoogle />
-              <p>Sign Up With Google</p>
-            </button>
+            <div className="w-full mx-auto transition-all duration-200 hover:scale-95">
+              <GoogleLogin
+                onSuccess={handleGoogleSuccess}
+                onError={handleGoogleError}
+                shape="rectangular"
+                theme="outline"
+                size="large"
+                width="100%"
+              />
+            </div>
           </div>
 
           <div className="relative mx-auto my-auto w-11/12 max-w-[450px] md:mx-0">

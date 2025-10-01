@@ -72,7 +72,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
   return (
     <>
       <button
-        className="absolute top-2 left-1 text-5xl z-[51] greenBgShadow hover:scale-95 transition-all duration-300"
+        className="absolute top-2 left-1 text-5xl z-[510] greenBgShadow hover:scale-95 transition-all duration-300"
         onClick={() => setSidebar((prev) => !prev)}
       >
         <div className="transition-transform duration-300">
@@ -81,7 +81,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
       </button>
 
       <div
-        className={`fixed top-14 left-0 z-50 h-[calc(100vh-3rem)] w-[344px] max-w-[350px] 
+        className={`fixed top-14 left-0 z-[500] h-[calc(100vh-3rem)] w-[344px] max-w-[350px] 
                     flex-col greenBgShadow bg-richblack-800
                     transform transition-all duration-300 ease-in-out
                     ${

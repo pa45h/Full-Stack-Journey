@@ -4,6 +4,7 @@ import { setLoading, setToken } from "../../slices/authSlice";
 import { setUser } from "../../slices/profileSlice";
 import { apiConnector } from "../apiConnector.service";
 import { endpoints } from "../apis.service";
+import { resetCart } from "../../slices/cartSlice";
 
 const {
   SENDOTP_API,
@@ -11,6 +12,7 @@ const {
   LOGIN_API,
   RESETPASSTOKEN_API,
   RESETPASSWORD_API,
+  GOOGLE_LOGIN_API,
 } = endpoints;
 
 export function sendOtp(email, navigate) {
@@ -89,7 +91,6 @@ export function login(email, password, navigate) {
         email,
         password,
       });
-      // console.log("LOGIN API RESPONSE..............", response)
       if (!response.data.success) {
         throw new Error(response.data.message);
       }
@@ -113,11 +114,48 @@ export function login(email, password, navigate) {
   };
 }
 
+export function googleLogin(idToken, navigate) {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
+    dispatch(setLoading(true));
+    try {
+      const response = await apiConnector("POST", GOOGLE_LOGIN_API, {
+        token: idToken,
+      });
+
+      if (!response.data.success) {
+        throw new Error(response.data.message);
+      }
+
+      toast.success("Login Successful");
+
+      dispatch(setToken(response.data.token));
+
+      const userImage = response.data?.user?.image
+        ? response.data.user.image
+        : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`;
+
+      dispatch(setUser({ ...response.data.user, image: userImage }));
+
+      localStorage.setItem("token", JSON.stringify(response.data.token));
+
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+
+      navigate("/dashboard/my-profile");
+    } catch (error) {
+      console.log("GOOGLE LOGIN API ERROR..............", error);
+      toast.error("Google Login Failed");
+    }
+    dispatch(setLoading(false));
+    toast.dismiss(toastId);
+  };
+}
+
 export function logout(navigate) {
   return (dispatch) => {
     dispatch(setToken(null));
     dispatch(setUser(null));
-    // dispatch(resetCart())
+    dispatch(resetCart())
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     toast.success("Logged Out");

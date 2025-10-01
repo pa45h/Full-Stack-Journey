@@ -21,8 +21,13 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: function () {
+        return !this.googleId;
+      },
       trim: true,
+    },
+    googleId: {
+      type: String,
     },
     accountType: {
       type: String,

@@ -8,9 +8,14 @@ const mailSender = require("../utils/mailSender.util");
 const { passwordUpdated } = require("../mail/passwordUpdate.mail");
 require("dotenv").config();
 
+const { OAuth2Client } = require("google-auth-library");
+const client = new OAuth2Client({
+  clientId: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+});
+
 exports.sendOtp = async (req, res) => {
   try {
-    
     const { email } = req.body;
 
     const isUserRegistered = await User.findOne({ email });
@@ -214,9 +219,82 @@ exports.login = async (req, res) => {
   }
 };
 
+exports.googleSignup = async (req, res) => {
+  try {
+    const { token } = req.body;
+
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    console.log("ticket---", ticket);
+
+    const payload = ticket.getPayload();
+    console.log("payload---", payload);
+
+    const { email, name, picture, given_name, family_name } = payload;
+
+    let user = await User.findOne({ email: email }).populate(
+      "additionalDetails"
+    );
+
+    if (!user) {
+      const profileData = await Profile.create({
+        gender: null,
+        dateOfBirth: null,
+        about: null,
+        contactNo: null,
+      });
+
+      user = await User.create({
+        firstName: given_name,
+        lastName: family_name || "",
+        email: email,
+        googleId: payload.sub,
+        accountType: "student",
+        additionalDetails: profileData._id,
+        approved: true,
+        image: picture,
+      });
+    }
+
+    const appTokenPayload = {
+      id: user._id,
+      email: user.email,
+      accountType: user.accountType,
+    };
+
+    const appToken = jwt.sign(appTokenPayload, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
+
+    user.token = appToken;
+    user.password = undefined;
+
+    const option = {
+      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+    };
+
+    res.cookie("token", appToken, option).status(200).json({
+      success: true,
+      user,
+      token: appToken,
+      message: "User Logged In Successfully!",
+    });
+  } catch (error) {
+    console.error("GOOGLE LOGIN ERROR............", error);
+    return res.status(500).json({
+      success: false,
+      message: "Google Sign-In failed. Please try again.",
+    });
+  }
+};
+
 exports.changePassword = async (req, res) => {
   try {
-    const { oldPassword, newPassword} = req.body;
+    const { oldPassword, newPassword } = req.body;
     const user = await User.findById(req.user.id);
 
     if (!oldPassword || !newPassword) {
