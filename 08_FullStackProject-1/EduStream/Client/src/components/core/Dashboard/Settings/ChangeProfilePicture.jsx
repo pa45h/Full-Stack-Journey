@@ -63,7 +63,7 @@ const ChangeProfilePicture = () => {
         <img
           src={previewSource || user?.image}
           alt={`profile-${user?.firstName}`}
-          className="aspect-square w-[78px] rounded-full object-cover"
+          className="aspect-square w-16 rounded-full object-cover"
         />
         <div className="space-y-2">
           <p>Change Profile Picture</p>
@@ -78,15 +78,16 @@ const ChangeProfilePicture = () => {
             <button
               onClick={handleClick}
               disabled={loading}
-              className="cursor-pointer rounded-md bg-richblack-700 py-2 px-3 sm:px-5 font-semibold text-richblack-50"
+              className="cursor-pointer rounded-md bg-richblack-700 py-2 px-3 sm:px-5 text-sm sm:text-lg font-semibold text-richblack-50"
             >
               Select
             </button>
             <IconBtn
               text={loading ? "Uploading..." : "Upload"}
               onclick={handleFileUpload}
+              customClasses={"text-sm sm:text-lg"}
             >
-              {!loading && <FiUpload className="text-lg text-richblack-900" />}
+              {!loading && <FiUpload className="text-sm sm:text-lg text-richblack-900" />}
             </IconBtn>
           </div>
         </div>
