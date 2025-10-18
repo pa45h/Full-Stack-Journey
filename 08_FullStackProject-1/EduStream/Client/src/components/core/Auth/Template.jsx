@@ -51,14 +51,15 @@ function Template({
               <LoginForm isGoogleLoginBtn={isGoogleLoginBtn} />
             )}
 
-            {isGoogleLoginBtn &&
-              (<div className="flex w-full items-center my-4 gap-x-2">
-                <div className="w-full h-[1px] bg-richblack-700"></div>
-                <p className="text-richblack-700 font-medium leading[1.375rem]">
-                  OR
-                </p>
-                <div className="w-full h-[1px] bg-richblack-700"></div>
-              </div>)(
+            {isGoogleLoginBtn && (
+              <>
+                <div className="flex w-full items-center my-4 gap-x-2">
+                  <div className="w-full h-[1px] bg-richblack-700"></div>
+                  <p className="text-richblack-700 font-medium leading[1.375rem]">
+                    OR
+                  </p>
+                  <div className="w-full h-[1px] bg-richblack-700"></div>
+                </div>
                 <div className="w-full mx-auto transition-all duration-200 hover:scale-95">
                   <GoogleLogin
                     onSuccess={handleGoogleSuccess}
@@ -69,7 +70,8 @@ function Template({
                     width="100%"
                   />
                 </div>
-              )}
+              </>
+            )}
           </div>
 
           <div className="relative mx-auto my-auto w-11/12 max-w-[450px] md:mx-0">

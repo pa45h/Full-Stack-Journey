@@ -17,7 +17,6 @@ const {
 } = require("../controllers/CourseProgress.controller");
 
 const {
-  createCategory,
   getAllCategories,
   categoryPageDetails,
 } = require("../controllers/Categories.controller");
@@ -43,8 +42,7 @@ const {
 const {
   auth,
   isStudent,
-  isInstructor,
-  isAdmin,
+  isInstructor
 } = require("../middlewares/auth.middleware");
 
 // ==================== ROUTES FOR ALL: ====================
@@ -65,9 +63,6 @@ router.post("/getCourseProgress", auth, isStudent, getCourseProgress);
 // Rating Review Routes:
 router.get("/getAverageRating", getAverageRating);
 router.get("/getAllRatings", getAllRatings);
-
-// ==================== ROUTES FOR ADMIN: ====================
-router.post("/createCategory", auth, isAdmin, createCategory);
 
 // ==================== ROUTES FOR INSTRUCTOR: ====================
 

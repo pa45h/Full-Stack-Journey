@@ -3,6 +3,7 @@ const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 4000;
 
+const adminRoutes = require("./routes/Admin.route");
 const userRoutes = require("./routes/User.route");
 const courseRoutes = require("./routes/Course.route");
 const profileRoutes = require("./routes/Profile.route");
@@ -30,6 +31,7 @@ app.use(
   })
 );
 
+app.use("/api/v1/admin", adminRoutes);
 app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/course", courseRoutes);
 app.use("/api/v1/profile", profileRoutes);

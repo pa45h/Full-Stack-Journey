@@ -2,13 +2,17 @@ import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 
-import { login } from "../../../services/operations/authAPI.service";
-import { useNavigate } from "react-router-dom";
+import {
+  adminLogin,
+  login,
+} from "../../../services/operations/authAPI.service";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function LoginForm({ isGoogleLoginBtn }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -26,7 +30,11 @@ function LoginForm({ isGoogleLoginBtn }) {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(email, password, navigate));
+    if (location.pathname === "/admin") {
+      dispatch(adminLogin(email, password, navigate));
+    } else {
+      dispatch(login(email, password, navigate));
+    }
   };
 
   return (

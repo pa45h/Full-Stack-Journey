@@ -219,6 +219,66 @@ exports.login = async (req, res) => {
   }
 };
 
+exports.adminLogin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Enter All Fields Properly!",
+      });
+    }
+
+    if (
+      email === process.env.ADMIN_EMAIL &&
+      password === process.env.ADMIN_PASS
+    ) {
+      const payload = {
+        id: "EduStreamAdminId",
+        email: email,
+        accountType: "admin",
+      };
+      const token = jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: "7d",
+      });
+
+      const option = {
+        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+      };
+      res
+        .cookie("token", token, option)
+        .status(200)
+        .json({
+          success: true,
+          user: {
+            firstName: "EduStream",
+            lastName: "Admin",
+            email,
+            accountType: "admin",
+            image:
+              "https://api.dicebear.com/5.x/initials/svg?seed=EduStream_Admin",
+          },
+          token,
+          message: "Admin Logged In Successfully!",
+        });
+    } else {
+      res.status(400).json({
+        success: false,
+        message: "Wrong Admin Credentials!",
+      });
+    }
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Admin Could Not Log In, Please Try Again Later!",
+      error: error.message,
+    });
+  }
+};
+
 exports.googleSignup = async (req, res) => {
   try {
     const { token } = req.body;
