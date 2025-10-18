@@ -5,7 +5,14 @@ import { GoogleLogin } from "@react-oauth/google";
 import { googleLogin } from "../../../services/operations/authAPI.service";
 import { useNavigate } from "react-router-dom";
 
-function Template({ title, description1, description2, image, formType }) {
+function Template({
+  title,
+  description1,
+  description2,
+  image,
+  formType,
+  isGoogleLoginBtn = true,
+}) {
   const { loading } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -38,32 +45,36 @@ function Template({ title, description1, description2, image, formType }) {
               </span>
             </p>
 
-            {formType === "signup" ? <SignupForm /> : <LoginForm />}
+            {formType === "signup" ? (
+              <SignupForm />
+            ) : (
+              <LoginForm isGoogleLoginBtn={isGoogleLoginBtn} />
+            )}
 
-            <div className="flex w-full items-center my-4 gap-x-2">
-              <div className="w-full h-[1px] bg-richblack-700"></div>
-              <p className="text-richblack-700 font-medium leading[1.375rem]">
-                OR
-              </p>
-              <div className="w-full h-[1px] bg-richblack-700"></div>
-            </div>
-
-            <div className="w-full mx-auto transition-all duration-200 hover:scale-95">
-              <GoogleLogin
-                onSuccess={handleGoogleSuccess}
-                onError={handleGoogleError}
-                shape="rectangular"
-                theme="outline"
-                size="large"
-                width="100%"
-              />
-            </div>
+            {isGoogleLoginBtn &&
+              (<div className="flex w-full items-center my-4 gap-x-2">
+                <div className="w-full h-[1px] bg-richblack-700"></div>
+                <p className="text-richblack-700 font-medium leading[1.375rem]">
+                  OR
+                </p>
+                <div className="w-full h-[1px] bg-richblack-700"></div>
+              </div>)(
+                <div className="w-full mx-auto transition-all duration-200 hover:scale-95">
+                  <GoogleLogin
+                    onSuccess={handleGoogleSuccess}
+                    onError={handleGoogleError}
+                    shape="rectangular"
+                    theme="outline"
+                    size="large"
+                    width="100%"
+                  />
+                </div>
+              )}
           </div>
 
           <div className="relative mx-auto my-auto w-11/12 max-w-[450px] md:mx-0">
             <img
               src={image}
-              alt="Student"
               width={450}
               loading="lazy"
               className="rounded-3xl"

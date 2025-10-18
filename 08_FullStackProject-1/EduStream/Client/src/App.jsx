@@ -28,6 +28,7 @@ import CourseDetails from "./pages/CourseDetails.page";
 import ViewCourse from "./pages/ViewCourse.page";
 import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
+import Admin from "./pages/Admin.page";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -36,6 +37,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="*" element={<Error />}></Route>
+        <Route path="/admin" element={<Admin />} />
         <Route path="/" element={<Home />} />
         <Route path="catalog/:catalogName" element={<Catalog />} />
         <Route path="courses/:courseId" element={<CourseDetails />} />

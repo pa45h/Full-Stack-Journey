@@ -6,7 +6,7 @@ import { login } from "../../../services/operations/authAPI.service";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-function LoginForm() {
+function LoginForm({ isGoogleLoginBtn }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -78,11 +78,13 @@ function LoginForm() {
             <AiOutlineEye fontSize={24} fill="#AFB2BF" />
           )}
         </span>
-        <Link to="/forgot-password">
-          <p className="mt-1 ml-auto max-w-max text-xs text-blue-100 hover:underline">
-            Forgot Password
-          </p>
-        </Link>
+        {isGoogleLoginBtn && (
+          <Link to="/forgot-password">
+            <p className="mt-1 ml-auto max-w-max text-xs text-blue-100 hover:underline">
+              Forgot Password
+            </p>
+          </Link>
+        )}
       </label>
 
       <button className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900 transition-all duration-200 hover:scale-95">
