@@ -1,7 +1,7 @@
 import { toast } from "react-hot-toast";
 import { setLoading, setUser } from "../../slices/profileSlice";
 import { apiConnector } from "../apiConnector.service";
-import { profileEndpoints } from "../apis.service";
+import { adminEndPoints, profileEndpoints } from "../apis.service";
 import { logout } from "./authAPI.service";
 
 const {
@@ -9,6 +9,31 @@ const {
   GET_USER_ENROLLED_COURSES_API,
   GET_INSTRUCTOR_DATA_API,
 } = profileEndpoints;
+
+const { GET_ALL_DATA } = adminEndPoints;
+
+export function getAllData(token) {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
+    try {
+      const response = await apiConnector("GET", GET_ALL_DATA, null, {
+        Authorization: `Bearer ${token}`,
+      });
+
+      console.log("GET_ALL_DATA API RESPONSE.................", response);
+
+      if (!response.data.success) {
+        throw new Error(response.data.message);
+      }
+      return response?.data;
+    } catch (error) {
+      console.log("GET_ALL_DATA API ERROR.................", error);
+      toast.error("Could Not Get All Data");
+    } finally {
+      toast.dismiss(toastId);
+    }
+  };
+}
 
 export function getUserDetails(token, navigate) {
   return async (dispatch) => {

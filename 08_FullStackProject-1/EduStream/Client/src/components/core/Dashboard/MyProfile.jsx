@@ -10,7 +10,9 @@ const MyProfile = () => {
   return (
     <div className="text-richblack-5">
       <h1 className="mb-10 sm:my-14 text-3xl font-medium text-richblack-5">
-        My Profile
+        {user?.accountType !== ACCOUNT_TYPE.ADMIN
+          ? "My Profile"
+          : "Admin Profile"}
       </h1>
 
       {/* Section-1 */}

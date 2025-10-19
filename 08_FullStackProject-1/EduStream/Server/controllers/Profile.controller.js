@@ -256,3 +256,37 @@ exports.fetchInstructorDashboardData = async (req, res) => {
     });
   }
 };
+
+exports.fetchAllData = async (req, res) => {
+  try {
+    const allInstructors = await User.find({ accountType: "instructor" })
+      .populate("additionalDetails")
+      .exec();
+
+    const allStudents = await User.find({ accountType: "student" })
+      .populate("additionalDetails")
+      .populate("courseProgress")
+      .exec();
+
+    const allCourses = await Course.find({})
+      .populate("ratingAndReviews")
+      .populate("instructor")
+      .populate("studentEnrolled")
+      .populate("courseContent")
+      .populate("category")
+      .exec();
+    return res.status(200).json({
+      success: true,
+      allInstructors,
+      allStudents,
+      allCourses,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+      message: "Could Not Get All Instructors!",
+    });
+  }
+};

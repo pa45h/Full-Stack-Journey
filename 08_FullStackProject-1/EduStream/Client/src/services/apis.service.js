@@ -11,6 +11,10 @@ export const endpoints = {
   RESETPASSWORD_API: BASE_URL + "/auth/reset-password",
 };
 
+export const adminEndPoints = {
+  GET_ALL_DATA: BASE_URL + "/admin/fetchAllData",
+};
+
 //PROFILE ENDPOINTS
 export const profileEndpoints = {
   GET_USER_DETAILS_API: BASE_URL + "/profile/getUserDetails",
