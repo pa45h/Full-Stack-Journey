@@ -10,7 +10,7 @@ const {
   GET_INSTRUCTOR_DATA_API,
 } = profileEndpoints;
 
-const { GET_ALL_DATA } = adminEndPoints;
+const { GET_ALL_DATA, UPDATE_INSTRUCTOR_APPROVAL } = adminEndPoints;
 
 export function getAllData(token) {
   return async (dispatch) => {
@@ -34,6 +34,35 @@ export function getAllData(token) {
     }
   };
 }
+
+export const updateInstructorApproval = async (
+  token,
+  instructorId,
+  approved
+) => {
+  try {
+    const res = await apiConnector(
+      "POST",
+      UPDATE_INSTRUCTOR_APPROVAL,
+      {
+        instructorId,
+        approved,
+      },
+      {
+        Authorization: `Bearer ${token}`,
+      }
+    );
+
+    if (res.data.success) {
+      toast.success(res.data.message);
+      return true;
+    }
+  } catch (err) {
+    console.error("Error approving/rejecting instructor:", err);
+    toast.error("Something went wrong!");
+  }
+  return false;
+};
 
 export function getUserDetails(token, navigate) {
   return async (dispatch) => {

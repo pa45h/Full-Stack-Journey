@@ -7,8 +7,6 @@ import {
   VscMortarBoard,
   VscVm,
 } from "react-icons/vsc";
-import { PiMonitorPlay, PiStudent } from "react-icons/pi";
-import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 
 export const sidebarLinks = [
   {
@@ -58,26 +56,5 @@ export const sidebarLinks = [
     path: "/dashboard/admin",
     type: ACCOUNT_TYPE.ADMIN,
     icon: VscDashboard,
-  },
-  {
-    id: 8,
-    name: "All Instructors",
-    path: "/dashboard/all-instructors",
-    type: ACCOUNT_TYPE.ADMIN,
-    icon: LiaChalkboardTeacherSolid,
-  },
-  {
-    id: 9,
-    name: "All Students",
-    path: "/dashboard/all-students",
-    type: ACCOUNT_TYPE.ADMIN,
-    icon: PiStudent,
-  },
-  {
-    id: 10,
-    name: "All Courses",
-    path: "/dashboard/all-courses",
-    type: ACCOUNT_TYPE.ADMIN,
-    icon: PiMonitorPlay,
   },
 ];

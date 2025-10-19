@@ -13,6 +13,7 @@ export const endpoints = {
 
 export const adminEndPoints = {
   GET_ALL_DATA: BASE_URL + "/admin/fetchAllData",
+  UPDATE_INSTRUCTOR_APPROVAL: BASE_URL + "/admin/update-instructor-approval",
 };
 
 //PROFILE ENDPOINTS

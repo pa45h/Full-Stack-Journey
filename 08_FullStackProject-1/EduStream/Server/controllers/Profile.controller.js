@@ -275,11 +275,24 @@ exports.fetchAllData = async (req, res) => {
       .populate("courseContent")
       .populate("category")
       .exec();
+
+    const totalRevenue = allCourses.reduce(
+      (sum, course) =>
+        sum + course.price * (course.studentEnrolled?.length || 0),
+      0
+    );
+
+    const pendingApprovals = allInstructors?.filter(
+      (inst) => inst.approved === false
+    );
+
     return res.status(200).json({
       success: true,
       allInstructors,
       allStudents,
       allCourses,
+      totalRevenue,
+      pendingApprovals,
     });
   } catch (error) {
     console.log(error);
@@ -287,6 +300,36 @@ exports.fetchAllData = async (req, res) => {
       success: false,
       error: error.message,
       message: "Could Not Get All Instructors!",
+    });
+  }
+};
+
+exports.updateInstructorApproval = async (req, res) => {
+  try {
+    const { instructorId, approved } = req.body;
+
+    const instructor = await User.findById(instructorId);
+
+    if (!instructor) {
+      return res.status(404).json({
+        success: false,
+        message: "Instructor not found!",
+      });
+    }
+
+    instructor.approved = approved;
+    instructor.approvalStatus = approved ? "approved" : "rejected";
+    await instructor.save();
+
+    return res.status(200).json({
+      success: true,
+      message: `Instructor ${approved ? "approved" : "rejected"} successfully!`,
+      instructor,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
     });
   }
 };

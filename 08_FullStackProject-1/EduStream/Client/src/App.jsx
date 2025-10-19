@@ -29,10 +29,7 @@ import ViewCourse from "./pages/ViewCourse.page";
 import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
 import Admin from "./pages/Admin.page";
-import AllInstructors from "./components/core/Dashboard/Admin/AllInstructors";
 import AdminDashboard from "./components/core/Dashboard/Admin/AdminDashboard";
-import AllStudents from "./components/core/Dashboard/Admin/AllStudents";
-import AllCourses from "./components/core/Dashboard/Admin/AllCourses";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -101,9 +98,6 @@ function App() {
           {user?.accountType === ACCOUNT_TYPE.ADMIN && (
             <>
               <Route path="admin" element={<AdminDashboard />} />
-              <Route path="all-instructors" element={<AllInstructors />} />
-              <Route path="all-students" element={<AllStudents />} />
-              <Route path="all-courses" element={<AllCourses />} />
             </>
           )}
 
