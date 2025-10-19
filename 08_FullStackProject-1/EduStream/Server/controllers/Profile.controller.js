@@ -286,6 +286,11 @@ exports.fetchAllData = async (req, res) => {
       (inst) => inst.approved === false
     );
 
+    const totalEnrollments = allCourses?.reduce(
+      (sum, course) => sum + (course.studentEnrolled?.length || 0),
+      0
+    );
+
     return res.status(200).json({
       success: true,
       allInstructors,
@@ -293,6 +298,7 @@ exports.fetchAllData = async (req, res) => {
       allCourses,
       totalRevenue,
       pendingApprovals,
+      totalEnrollments,
     });
   } catch (error) {
     console.log(error);

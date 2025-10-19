@@ -13,6 +13,7 @@ import {
   FaRupeeSign,
   FaUsers,
 } from "react-icons/fa";
+import { FaUsersBetweenLines } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
@@ -28,6 +29,7 @@ const AdminDashboard = () => {
     courses: [],
     totalRevenue: 0,
     pendingApprovals: 0,
+    totalEnrollments: 0,
   });
 
   useEffect(() => {
@@ -42,9 +44,8 @@ const AdminDashboard = () => {
           courses: res?.allCourses,
           totalRevenue: res?.totalRevenue,
           pendingApprovals: res?.pendingApprovals,
+          totalEnrollments: res?.totalEnrollments,
         });
-
-      console.log("allData---", allData);
 
       setLoading(false);
     })();
@@ -65,7 +66,7 @@ const AdminDashboard = () => {
       </h1>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
         <SummaryCard
           icon={<FaChalkboardTeacher />}
           title="Total Instructors"
@@ -91,10 +92,15 @@ const AdminDashboard = () => {
           title="Pending Instructor Approvals"
           value={allData?.pendingApprovals?.length || 0}
         />
+        <SummaryCard
+          icon={<FaUsersBetweenLines />}
+          title="Total Enrollments"
+          value={allData?.totalEnrollments}
+        />
       </div>
 
       <TableSection
-        title="Instructors"
+        title="All Instructors"
         headers={["Profile", "Name", "Email", "Courses", "Status", "Action"]}
         data={allData?.instructors}
         rowRenderer={(inst) => [
@@ -153,7 +159,7 @@ const AdminDashboard = () => {
 
       {/* Students Table */}
       <TableSection
-        title="Students"
+        title="All Students"
         headers={["Profile", "Name", "Email", "Enrolled Courses"]}
         data={allData?.students}
         rowRenderer={(stu) => [
@@ -170,7 +176,7 @@ const AdminDashboard = () => {
 
       {/* Courses Table */}
       <TableSection
-        title="Courses"
+        title="All Courses"
         headers={["Thumbnail", "Title", "Instructor", "Category", "Price"]}
         data={allData?.courses}
         rowRenderer={(course) => [
