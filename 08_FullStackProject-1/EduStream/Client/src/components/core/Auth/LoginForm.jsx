@@ -95,7 +95,7 @@ function LoginForm({ isGoogleLoginBtn }) {
         )}
       </label>
 
-      <button className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900 transition-all duration-200 hover:scale-95">
+      <button className="mt-6 rounded-full bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900 transition-all duration-200 hover:scale-95">
         Sign In
       </button>
     </form>

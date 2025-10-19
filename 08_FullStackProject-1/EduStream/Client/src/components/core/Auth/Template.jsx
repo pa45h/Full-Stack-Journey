@@ -64,7 +64,7 @@ function Template({
                   <GoogleLogin
                     onSuccess={handleGoogleSuccess}
                     onError={handleGoogleError}
-                    shape="rectangular"
+                    shape="pill"
                     theme="outline"
                     size="large"
                     width="100%"

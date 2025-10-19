@@ -1,44 +1,83 @@
 import { ACCOUNT_TYPE } from "../utils/constants";
+import {
+  VscAccount,
+  VscAdd,
+  VscArchive,
+  VscDashboard,
+  VscMortarBoard,
+  VscVm,
+} from "react-icons/vsc";
+import { PiMonitorPlay, PiStudent } from "react-icons/pi";
+import { LiaChalkboardTeacherSolid } from "react-icons/lia";
+
 export const sidebarLinks = [
   {
     id: 1,
     name: "My Profile",
-    path: "my-profile",
-    icon: "VscAccount",
+    path: "/dashboard/my-profile",
+    icon: VscAccount,
   },
   {
     id: 2,
     name: "Dashboard",
-    path: "instructor",
+    path: "/dashboard/instructor",
     type: ACCOUNT_TYPE.INSTRUCTOR,
-    icon: "VscDashboard",
+    icon: VscDashboard,
   },
   {
     id: 3,
     name: "My Courses",
-    path: "my-courses",
+    path: "/dashboard/my-courses",
     type: ACCOUNT_TYPE.INSTRUCTOR,
-    icon: "VscVm",
+    icon: VscVm,
   },
   {
     id: 4,
     name: "Add Course",
-    path: "add-course",
+    path: "/dashboard/add-course",
     type: ACCOUNT_TYPE.INSTRUCTOR,
-    icon: "VscAdd",
+    icon: VscAdd,
   },
   {
     id: 5,
     name: "Enrolled Courses",
-    path: "enrolled-courses",
+    path: "/dashboard/enrolled-courses",
     type: ACCOUNT_TYPE.STUDENT,
-    icon: "VscMortarBoard",
+    icon: VscMortarBoard,
   },
   {
     id: 6,
     name: "Cart",
-    path: "cart",
+    path: "/dashboard/cart",
     type: ACCOUNT_TYPE.STUDENT,
-    icon: "VscArchive",
+    icon: VscArchive,
+  },
+  {
+    id: 7,
+    name: "Dashboard",
+    path: "/dashboard/admin",
+    type: ACCOUNT_TYPE.ADMIN,
+    icon: VscDashboard,
+  },
+  {
+    id: 8,
+    name: "All Instructors",
+    path: "/dashboard/all-instructors",
+    type: ACCOUNT_TYPE.ADMIN,
+    icon: LiaChalkboardTeacherSolid,
+  },
+  {
+    id: 9,
+    name: "All Students",
+    path: "/dashboard/all-students",
+    type: ACCOUNT_TYPE.ADMIN,
+    icon: PiStudent,
+  },
+  {
+    id: 10,
+    name: "All Courses",
+    path: "/dashboard/all-courses",
+    type: ACCOUNT_TYPE.ADMIN,
+    icon: PiMonitorPlay,
   },
 ];

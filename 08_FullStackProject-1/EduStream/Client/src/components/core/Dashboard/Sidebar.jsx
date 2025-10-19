@@ -6,6 +6,8 @@ import { logout } from "../../../services/operations/authAPI.service";
 import SidebarLink from "./SidebarLink";
 import { sidebarLinks } from "../../../data/dashboard-links";
 import ConfirmationModal from "../../common/ConfirmationModal";
+import { VscSettingsGear } from "react-icons/vsc";
+import { ACCOUNT_TYPE } from "../../../utils/constants";
 
 const Sidebar = () => {
   const { loading: authLoading } = useSelector((state) => state.auth);
@@ -32,10 +34,12 @@ const Sidebar = () => {
       <div className="mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richblack-700"></div>
 
       <div className="flex flex-col">
-        <SidebarLink
-          link={{ name: "Settings", path: "settings" }}
-          iconName="VscSettingsGear"
-        />
+        {user?.accountType !== ACCOUNT_TYPE.ADMIN && (
+          <SidebarLink
+            link={{ name: "Settings", path: "settings" }}
+            iconName={VscSettingsGear}
+          />
+        )}
 
         <button
           onClick={() =>
