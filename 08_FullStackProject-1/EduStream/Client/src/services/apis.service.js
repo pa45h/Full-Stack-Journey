@@ -14,6 +14,8 @@ export const endpoints = {
 export const adminEndPoints = {
   GET_ALL_DATA: BASE_URL + "/admin/fetchAllData",
   UPDATE_INSTRUCTOR_APPROVAL: BASE_URL + "/admin/update-instructor-approval",
+  CREATE_CATEGORY: BASE_URL + "/admin/createCategory",
+  DELETE_CATEGORY: BASE_URL + "/admin/deleteCategory",
 };
 
 //PROFILE ENDPOINTS

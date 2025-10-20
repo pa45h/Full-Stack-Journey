@@ -10,7 +10,60 @@ const {
   GET_INSTRUCTOR_DATA_API,
 } = profileEndpoints;
 
-const { GET_ALL_DATA, UPDATE_INSTRUCTOR_APPROVAL } = adminEndPoints;
+const {
+  GET_ALL_DATA,
+  UPDATE_INSTRUCTOR_APPROVAL,
+  CREATE_CATEGORY,
+  DELETE_CATEGORY,
+} = adminEndPoints;
+
+export const createCategory = async (token, name, description) => {
+  const toastId = toast.loading("Creating category...");
+  try {
+    const res = await apiConnector(
+      "POST",
+      CREATE_CATEGORY,
+      { name, description },
+      { Authorization: `Bearer ${token}` }
+    );
+
+    if (res.data.success) {
+      toast.success(res.data.message);
+      return res.data.categoryDetails;
+    } else {
+      throw new Error(res.data.message);
+    }
+  } catch (err) {
+    console.error("Error creating category:", err);
+    toast.error("Could not create category!");
+  } finally {
+    toast.dismiss(toastId);
+  }
+};
+
+export const deleteCategory = async (token, categoryId) => {
+  const toastId = toast.loading("Deleting category...");
+  try {
+    const res = await apiConnector(
+      "DELETE",
+      `${DELETE_CATEGORY}/${categoryId}`,
+      null,
+      { Authorization: `Bearer ${token}` }
+    );
+
+    if (res.data.success) {
+      toast.success(res.data.message);
+      return true;
+    } else {
+      throw new Error(res.data.message);
+    }
+  } catch (err) {
+    console.error("Error deleting category:", err);
+    toast.error("Could not delete category!");
+  } finally {
+    toast.dismiss(toastId);
+  }
+};
 
 export function getAllData(token) {
   return async (dispatch) => {

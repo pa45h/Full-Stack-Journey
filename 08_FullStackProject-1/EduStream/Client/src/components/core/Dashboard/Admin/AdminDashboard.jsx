@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  createCategory,
+  deleteCategory,
   getAllData,
   updateInstructorApproval,
 } from "../../../../services/operations/profileAPI.service";
@@ -31,6 +33,29 @@ const AdminDashboard = () => {
     pendingApprovals: 0,
     totalEnrollments: 0,
   });
+
+  const [categories, setCategories] = useState([]);
+  const [categoryName, setCategoryName] = useState("");
+  const [categoryDesc, setCategoryDesc] = useState("");
+
+  useEffect(() => {
+    async function fetchCategories() {
+      const res = await dispatch(getAllData(token));
+
+      if (res?.allCategories) setCategories(res?.allCategories);
+    }
+    fetchCategories();
+  }, [token]);
+
+  const handleCreateCategory = async () => {
+    const newCat = await createCategory(token, categoryName, categoryDesc);
+    if (newCat) setCategories((prev) => [...prev, newCat]);
+  };
+
+  const handleDeleteCategory = async (id) => {
+    const success = await deleteCategory(token, id);
+    if (success) setCategories((prev) => prev.filter((c) => c._id !== id));
+  };
 
   useEffect(() => {
     (async () => {
@@ -98,6 +123,50 @@ const AdminDashboard = () => {
           value={allData?.totalEnrollments}
         />
       </div>
+
+      <div className="flex flex-wrap justify-between gap-2 mt-8">
+        <h2 className="text-2xl font-semibold text-yellow-50">
+          Manage Categories
+        </h2>
+        <div className="text-xs flex flex-wrap items-center justify-center gap-4">
+          <input
+            type="text"
+            placeholder="Category Name"
+            value={categoryName}
+            onChange={(e) => setCategoryName(e.target.value)}
+            className="px-2 py-2 rounded-md text-white bg-richblack-800"
+          />
+          <input
+            type="text"
+            placeholder="Category Description"
+            value={categoryDesc}
+            onChange={(e) => setCategoryDesc(e.target.value)}
+            className="px-2 py-2 rounded-md text-white bg-richblack-800"
+          />
+          <button
+            onClick={handleCreateCategory}
+            className="px-4 py-1 bg-caribbeangreen-600 text-white rounded-md hover:bg-caribbeangreen-700 transition-all duration-300 w-full sm:w-fit text-sm"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+
+      <TableSection
+        title=""
+        headers={["Category", "Description", "Action"]}
+        data={categories}
+        rowRenderer={(cat) => [
+          cat.name,
+          cat.description,
+          <button
+            onClick={() => handleDeleteCategory(cat._id)}
+            className="px-3 py-1 bg-pink-600 text-white rounded-md hover:bg-pink-700 transition-all duration-300"
+          >
+            Delete
+          </button>,
+        ]}
+      />
 
       <TableSection
         title="All Instructors"

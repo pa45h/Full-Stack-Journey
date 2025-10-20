@@ -1,3 +1,5 @@
+const { categories } = require("../../client/src/services/apis.service");
+const Category = require("../models/Category.model");
 const Course = require("../models/Course.model");
 const CourseProgress = require("../models/CourseProgress.model");
 const Profile = require("../models/Profile.model");
@@ -276,6 +278,8 @@ exports.fetchAllData = async (req, res) => {
       .populate("category")
       .exec();
 
+    const allCategories = await Category.find({});
+
     const totalRevenue = allCourses.reduce(
       (sum, course) =>
         sum + course.price * (course.studentEnrolled?.length || 0),
@@ -299,6 +303,7 @@ exports.fetchAllData = async (req, res) => {
       totalRevenue,
       pendingApprovals,
       totalEnrollments,
+      allCategories,
     });
   } catch (error) {
     console.log(error);
