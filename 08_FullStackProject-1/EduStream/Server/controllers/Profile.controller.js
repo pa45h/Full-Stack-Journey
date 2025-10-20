@@ -68,6 +68,8 @@ exports.deleteAccount = async (req, res) => {
       }
     );
 
+    await Course.deleteMany({ instructor: userId });
+
     await User.findByIdAndDelete(userId);
 
     return res.status(200).json({

@@ -341,6 +341,39 @@ exports.deleteCourse = async (req, res) => {
   try {
     const { courseId } = req.body;
 
+    if (!courseId) {
+      return res.status(400).json({
+        success: false,
+        message: "Course ID is required",
+      });
+    }
+
+    const course = await Course.findById(courseId);
+
+    if (!course) {
+      return res.status(404).json({
+        success: false,
+        message: "Course not found",
+      });
+    }
+
+    if (course.category) {
+      await Category.findByIdAndUpdate(course.category, {
+        $pull: { courses: courseId },
+      });
+    }
+
+    if (course.instructor) {
+      await User.findByIdAndUpdate(course.instructor, {
+        $pull: { courses: courseId },
+      });
+    }
+
+    await User.updateMany(
+      { courses: courseId },
+      { $pull: { courses: courseId } }
+    );
+
     await Course.findByIdAndDelete(courseId);
 
     return res.status(200).json({

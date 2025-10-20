@@ -121,10 +121,6 @@ exports.deleteSubSection = async (req, res) => {
   try {
     const { sectionId, subSectionId } = req.body;
     const subSection = await SubSection.findById(subSectionId);
-    // const videoUrl = subSection.videoUrl;
-    // const videoPublicId = extractPublicId(videoUrl);
-
-    // await deleteFromCloudinary(videoPublicId);
 
     await SubSection.findByIdAndDelete(subSectionId);
 
