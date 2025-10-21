@@ -1,164 +1,233 @@
 import React from "react";
-import studyNotionImage from "../../assets/Logo/Logo-Full-Light.png";
-import { FaGoogle, FaTwitter, FaFacebook, FaYoutube } from "react-icons/fa";
+import EduStreamLogo from "../../assets/Logo/Logo-Full-Light.png";
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { FooterLink2 } from "../../data/footer-links";
-
-const Resources = [
-  "Code Challenges",
-  "Docs",
-  "Projects",
-  "Videos",
-  "Workspaces",
-];
-const Plans = ["Paid memberships", "For students", "Business solutions"];
-const Community = ["Forums", "Chapters", "Events"];
-const BottomFooter = ["Privacy Policy", "Cookie Policy", "Terms"];
 
 const Footer = () => {
   return (
-    <div className="bg-richblack-800 border-y border-richblack-400">
-      <div className="flex lg:flex-row gap-8 items-center justify-between w-11/12 max-w-maxContent text-richblack-400 leading-6 mx-auto relative py-14">
-        <div className="border-b w-[100%] flex flex-col lg:flex-row pb-5 border-richblack-700">
-          <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-richblack-700 pl-3 lg:pr-5 gap-3">
-            <div className="w-[30%] flex flex-col gap-3 lg:w-[30%] mb-7 lg:pl-0">
+    <div className="bg-richblack-800 border-y border-richblack-500">
+      <div className="max-w-maxContent mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-10 gap-x-8">
+          <div className="col-span-1 lg:col-span-1 flex flex-col gap-5">
+            <Link to="/">
               <img
-                src={studyNotionImage}
-                alt="studyNotionImage"
-                className="object-contain"
+                src={EduStreamLogo}
+                alt="EduStream Logo"
+                className="object-contain w-40"
               />
-              <h1 className="text-richblack-50 font-semibold text-[16px]">
+            </Link>
+
+            <div className="flex flex-col gap-2">
+              <h1 className="text-richblack-50 font-semibold text-lg mb-1">
                 Company
               </h1>
-              <div className="flex flex-col gap-2">
-                {["About", "Careers"].map((element, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                    >
-                      <Link to={element.toLowerCase()}>{element}</Link>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="flex gap-3 text-lg cursor-pointer">
-                <FaFacebook />
-                <FaGoogle />
+              <Link
+                to="/about"
+                className="text-richblack-400 hover:text-richblack-50 transition-colors"
+              >
+                About Us
+              </Link>
+              <Link
+                to="/contact"
+                className="text-richblack-400 hover:text-richblack-50 transition-colors"
+              >
+                Contact Us
+              </Link>
+              <Link
+                to="/careers"
+                className="text-richblack-400 hover:text-richblack-50 transition-colors"
+              >
+                Careers
+              </Link>
+              <Link
+                to="/partners"
+                className="text-richblack-400 hover:text-richblack-50 transition-colors"
+              >
+                Partners
+              </Link>
+            </div>
+
+            <div className="flex gap-4 text-xl">
+              <a
+                href="https://github.com/pa45h"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-richblack-300 hover:text-black transition-colors duration-200"
+              >
+                <FaGithub />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/parthkatariya"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-richblack-300 hover:text-blue-400 transition-colors duration-200"
+              >
+                <FaLinkedin />
+              </a>
+              <a
+                href="https://x.com/0a45h"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-richblack-300 hover:text-blue-300 transition-colors duration-200"
+              >
                 <FaTwitter />
-                <FaYoutube />
-              </div>
-            </div>
-
-            <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
-              <h1 className="text-richblack-50 font-semibold text-[16px]">
-                Resources
-              </h1>
-              <div className="flex flex-col gap-2 mt-2">
-                {Resources.map((element, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                    >
-                      <Link to={element.split(" ").join("-").toLowerCase()}>
-                        {element}
-                      </Link>
-                    </div>
-                  );
-                })}
-              </div>
-              <h2 className="text-richblack-50 font-semibold text-[16px] mt-7">
-                Support
-              </h2>
-              <div className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200 mt-2">
-                <Link to={"/help-center"}>Help Center</Link>
-              </div>
-            </div>
-
-            <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
-              <h1 className="text-richblack-50 font-semibold text-[16px]">
-                Plans
-              </h1>
-              <div className="flex flex-col gap-2 mt-2">
-                {Plans.map((element, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                    >
-                      <Link to={element.split(" ").join("-").toLowerCase()}>
-                        {element}
-                      </Link>
-                    </div>
-                  );
-                })}
-              </div>
-              <h1 className="text-richblack-50 font-semibold text-[16px] mt-7">
-                Community
-              </h1>
-              <div className="flex flex-col gap-2 mt-2">
-                {Community.map((element, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                    >
-                      <Link to={element.toLowerCase()}>{element}</Link>
-                    </div>
-                  );
-                })}
-              </div>
+              </a>
+              <a
+                href="mailto:parth.katariya87@gmail.com"
+                className="text-richblack-300 hover:text-pink-400 transition-colors duration-200"
+              >
+                <FaEnvelope />
+              </a>
             </div>
           </div>
 
+          <div className="col-span-1 flex flex-col gap-3">
+            <h1 className="text-richblack-50 font-semibold text-lg">
+              Learning
+            </h1>
+            <Link
+              to="/catalog/web-dev"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              Web Development
+            </Link>
+            <Link
+              to="/catalog/java"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              Java
+            </Link>
+            <Link
+              to="/catalog/python"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              Python
+            </Link>
+            <Link
+              to="/catalog/c"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              C
+            </Link>
+            <Link
+              to="/catalog/c++"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              C++
+            </Link>
+          </div>
 
-          <div className="lg:w-[50%] flex flex-wrap flex-row justify-between pl-3 lg:pl-5 gap-3">
-            {FooterLink2.map((element, index) => {
-              return (
-                <div key={index} className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
-                  <h1 className="text-richblack-50 font-semibold text-[16px]">
-                    {element.title}
-                  </h1>
-                  <div className="flex flex-col gap-2 mt-2">
-                    {element.links.map((link, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                        >
-                          <Link to={link.link}>{link.title}</Link>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
+          <div className="col-span-1 flex flex-col gap-3">
+            <h1 className="text-richblack-50 font-semibold text-lg">
+              Resources
+            </h1>
+            <Link
+              to="/Articles"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              Articles
+            </Link>
+            <Link
+              to="/Blog"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              Blog
+            </Link>
+            <Link
+              to="/FAQs"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              FAQs
+            </Link>
+            <Link
+              to="/help-center"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              Help Center
+            </Link>
+          </div>
+
+          <div className="col-span-1 flex flex-col gap-3">
+            <h1 className="text-richblack-50 font-semibold text-lg">
+              Community
+            </h1>
+            <Link
+              to="/Whatsapp"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              Whatsapp
+            </Link>
+            <Link
+              to="/Discord"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              Discord
+            </Link>
+            <Link
+              to="/YouTube"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              YouTube
+            </Link>
+            <Link
+              to="/forums"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              Forums
+            </Link>
+            <Link
+              to="/events"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              Events
+            </Link>
+          </div>
+
+          <div className="col-span-1 flex flex-col gap-3">
+            <h1 className="text-richblack-50 font-semibold text-lg">Utility</h1>
+            <Link
+              to="/Privacy-Policy"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/Terms-of-Service"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              Terms of Service
+            </Link>
+            <Link
+              to="/Affiliate-Program"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              Affiliate Program
+            </Link>
+            <Link
+              to="/Accessibility"
+              className="text-richblack-400 hover:text-richblack-50 transition-colors"
+            >
+              Accessibility
+            </Link>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-row items-center justify-between w-11/12 max-w-maxContent text-richblack-400 mx-auto  pb-14 text-sm">
-        <div className="flex justify-between lg:items-start items-center flex-col lg:flex-row gap-3 w-full">
-          <div className="flex flex-row">
-            {BottomFooter.map((ele, i) => {
-              return (
-                <div
-                  key={i}
-                  className={`${
-                    BottomFooter.length - 1 === i
-                      ? ""
-                      : "border-r border-richblack-700 cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                  } px-3 `}
-                >
-                  <Link to={ele.split(" ").join("-").toLowerCase()}>{ele}</Link>
-                </div>
-              );
-            })}
-          </div>
+      <div className="border-t border-richblack-700">
+        <div className="max-w-maxContent mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col md:flex-row justify-between items-center text-sm text-richblack-400">
+          <p className="mb-2 md:mb-0">
+            Made by Parth Katariya &copy; {new Date().getFullYear()} EduStream
+          </p>
 
-          <div>Made by Parth Katariya © 2025 Edustream</div>
+          <div className="flex gap-4">
+            <span className="hover:text-richblack-50 cursor-pointer transition-colors">
+              Security & Compliance
+            </span>
+            <span className="hidden sm:inline-block text-richblack-600">|</span>
+            <span className="hover:text-richblack-50 cursor-pointer transition-colors">
+              Cookie Preferences
+            </span>
+          </div>
         </div>
       </div>
     </div>

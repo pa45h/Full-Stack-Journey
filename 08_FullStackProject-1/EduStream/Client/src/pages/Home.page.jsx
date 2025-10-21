@@ -26,22 +26,20 @@ function Home() {
         </Link>
 
         <div className="text-center text-4xl font-semibold mt-6">
-          Empower Your Future with <HighlightText text={"Coding Skills"} />
+          Build Your Future with <HighlightText text={"Coding Skills"} />
         </div>
 
         <div className="w-[80%] text-center text-lg font-bold text-richblue-200 mt-4">
-          With our online coding courses, you can learn at your own pace, from
-          anywhere in the world, and get access to a wealth of resources,
-          including hands-on projects, quizzes, and personalized feedback from
-          instructors.
+          Learn coding at your own pace with projects, quizzes, and mentor
+          feedback — anytime, anywhere.
         </div>
 
         <div className="flex flex-row gap-7 mt-8">
           <Button active={true} linkto={"/signup"}>
-            Learn More
+            Explore Courses
           </Button>
           <Button active={false} linkto={"/login"}>
-            Book a Demo
+            Schedule a Demo
           </Button>
         </div>
 
@@ -57,12 +55,11 @@ function Home() {
           position={"lg:flex-row"}
           heading={
             <div className="text-4xl font-semibold">
-              Unlock your <HighlightText text={"coding potential"} /> with our
-              online courses.
+              Unleash your <HighlightText text={"coding potential"} /> with us.
             </div>
           }
           subheading={
-            "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
+            "Learn from industry experts with real-world coding experience, dedicated to guiding you."
           }
           button1={{
             btnText: "Try It",
@@ -96,11 +93,11 @@ function Home() {
           position={"lg:flex-row-reverse"}
           heading={
             <div className="text-4xl font-semibold">
-              Start <HighlightText text={"coding in second"} />
+              Start <HighlightText text={"coding instantly"} />
             </div>
           }
           subheading={
-            "Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."
+            "Dive in and start coding! You’ll write real code from day one."
           }
           button1={{
             btnText: "Lessons",
@@ -152,16 +149,17 @@ function Home() {
         <div className="mx-auto w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-7">
           <div className=" w-full flex flex-col lg:flex-row gap-5 mb-10 lg:mt-[95px] justify-center items-center mx-auto">
             <div className="text-4xl font-semibold lg:w-[45%]">
-              Get the skills you need for a{" "}
-              <HighlightText text={"job that is in demand."} />
+              Master the skills needed for a{" "}
+              <HighlightText text={"high-demand career."} />
             </div>
             <div className="flex flex-col gap-10 lg:w-[40%] md:items-start">
               <div className="text-[16px]">
-                The modern EduStream is the dictates its own terms. Today, to be
-                a competitive specialist requires more than professional skills.
+                EduStream empowers you to learn the skills that matter most. In
+                today’s competitive world, building expertise goes beyond just
+                professional knowledge.
               </div>
               <Button active={true} linkto={"/signup"}>
-                Learn More
+                Get Started
               </Button>
             </div>
           </div>
@@ -174,7 +172,7 @@ function Home() {
         <InstructorSection />
 
         <h2 className="text-4xl text-center font-semibold mt-10 mb-16">
-          Reviews from other learners
+          <HighlightText text={"Reviews"} /> from other learners
         </h2>
         <ReviewSlider />
       </div>

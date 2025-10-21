@@ -9,59 +9,77 @@ const timeLine = [
   {
     logo: logo1,
     heading: "Leadership",
-    description: "Fully committed to the success company",
+    description: "Lead projects with confidence.",
   },
   {
     logo: logo2,
-    heading: "Responsibility",
-    description: "Students will always be our top priority",
+    heading: "Accountability",
+    description: "Student's success comes first.",
   },
   {
     logo: logo3,
-    heading: "Flexibility",
-    description: "The ability to switch is an important skills",
+    heading: "Adaptability",
+    description: "Thrive in any situation.",
   },
   {
     logo: logo4,
-    heading: "Solve the problem",
-    description: "Code your way to a solution",
+    heading: "Problem Solving",
+    description: "Turn challenges into solutions.",
   },
 ];
 
-const TimelineSection = () => { 
+const TimelineSection = () => {
   return (
     <div>
       <div className="flex flex-col md:flex-row gap-14 items-center">
-        <div className="md:w-[45%] flex flex-col gap-12">
+        <div className="md:w-[45%] flex flex-col gap-0 relative">
+          <div className="absolute h-full w-[2px] bg-richblack-200 left-[24px] top-0"></div>
+
           {timeLine.map((element, index) => {
+            const isLast = index === timeLine.length - 1;
+
             return (
-              <div className="flex flex-row gap-6" key={index}>
-                <div className="w-[50px] h-[50px] bg-white flex items-center justify-center rounded-full">
-                  <img src={element.logo} />
+              <div
+                className={`flex flex-row gap-6 ${
+                  !isLast ? "mb-12" : ""
+                } relative`}
+                key={index}
+              >
+                <div className="hidden md:block absolute w-[14px] h-[14px] bg-white rounded-full border-2 border-richblack-200 left-[18px] top-[18px] z-10"></div>
+
+                <div className="w-[50px] h-[50px] bg-white flex items-center justify-center rounded-full shadow-md z-20 flex-shrink-0">
+                  <img
+                    src={element.logo}
+                    alt={`${element.heading} icon`}
+                    className="w-[30px] h-[30px]"
+                  />
                 </div>
-                <div>
-                  <h2 className="font-semibold text-[18px]">
+
+                <div className="flex flex-col">
+                  <h2 className="font-bold text-[18px] text-richblack-900">
                     {element.heading}
                   </h2>
-                  <p className="text-base">{element.description}</p>
+                  <p className="text-base text-richblack-700">
+                    {element.description}
+                  </p>
                 </div>
               </div>
             );
           })}
         </div>
 
-        <div className="relative shadow-[-1px_0px_50px_0px_rgb(17,138,255)] rounded-3xl">
-          <img src={timelineImg} width={500} className="rounded-2xl" />
-          <div className="absolute bg-richblue-900 flex flex-row text-white uppercase py-7 items-center justify-center left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-xl">
-            <div className="flex flex-row gap-5 items-center border-r border-richblack-500 px-5">
-              <p className="text-2xl font-bold">15</p>
-              <p className="text-sm font-bold text-richblue-50">
-                Years of experience
+        <div className="relative transition-all duration-300 hover:-translate-y-2 hover:shadow-richblue-500 hover:shadow-lg rounded-2xl border border-richblue-500">
+          <img src={timelineImg} width={450} className="rounded-2xl" />
+          <div className="absolute bg-richblue-900 flex gap-5 flex-row text-white uppercase py-7 items-center justify-center left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-xl p-5">
+            <div className="flex flex-row gap-5 items-center border-r border-richblack-50 pr-5">
+              <p className="text-lg sm:text-2xl font-bold">15</p>
+              <p className="text-xs sm:text-sm font-bold text-richblue-50">
+                Years of Expertise
               </p>
             </div>
-            <div className="flex flex-row gap-5 items-center px-5">
-              <p className="text-2xl font-bold">100+</p>
-              <p className="text-sm font-bold text-richblue-50">
+            <div className="flex flex-row gap-5 items-center">
+              <p className="text-lg sm:text-2xl font-bold">100+</p>
+              <p className="text-xs sm:text-sm font-bold text-richblue-50">
                 valuable courses
               </p>
             </div>

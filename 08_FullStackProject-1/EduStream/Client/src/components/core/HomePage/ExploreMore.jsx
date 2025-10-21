@@ -29,10 +29,10 @@ const ExploreMore = () => {
   return (
     <div className="relative">
       <div className="text-4xl font-semibold text-center">
-        Unlock the <HighlightText text={"Power of Code"} />
+        Unleash the <HighlightText text={"Power of Code"} />
       </div>
       <p className="text-center text-richblack-300 text-md font-semibold">
-        Learn to Build Anything You Can Imagine
+        Build Whatever You Imagine
       </p>
 
       <div className="hidden lg:flex text-center flex-row rounded-full bg-richblack-800 mb-5 mt-5 border-richblack-100 p-1 w-fit mx-auto gap-6 shadow-sm shadow-richblack-400">

@@ -19,13 +19,12 @@ const About = () => {
       <section className="bg-richblue-900 border-y border-richblack-400">
         <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-center text-white">
           <header className="mx-auto py-20 text-4xl font-semibold lg:w-[70%]">
-            Driving Innovation in Online Education for a
-            <HighlightText text={"Brighter Future"} />
+            Shaping the Future of Online Learning for a{" "}
+            <HighlightText text={"Brighter Tomorrow"} />
             <p className="mx-auto mt-3 text-center text-base font-medium text-richblack-300 lg:w-[95%]">
-              EduStream is at the forefront of driving innovation in online
-              education. We"re passionate about creating a brighter future by
-              offering cutting-edge courses, leveraging emerging technologies,
-              and nurturing a vibrant learning community.
+              EduStream leads the way in online education, offering innovative
+              courses, using the latest technologies, and building a vibrant
+              learning community for a brighter future.
             </p>
           </header>
           <div className="sm:h-[70px] lg:h-[150px]"></div>
@@ -51,24 +50,19 @@ const About = () => {
         <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-richblack-500">
           <div className="flex flex-col items-center gap-10 lg:flex-row justify-between">
             <div className="my-24 flex lg:w-[50%] flex-col gap-10">
-              <h1 className="bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCB045] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%] ">
+              <h1 className="bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCB045] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%]">
                 Our Founding Story
               </h1>
               <p className="text-base font-medium text-richblack-300 lg:w-[95%]">
-                Our e-learning platform was born out of a shared vision and
-                passion for transforming education. It all began with a group of
-                educators, technologists, and lifelong learners who recognized
-                the need for accessible, flexible, and high-quality learning
-                opportunities in a rapidly evolving digital world.
+                EduStream was created from a shared vision to transform
+                learning. A team of educators, technologists, and lifelong
+                learners recognized the need for flexible, high-quality
+                education accessible to everyone.
               </p>
               <p className="text-base font-medium text-richblack-300 lg:w-[95%]">
-                As experienced educators ourselves, we witnessed firsthand the
-                limitations and challenges of traditional education systems. We
-                believed that education should not be confined to the walls of a
-                classroom or restricted by geographical boundaries. We
-                envisioned a platform that could bridge these gaps and empower
-                individuals from all walks of life to unlock their full
-                potential.
+                Having seen the limits of traditional classrooms, we wanted to
+                break barriers of geography and accessibility. Our platform
+                empowers learners everywhere to reach their full potential.
               </p>
             </div>
             <div>
@@ -78,32 +72,27 @@ const About = () => {
               />
             </div>
           </div>
-
           <div className="flex flex-col items-center lg:gap-10 lg:flex-row justify-between">
-            <div className="my-24 flex lg:w-[40%] flex-col gap-10">
-              <h1 className="bg-gradient-to-b from-[#FF512F] to-[#F09819] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%] ">
+            <div className="mb-24 flex lg:w-[40%] flex-col gap-10">
+              <h1 className="bg-gradient-to-b from-[#FF512F] to-[#F09819] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%]">
                 Our Vision
               </h1>
               <p className="text-base font-medium text-richblack-300 lg:w-[95%]">
-                With this vision in mind, we set out on a journey to create an
-                e-learning platform that would revolutionize the way people
-                learn. Our team of dedicated experts worked tirelessly to
-                develop a robust and intuitive platform that combines
-                cutting-edge technology with engaging content, fostering a
-                dynamic and interactive learning experience.
+                We aim to transform learning with an intuitive platform that
+                blends advanced technology and engaging content, creating an
+                interactive and dynamic experience for every learner.
               </p>
             </div>
-            <div className="my-24 flex lg:w-[40%] flex-col gap-10">
-              <h1 className="bg-gradient-to-b from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] text-transparent bg-clip-text text-4xl font-semibold lg:w-[70%] ">
+
+            <div className="mb-24 flex lg:w-[40%] flex-col gap-10">
+              <h1 className="bg-gradient-to-b from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] text-transparent bg-clip-text text-4xl font-semibold lg:w-[70%]">
                 Our Mission
               </h1>
               <p className="text-base font-medium text-richblack-300 lg:w-[95%]">
-                Our mission goes beyond just delivering courses online. We
-                wanted to create a vibrant community of learners, where
-                individuals can connect, collaborate, and learn from one
-                another. We believe that knowledge thrives in an environment of
-                sharing and dialogue, and we foster this spirit of collaboration
-                through forums, live sessions, and networking opportunities.
+                Our mission is to build a thriving learning community where
+                learners connect, collaborate, and grow together. We foster
+                knowledge sharing through forums, live sessions, and networking
+                opportunities.
               </p>
             </div>
           </div>
