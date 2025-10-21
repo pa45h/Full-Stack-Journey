@@ -16,11 +16,16 @@ const cors = require("cors");
 const cloudinary = require("./config/cloudinary.config");
 const fileUpload = require("express-fileupload");
 
+const helmet = require("helmet");
+const morgan = require("morgan");
+app.use(helmet());
+app.use(morgan("dev"));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );

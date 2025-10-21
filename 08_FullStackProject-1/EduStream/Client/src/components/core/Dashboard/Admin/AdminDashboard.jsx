@@ -32,20 +32,12 @@ const AdminDashboard = () => {
     totalRevenue: 0,
     pendingApprovals: 0,
     totalEnrollments: 0,
+    categories: [],
   });
 
   const [categories, setCategories] = useState([]);
   const [categoryName, setCategoryName] = useState("");
   const [categoryDesc, setCategoryDesc] = useState("");
-
-  useEffect(() => {
-    async function fetchCategories() {
-      const res = await dispatch(getAllData(token));
-
-      if (res?.allCategories) setCategories(res?.allCategories);
-    }
-    fetchCategories();
-  }, [token]);
 
   const handleCreateCategory = async () => {
     const newCat = await createCategory(token, categoryName, categoryDesc);
@@ -62,7 +54,7 @@ const AdminDashboard = () => {
       setLoading(true);
       const res = await dispatch(getAllData(token));
 
-      if (res)
+      if (res) {
         setAllData({
           students: res?.allStudents,
           instructors: res?.allInstructors,
@@ -70,7 +62,10 @@ const AdminDashboard = () => {
           totalRevenue: res?.totalRevenue,
           pendingApprovals: res?.pendingApprovals,
           totalEnrollments: res?.totalEnrollments,
+          categories: res?.allCategories,
         });
+        setCategories(res?.allCategories);
+      }
 
       setLoading(false);
     })();
