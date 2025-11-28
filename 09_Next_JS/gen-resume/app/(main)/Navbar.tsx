@@ -13,7 +13,7 @@ function Navbar() {
   const { theme } = useTheme();
   return (
     <header className="shadow-sm">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 p-3">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-1">
         <Link href="/resumes" className="flex items-center gap-2">
           <Image
             src="/logo.png"
