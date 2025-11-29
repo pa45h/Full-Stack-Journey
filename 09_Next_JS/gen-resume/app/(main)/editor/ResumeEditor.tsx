@@ -8,6 +8,8 @@ import Footer from "./Footer";
 import { useState } from "react";
 import ResumePreviewSection from "./ResumePreviewSection";
 import { cn } from "@/lib/utils";
+import useAutoSave from "@/hooks/useAutoSave";
+import useUnloadWarning from "@/hooks/useUnloadWarning";
 
 function ResumeEditor() {
   const searchParams = useSearchParams();
@@ -15,6 +17,9 @@ function ResumeEditor() {
 
   const [resumeData, setResumeData] = useState({});
   const [resumePreview, setResumePreview] = useState(false);
+
+  const { isSaving, hasUnsavedChanges } = useAutoSave(resumeData);
+  useUnloadWarning(hasUnsavedChanges);
 
   function setCurrentStep(step: string) {
     const newSearchParams = new URLSearchParams(searchParams.toString());
@@ -39,7 +44,7 @@ function ResumeEditor() {
         <div className="absolute top-0 bottom-0 flex w-full">
           <div
             className={cn(
-              "w-full space-y-6 overflow-auto p-3 md:w-1/2 md:block",
+              "w-full space-y-6 overflow-auto p-3 md:block md:w-1/2",
               resumePreview && "hidden",
             )}
           >
@@ -67,6 +72,7 @@ function ResumeEditor() {
         setCurrentStep={setCurrentStep}
         resumePreview={resumePreview}
         setResumePreview={setResumePreview}
+        isSaving={isSaving}
       />
     </div>
   );
