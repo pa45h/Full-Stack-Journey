@@ -6,12 +6,15 @@ import { useSearchParams } from "next/navigation";
 import BreadCrumbs from "./BreadCrumbs";
 import Footer from "./Footer";
 import { useState } from "react";
+import ResumePreviewSection from "./ResumePreviewSection";
+import { cn } from "@/lib/utils";
 
 function ResumeEditor() {
   const searchParams = useSearchParams();
   const currentStep = searchParams?.get("step") || steps[0].key;
 
   const [resumeData, setResumeData] = useState({});
+  const [resumePreview, setResumePreview] = useState(false);
 
   function setCurrentStep(step: string) {
     const newSearchParams = new URLSearchParams(searchParams.toString());
@@ -34,7 +37,12 @@ function ResumeEditor() {
       </header>
       <main className="relative grow">
         <div className="absolute top-0 bottom-0 flex w-full">
-          <div className="w-full space-y-6 overflow-auto p-3 md:w-1/2">
+          <div
+            className={cn(
+              "w-full space-y-6 overflow-auto p-3 md:w-1/2 md:block",
+              resumePreview && "hidden",
+            )}
+          >
             <BreadCrumbs
               currentStep={currentStep}
               setCurrentStep={setCurrentStep}
@@ -47,12 +55,19 @@ function ResumeEditor() {
             )}
           </div>
           <div className="grow md:border-r" />
-          <div className="hidden w-1/2 md:flex">
-            <pre>{JSON.stringify(resumeData, null, 2)}</pre>
-          </div>
+          <ResumePreviewSection
+            resumeData={resumeData}
+            setResumeData={setResumeData}
+            className={cn(resumePreview && "flex")}
+          />
         </div>
       </main>
-      <Footer currentStep={currentStep} setCurrentStep={setCurrentStep} />
+      <Footer
+        currentStep={currentStep}
+        setCurrentStep={setCurrentStep}
+        resumePreview={resumePreview}
+        setResumePreview={setResumePreview}
+      />
     </div>
   );
 }

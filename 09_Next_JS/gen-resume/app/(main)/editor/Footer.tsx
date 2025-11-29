@@ -3,13 +3,21 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import { steps } from "./steps";
 import Link from "next/link";
+import { FileUserIcon, PenLineIcon } from "lucide-react";
 
 interface FooterProps {
   currentStep: string;
   setCurrentStep: (step: string) => void;
+  resumePreview: boolean;
+  setResumePreview: (show: boolean) => void;
 }
 
-function Footer({ currentStep, setCurrentStep }: FooterProps) {
+function Footer({
+  currentStep,
+  setCurrentStep,
+  resumePreview,
+  setResumePreview,
+}: FooterProps) {
   const previousStep = steps.find(
     (_, index) => steps[index + 1]?.key === currentStep,
   )?.key;
@@ -37,11 +45,22 @@ function Footer({ currentStep, setCurrentStep }: FooterProps) {
             Next
           </Button>
         </div>
+        <Button
+          variant="outline"
+          className="md:hidden"
+          onClick={() => setResumePreview(!resumePreview)}
+          title={resumePreview ? "Show Editor" : "Show Preview"}
+        >
+          <div className="hidden sm:block">
+            {resumePreview ? "Editor" : "Preview"}
+          </div>
+          {resumePreview ? <PenLineIcon /> : <FileUserIcon />}
+        </Button>
         <div className="flex items-center gap-3">
           <Button variant="secondary" asChild>
             <Link href="/resumes">Cancel</Link>
           </Button>
-          <p className="text-muted-foreground opacity-0">Saving...</p>
+          <p className="text-muted-foreground hidden">Saving...</p>
         </div>
       </div>
     </footer>
