@@ -5,6 +5,7 @@ import { steps } from "./steps";
 import Link from "next/link";
 import { FileUserIcon, PenLineIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 interface FooterProps {
   currentStep: string;
@@ -63,14 +64,6 @@ function Footer({
           <Button variant="secondary" asChild>
             <Link href="/resumes">Cancel</Link>
           </Button>
-          <p
-            className={cn(
-              "text-muted-foreground opacity-0",
-              isSaving && "opacity-100",
-            )}
-          >
-            Saving...
-          </p>
         </div>
       </div>
     </footer>

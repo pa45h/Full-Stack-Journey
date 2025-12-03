@@ -8,6 +8,7 @@ import Link from "next/link";
 import React from "react";
 import { dark } from "@clerk/themes";
 import { useTheme } from "next-themes";
+import logo from "../logo.jpg";
 
 function Navbar() {
   const { theme } = useTheme();
@@ -16,7 +17,7 @@ function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-1">
         <Link href="/resumes" className="flex items-center gap-2">
           <Image
-            src="/logo.png"
+            src={logo}
             alt="Logo"
             width={35}
             height={35}
