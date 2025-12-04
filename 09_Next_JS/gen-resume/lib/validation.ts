@@ -1,3 +1,4 @@
+import { title } from "process";
 import { email, z } from "zod";
 
 export const optionalString = z.string().trim().optional().or(z.literal(""));
@@ -32,6 +33,12 @@ export const personalInfoSchema = z.object({
   country: optionalString,
   phone: optionalString,
   email: optionalString,
+  linkedinUrl: optionalString,
+  githubUrl: optionalString,
+  otherUrl_1: optionalString,
+  otherUrlLabel_1: optionalString,
+  otherUrl_2: optionalString,
+  otherUrlLabel_2: optionalString,
 });
 export type PersonalInfoValues = z.infer<typeof personalInfoSchema>;
 
@@ -65,6 +72,20 @@ export const educationSchema = z.object({
 });
 export type EducationValues = z.infer<typeof educationSchema>;
 
+export const projectSchema = z.object({
+  projects: z
+    .array(
+      z.object({
+        title: optionalString,
+        description: optionalString,
+        liveUrl: optionalString,
+        repoUrl: optionalString,
+      }),
+    )
+    .optional(),
+});
+export type ProjectValues = z.infer<typeof projectSchema>;
+
 export const skillsSchema = z.object({
   skills: z.array(z.string()).optional(),
 });
@@ -80,6 +101,7 @@ export const resumeSchema = z.object({
   ...personalInfoSchema.shape,
   ...workExperienceSchema.shape,
   ...educationSchema.shape,
+  ...projectSchema.shape,
   ...skillsSchema.shape,
   ...summarySchema.shape,
   colorHex: optionalString,

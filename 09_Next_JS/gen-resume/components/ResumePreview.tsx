@@ -6,6 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { formatDate } from "date-fns";
 import { Badge } from "./ui/badge";
 import { BorderStyles } from "@/app/(main)/editor/BorderStyleButton";
+import Link from "next/link";
 
 interface ResumePreviewProps {
   resumeData: ResumeValues;
@@ -34,6 +35,7 @@ function ResumePreview({ resumeData, className }: ResumePreviewProps) {
         <PersonalInfoHeader resumeData={resumeData} />
         <SummarySection resumeData={resumeData} />
         <SkillsSection resumeData={resumeData} />
+        <ProjectsSection resumeData={resumeData} />
         <EducationSection resumeData={resumeData} />
         <WorkExperienceSection resumeData={resumeData} />
       </div>
@@ -55,6 +57,12 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
     country,
     phone,
     email,
+    linkedinUrl,
+    githubUrl,
+    otherUrl_1,
+    otherUrlLabel_1,
+    otherUrl_2,
+    otherUrlLabel_2,
     colorHex,
     borderStyle,
   } = resumeData;
@@ -112,9 +120,42 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
           {city}
           {city && country ? ", " : ""}
           {country}
-          {(city || country) && (phone || email) ? " ▪️ " : ""}
-          {[phone, email].filter(Boolean).join(" ▪️ ")}
+          {((city || country) && phone) || email ? " | " : ""}
+          <Link href={`tel:${phone}`} className="underline">
+            {phone}
+          </Link>
+          {phone && email ? " | " : ""}
+          <Link href={`mailto:${email}`} className="underline">
+            {email}
+          </Link>
         </p>
+      </div>
+      <div
+        className="ml-auto flex flex-col items-start space-y-1 border text-xs font-medium underline"
+        style={{
+          color: colorHex,
+        }}
+      >
+        {linkedinUrl && (
+          <Link href={linkedinUrl} target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </Link>
+        )}
+        {githubUrl && (
+          <Link href={githubUrl} target="_blank" rel="noopener noreferrer">
+            GitHub
+          </Link>
+        )}
+        {otherUrl_1 && otherUrlLabel_1 && (
+          <Link href={otherUrl_1} target="_blank" rel="noopener noreferrer">
+            {otherUrlLabel_1}
+          </Link>
+        )}
+        {otherUrl_2 && otherUrlLabel_2 && (
+          <Link href={otherUrl_2} target="_blank" rel="noopener noreferrer">
+            {otherUrlLabel_2}
+          </Link>
+        )}
       </div>
     </div>
   );
@@ -249,6 +290,80 @@ function EducationSection({ resumeData }: ResumeSectionProps) {
               )}
             </div>
             <p className="text-xs font-semibold">{edu.institution}</p>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
+function ProjectsSection({ resumeData }: ResumeSectionProps) {
+  const { projects, colorHex } = resumeData;
+
+  const projectsNotEmpty = projects?.filter(
+    (proj) => Object.values(proj).filter(Boolean).length > 0,
+  );
+
+  if (!projectsNotEmpty?.length) return null;
+
+  return (
+    <>
+      <hr
+        className="border-2 border-black"
+        style={{
+          borderColor: colorHex,
+        }}
+      />
+      <div className="break-inside-avoid space-y-3">
+        <p
+          className="text-lg font-semibold"
+          style={{
+            color: colorHex,
+          }}
+        >
+          Projects
+        </p>
+        {projectsNotEmpty.map((proj, index) => (
+          <div key={index} className="break-inside-avoid space-y-1">
+            <div
+              className="flex items-center justify-between text-sm font-semibold"
+              style={{
+                color: colorHex,
+              }}
+            >
+              <span>{proj.title}</span>
+              <div className="flex space-x-2 text-xs font-normal">
+                {proj.liveUrl && (
+                  <Link
+                    href={proj.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline"
+                    style={{
+                      color: colorHex,
+                    }}
+                  >
+                    Live Demo
+                  </Link>
+                )}
+                {proj.repoUrl && (
+                  <Link
+                    href={proj.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline"
+                    style={{
+                      color: colorHex,
+                    }}
+                  >
+                    Source Code
+                  </Link>
+                )}
+              </div>
+            </div>
+            <div className="text-xs whitespace-pre-line">
+              {proj.description}
+            </div>
           </div>
         ))}
       </div>

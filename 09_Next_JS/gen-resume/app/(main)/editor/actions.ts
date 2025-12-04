@@ -9,7 +9,7 @@ export async function saveResume(values: ResumeValues) {
   const { id } = values;
   console.log("Recieved ResumeValues---", values);
 
-  const { photo, workExperiences, educations, ...resumeValues } =
+  const { photo, workExperiences, educations, projects, ...resumeValues } =
     resumeSchema.parse(values);
 
   const { userId } = await auth();
@@ -69,6 +69,12 @@ export async function saveResume(values: ResumeValues) {
             endDate: edu.endDate ? new Date(edu.endDate) : undefined,
           })),
         },
+        projects: {
+          deleteMany: {},
+          create: projects?.map((proj) => ({
+            ...proj,
+          })),
+        },
         updatedAt: new Date(),
       },
     });
@@ -90,6 +96,11 @@ export async function saveResume(values: ResumeValues) {
             ...edu,
             startDate: edu.startDate ? new Date(edu.startDate) : undefined,
             endDate: edu.endDate ? new Date(edu.endDate) : undefined,
+          })),
+        },
+        projects: {
+          create: projects?.map((proj) => ({
+            ...proj,
           })),
         },
       },

@@ -26,6 +26,12 @@ function PersonalInfoForm({ resumeData, setResumeData }: EditorFormProps) {
       country: resumeData.country || "",
       phone: resumeData.phone || "",
       email: resumeData.email || "",
+      linkedinUrl: resumeData.linkedinUrl || "",
+      githubUrl: resumeData.githubUrl || "",
+      otherUrl_1: resumeData.otherUrl_1 || "",
+      otherUrlLabel_1: resumeData.otherUrlLabel_1 || "",
+      otherUrl_2: resumeData.otherUrl_2 || "",
+      otherUrlLabel_2: resumeData.otherUrlLabel_2 || "",
     },
   });
 
@@ -166,7 +172,7 @@ function PersonalInfoForm({ resumeData, setResumeData }: EditorFormProps) {
               <FormItem>
                 <FormLabel>Phone</FormLabel>
                 <FormControl>
-                  <Input type="tel" {...field} placeholder="+91 96017 04554" />
+                  <Input type="tel" {...field} placeholder="96017 04554" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -189,6 +195,106 @@ function PersonalInfoForm({ resumeData, setResumeData }: EditorFormProps) {
               </FormItem>
             )}
           />
+          <div className="grid grid-cols-2 gap-3">
+            <FormField
+              control={form.control}
+              name="linkedinUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>LinkedIn URL</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="url"
+                      {...field}
+                      placeholder="https://www.linkedin.com/in/parthkatariya"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="githubUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>GitHub URL</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="url"
+                      {...field}
+                      placeholder="https://github.com/pa45h"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <FormField
+              control={form.control}
+              name="otherUrl_1"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Other URL 1</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="url"
+                      {...field}
+                      placeholder="https://coding-platform.com"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="otherUrlLabel_1"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Other URL Label 1</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder="Leetcode" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <FormField
+              control={form.control}
+              name="otherUrl_2"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Other URL 2</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="url"
+                      {...field}
+                      placeholder="https://personal-website.com"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="otherUrlLabel_2"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Other URL Label 2</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder="Portfolio" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
         </form>
       </Form>
     </div>

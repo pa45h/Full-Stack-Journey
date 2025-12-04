@@ -1,4 +1,28 @@
 import { Button } from "@/components/ui/button";
+import { EditorFormProps } from "@/lib/types";
+import { cn } from "@/lib/utils";
+import { projectSchema, ProjectValues } from "@/lib/validation";
+import {
+  closestCenter,
+  DndContext,
+  DragEndEvent,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import React, { useEffect } from "react";
+import { useForm, useFieldArray, UseFormReturn } from "react-hook-form";
+import { CSS } from "@dnd-kit/utilities";
+import { GripHorizontal } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -9,48 +33,24 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { EditorFormProps } from "@/lib/types";
-import { workExperienceSchema, WorkExperienceValues } from "@/lib/validation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { GripHorizontal } from "lucide-react";
-import React, { use, useEffect } from "react";
-import { useFieldArray, useForm, UseFormReturn } from "react-hook-form";
-import {
-  closestCenter,
-  DndContext,
-  DragEndEvent,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-} from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  useSortable,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
-import { CSS } from "@dnd-kit/utilities";
-import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-function WorkExperienceForm({ resumeData, setResumeData }: EditorFormProps) {
-  const form = useForm<WorkExperienceValues>({
-    resolver: zodResolver(workExperienceSchema),
+function ProjectForm({ resumeData, setResumeData }: EditorFormProps) {
+  const form = useForm<ProjectValues>({
+    resolver: zodResolver(projectSchema),
     defaultValues: {
-      workExperiences: resumeData.workExperiences || [],
+      projects: resumeData.projects || [],
     },
   });
+
   useEffect(() => {
     const { unsubscribe } = form.watch(async (values) => {
       const isValid = await form.trigger();
       if (!isValid) return;
       setResumeData({
         ...resumeData,
-        workExperiences:
-          values.workExperiences?.filter((exp) => exp !== undefined) || [],
+        projects: values.projects?.filter((proj) => proj !== undefined) || [],
       });
     });
     return () => unsubscribe();
@@ -58,7 +58,7 @@ function WorkExperienceForm({ resumeData, setResumeData }: EditorFormProps) {
 
   const { fields, append, remove, move } = useFieldArray({
     control: form.control,
-    name: "workExperiences",
+    name: "projects",
   });
 
   const sensors = useSensors(
@@ -81,9 +81,9 @@ function WorkExperienceForm({ resumeData, setResumeData }: EditorFormProps) {
   return (
     <div className="mx-auto max-w-xl space-y-6">
       <div className="space-y-1.5 text-center">
-        <h2 className="text-2xl font-semibold">Work Experience</h2>
+        <h2 className="text-2xl font-semibold">Projects</h2>
         <p className="text-muted-foreground text-sm">
-          Add your work experience details below.
+          Add your projects below.
         </p>
       </div>
       <Form {...form}>
@@ -99,11 +99,11 @@ function WorkExperienceForm({ resumeData, setResumeData }: EditorFormProps) {
               strategy={verticalListSortingStrategy}
             >
               {fields.map((field, index) => (
-                <WorkExperienceItem
-                  id={field.id}
+                <ProjectItem
                   key={field.id}
-                  form={form}
+                  id={field.id}
                   index={index}
+                  form={form}
                   remove={remove}
                 />
               ))}
@@ -114,15 +114,14 @@ function WorkExperienceForm({ resumeData, setResumeData }: EditorFormProps) {
               type="button"
               onClick={() =>
                 append({
-                  position: "",
-                  company: "",
-                  startDate: "",
-                  endDate: "",
+                  title: "",
                   description: "",
+                  liveUrl: "",
+                  repoUrl: "",
                 })
               }
             >
-              Add Work Experience
+              Add Project
             </Button>
           </div>
         </form>
@@ -131,19 +130,14 @@ function WorkExperienceForm({ resumeData, setResumeData }: EditorFormProps) {
   );
 }
 
-interface WorkExperienceItemProps {
+interface ProjectItemProps {
   id: string;
-  form: UseFormReturn<WorkExperienceValues>;
   index: number;
+  form: UseFormReturn<ProjectValues>;
   remove: (index: number) => void;
 }
 
-function WorkExperienceItem({
-  id,
-  form,
-  index,
-  remove,
-}: WorkExperienceItemProps) {
+function ProjectItem({ id, index, form, remove }: ProjectItemProps) {
   const {
     attributes,
     listeners,
@@ -152,6 +146,7 @@ function WorkExperienceItem({
     transition,
     isDragging,
   } = useSortable({ id });
+
   return (
     <div
       className={cn(
@@ -165,7 +160,7 @@ function WorkExperienceItem({
       }}
     >
       <div className="flex items-center justify-between">
-        <span className="font-semibold">Work Experience {index + 1}</span>
+        <span className="font-semibold">Project {index + 1}</span>
         <GripHorizontal
           className="text-muted-foreground size-5 cursor-grab focus:outline-none"
           {...attributes}
@@ -174,25 +169,12 @@ function WorkExperienceItem({
       </div>
       <FormField
         control={form.control}
-        name={`workExperiences.${index}.position`}
+        name={`projects.${index}.title`}
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Position</FormLabel>
+            <FormLabel>Title</FormLabel>
             <FormControl>
               <Input {...field} autoFocus />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name={`workExperiences.${index}.company`}
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Company</FormLabel>
-            <FormControl>
-              <Input {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -201,16 +183,12 @@ function WorkExperienceItem({
       <div className="grid grid-cols-2 gap-3">
         <FormField
           control={form.control}
-          name={`workExperiences.${index}.startDate`}
+          name={`projects.${index}.liveUrl`}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Start Date</FormLabel>
+              <FormLabel>Demo URL</FormLabel>
               <FormControl>
-                <Input
-                  type="date"
-                  {...field}
-                  value={field.value?.slice(0, 10)}
-                />
+                <Input type="url" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -218,29 +196,21 @@ function WorkExperienceItem({
         />
         <FormField
           control={form.control}
-          name={`workExperiences.${index}.endDate`}
+          name={`projects.${index}.repoUrl`}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>End Date</FormLabel>
+              <FormLabel>Repository URL</FormLabel>
               <FormControl>
-                <Input
-                  type="date"
-                  {...field}
-                  value={field.value?.slice(0, 10)}
-                />
+                <Input type="url" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
       </div>
-      <FormDescription>
-        Leave <span className="font-semibold">end date</span> empty if currently
-        working here.
-      </FormDescription>
       <FormField
         control={form.control}
-        name={`workExperiences.${index}.description`}
+        name={`projects.${index}.description`}
         render={({ field }) => (
           <FormItem>
             <FormLabel>Description</FormLabel>
@@ -258,4 +228,4 @@ function WorkExperienceItem({
   );
 }
 
-export default WorkExperienceForm;
+export default ProjectForm;

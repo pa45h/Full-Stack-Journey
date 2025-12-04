@@ -5,6 +5,7 @@ import WorkExperienceForm from "./forms/WorkExperienceForm";
 import EducationForm from "./forms/EducationForm";
 import SkillsForm from "./forms/SkillsForm";
 import SummaryForm from "./forms/SummaryForm";
+import ProjectForm from "./forms/ProjectForm";
 
 export const steps: {
   title: string;
@@ -30,6 +31,11 @@ export const steps: {
     title: "Education",
     component: EducationForm,
     key: "education",
+  },
+  {
+    title: "Projects",
+    component: ProjectForm,
+    key: "projects",
   },
   {
     title: "Skills",
