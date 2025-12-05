@@ -100,7 +100,7 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
       <div className="space-y-2.5">
         <div className="space-y-1">
           <p
-            className="text-3xl font-bold"
+            className="text-4xl font-bold"
             style={{
               color: colorHex,
             }}
@@ -290,6 +290,9 @@ function EducationSection({ resumeData }: ResumeSectionProps) {
               )}
             </div>
             <p className="text-xs font-semibold">{edu.institution}</p>
+            {edu.grade && (
+              <div className="text-xs whitespace-pre-line">{edu.grade}</div>
+            )}
           </div>
         ))}
       </div>

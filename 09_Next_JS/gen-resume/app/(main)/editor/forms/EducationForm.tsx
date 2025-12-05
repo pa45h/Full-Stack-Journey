@@ -117,6 +117,7 @@ function EducationForm({ resumeData, setResumeData }: EditorFormProps) {
                   degree: "",
                   institution: "",
                   fieldOfStudy: "",
+                  grade: "",
                   startDate: "",
                   endDate: "",
                 })
@@ -180,19 +181,34 @@ function EducationItem({ id, form, index, remove }: EducationItemProps) {
           </FormItem>
         )}
       />
-      <FormField
-        control={form.control}
-        name={`educations.${index}.fieldOfStudy`}
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Field of Study</FormLabel>
-            <FormControl>
-              <Input {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+      <div className="grid grid-cols-2 gap-3">
+        <FormField
+          control={form.control}
+          name={`educations.${index}.fieldOfStudy`}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Field of Study</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name={`educations.${index}.grade`}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Grade</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </div>
       <FormField
         control={form.control}
         name={`educations.${index}.institution`}
