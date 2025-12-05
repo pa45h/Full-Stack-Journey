@@ -24,7 +24,9 @@ function GenerateSummaryButton({
       onSummaryGenerated(summary);
     } catch (error) {
       console.error("Error generating summary:", error);
-      toast.error("Failed to generate summary. Please try again.");
+      toast.error(
+        "Failed to generate summary. Please try again after some time.",
+      );
     } finally {
       setLoading(false);
     }

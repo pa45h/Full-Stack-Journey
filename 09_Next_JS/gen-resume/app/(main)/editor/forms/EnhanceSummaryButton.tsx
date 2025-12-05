@@ -28,7 +28,9 @@ function GenerateSummaryButton({
       toast.success("Summary enhanced successfully!");
     } catch (error) {
       console.error("Error enhancing summary:", error);
-      toast.error("Failed to enhance summary. Please try again.");
+      toast.error(
+        "Failed to enhance summary. Please try again after some time.",
+      );
     } finally {
       setLoading(false);
     }

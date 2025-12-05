@@ -1,7 +1,13 @@
 "use server";
 
 import ai from "@/lib/gemini";
-import { generateSummarySchema, GenerateSummaryValues } from "@/lib/validation";
+import {
+  generateSummarySchema,
+  GenerateSummaryValues,
+  generateWorkExperienceSchema,
+  GenerateWorkExperienceValues,
+  workExperience,
+} from "@/lib/validation";
 
 export async function generateSummary(input: GenerateSummaryValues) {
   const { jobTitle, workExperiences, educations, projects, skills } =
@@ -60,7 +66,7 @@ export async function generateSummary(input: GenerateSummaryValues) {
   console.log("Prompt---", promptWithoutSummary);
 
   const aiResponse = await ai.models.generateContent({
-    model: "gemini-2.0-flash-lite",
+    model: "gemini-2.5-flash-lite",
     contents: promptWithoutSummary,
   });
 
@@ -104,4 +110,47 @@ Return only the enhanced professional summary text.`;
   }
 
   return aiResponse.text.trim();
+}
+
+export async function generateWorkExperience(
+  input: GenerateWorkExperienceValues,
+) {
+  const { description } = generateWorkExperienceSchema.parse(input);
+
+  const prompt = `You are an expert resume writer. your task is to generate a single work experience entry based on the user input provided below. your response must be adhere to the following structure. you can omit fields if they can't be infered from the provided data, but don't add any new ones.
+
+  Follow this EXACT output format (do NOT add extra text):
+
+  Job title: <job title>
+  Company: <company name>
+  Start Date: <YYYY-MM-DD>
+  End Date: <YYYY-MM-DD>
+  Description: <an optimized, concise, and impactful description of the work experience in bullet point( - ) format, might be infered from the job title>
+
+  If a field cannot be inferred, return it as an empty value.
+
+  User input description:
+  ${description}
+  `;
+
+  console.log("Work Experience Prompt---", prompt);
+
+  const aiResponse = await ai.models.generateContent({
+    model: "gemini-2.5-flash",
+    contents: prompt,
+  });
+
+  console.log("Work Experience---", aiResponse.text);
+
+  if (!aiResponse.text) {
+    throw new Error("Failed to generate work experience");
+  }
+  const text = aiResponse.text;
+  return {
+    position: text.match(/Job title: (.*)/)?.[1] || "",
+    company: text.match(/Company: (.*)/)?.[1] || "",
+    description: (text.match(/Description:([\s\S]*)/)?.[1] || "").trim(),
+    startDate: text.match(/Start Date: (\d{4}-\d{2}-\d{2})/)?.[1],
+    endDate: text.match(/End Date: (\d{4}-\d{2}-\d{2}|Present)/)?.[1],
+  } satisfies workExperience;
 }
