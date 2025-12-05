@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Providers from "@/components/Providers";
+import { ThemeProvider } from "next-themes";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,7 +29,16 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-white text-black dark:bg-black dark:text-white`}
       >
-        <Providers>{children}</Providers>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Toaster richColors />
+          <ClerkProvider
+            appearance={{
+              baseTheme: dark,
+            }}
+          >
+            {children}
+          </ClerkProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

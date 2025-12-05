@@ -64,6 +64,7 @@ function SkillsForm({ resumeData, setResumeData }: EditorFormProps) {
                       field.onChange(skills);
                     }}
                     className="h-24"
+                    value={field.value?.join(", ") || ""}
                   />
                 </FormControl>
                 <FormMessage />

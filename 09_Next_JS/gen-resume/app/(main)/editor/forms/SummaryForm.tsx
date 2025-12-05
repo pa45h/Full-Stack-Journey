@@ -1,6 +1,7 @@
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -11,7 +12,9 @@ import { EditorFormProps } from "@/lib/types";
 import { summarySchema, SummaryValues } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import GenerateSummaryButton from "./GenerateSummaryButton";
+import EnhanceSummaryButton from "./EnhanceSummaryButton";
 
 function SummaryForm({ resumeData, setResumeData }: EditorFormProps) {
   const form = useForm<SummaryValues>({
@@ -49,12 +52,26 @@ function SummaryForm({ resumeData, setResumeData }: EditorFormProps) {
             name="summary"
             render={({ field }) => (
               <FormItem>
+                <div className="mb-2 flex justify-end gap-2">
+                  <GenerateSummaryButton
+                    resumeData={resumeData}
+                    onSummaryGenerated={(summary) =>
+                      form.setValue("summary", summary)
+                    }
+                  />
+                  <EnhanceSummaryButton
+                    resumeData={resumeData}
+                    onSummaryGenerated={(summary) =>
+                      form.setValue("summary", summary)
+                    }
+                  />
+                </div>
                 <FormLabel className="sr-only">Professional Summary</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Enter your professional summary"
                     {...field}
-                    className="h-24"
+                    placeholder={`- Generate: generate a summary based on your data.\n- Enhance: type and improve your existing summary.`}
+                    className="h-32"
                   />
                 </FormControl>
                 <FormMessage />
