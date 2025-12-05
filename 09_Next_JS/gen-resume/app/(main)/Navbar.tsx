@@ -6,12 +6,9 @@ import { CreditCard } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { dark } from "@clerk/themes";
-import { useTheme } from "next-themes";
 import logo from "../logo.jpg";
 
 function Navbar() {
-  const { theme } = useTheme();
   return (
     <header className="shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-1">
@@ -29,7 +26,6 @@ function Navbar() {
           <ThemeToggle />
           <UserButton
             appearance={{
-              baseTheme: theme === "dark" ? dark : undefined,
               elements: {
                 avatarBox: {
                   width: 35,

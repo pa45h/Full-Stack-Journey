@@ -23,10 +23,11 @@ export const steps: {
     key: "personal-info",
   },
   {
-    title: "Work Experience",
-    component: WorkExperienceForm,
-    key: "work-experience",
+    title: "Skills",
+    component: SkillsForm,
+    key: "skills",
   },
+
   {
     title: "Education",
     component: EducationForm,
@@ -38,9 +39,9 @@ export const steps: {
     key: "projects",
   },
   {
-    title: "Skills",
-    component: SkillsForm,
-    key: "skills",
+    title: "Work Experience",
+    component: WorkExperienceForm,
+    key: "work-experience",
   },
   {
     title: "Summary",

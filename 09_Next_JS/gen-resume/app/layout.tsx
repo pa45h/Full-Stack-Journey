@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
-import { ThemeProvider } from "next-themes";
-import { Toaster } from "@/components/ui/sonner";
+import Providers from "@/components/Providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,16 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <ClerkProvider>
-        <body
-          className={`${inter.className} bg-white text-black dark:bg-black dark:text-white`}
-        >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
-            <Toaster richColors />
-          </ThemeProvider>
-        </body>
-      </ClerkProvider>
+      <body
+        className={`${inter.className} bg-white text-black dark:bg-black dark:text-white`}
+      >
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
