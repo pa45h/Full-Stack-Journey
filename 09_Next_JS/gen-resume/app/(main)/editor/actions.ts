@@ -9,8 +9,14 @@ export async function saveResume(values: ResumeValues) {
   const { id } = values;
   console.log("Recieved ResumeValues---", values);
 
-  const { photo, workExperiences, educations, projects, ...resumeValues } =
-    resumeSchema.parse(values);
+  const {
+    photo,
+    workExperiences,
+    educations,
+    projects,
+    customSections,
+    ...resumeValues
+  } = resumeSchema.parse(values);
 
   const { userId } = await auth();
 
@@ -75,6 +81,24 @@ export async function saveResume(values: ResumeValues) {
             ...proj,
           })),
         },
+        customSections: {
+          deleteMany: {},
+          create: (customSections || [])
+            .filter((section) => section.title)
+            .map((section) => ({
+              title: section.title as string,
+              items: {
+                create: (section.items || [])
+                  .filter((item) => item.title)
+                  .map((item) => ({
+                    title: item.title as string,
+                    subTitle: item.subTitle || undefined,
+                    description: item.description || undefined,
+                    dateRange: item.dateRange || undefined,
+                  })),
+              },
+            })),
+        },
         updatedAt: new Date(),
       },
     });
@@ -102,6 +126,23 @@ export async function saveResume(values: ResumeValues) {
           create: projects?.map((proj) => ({
             ...proj,
           })),
+        },
+        customSections: {
+          create: (customSections || [])
+            .filter((section) => section.title)
+            .map((section) => ({
+              title: section.title as string,
+              items: {
+                create: (section.items || [])
+                  .filter((item) => item.title)
+                  .map((item) => ({
+                    title: item.title as string,
+                    subTitle: item.subTitle || undefined,
+                    description: item.description || undefined,
+                    dateRange: item.dateRange || undefined,
+                  })),
+              },
+            })),
         },
       },
     });

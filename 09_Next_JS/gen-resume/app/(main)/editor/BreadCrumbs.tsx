@@ -16,9 +16,9 @@ interface BreadCrumbsProps {
 
 function BreadCrumbs({ currentStep, setCurrentStep }: BreadCrumbsProps) {
   return (
-    <div className="flex justify-center">
+    <div className="flex w-full justify-center">
       <Breadcrumb>
-        <BreadcrumbList>
+        <BreadcrumbList className="mx-auto flex w-full items-center justify-center text-center">
           {steps.map((step) => (
             <React.Fragment key={step.key}>
               <BreadcrumbItem>

@@ -10,8 +10,14 @@ import {
 } from "@/lib/validation";
 
 export async function generateSummary(input: GenerateSummaryValues) {
-  const { jobTitle, workExperiences, educations, projects, skills } =
-    generateSummarySchema.parse(input);
+  const {
+    jobTitle,
+    workExperiences,
+    educations,
+    projects,
+    customSections,
+    skills,
+  } = generateSummarySchema.parse(input);
 
   let promptWithoutSummary = `You are an expert resume writer. Using the resume data below, write a concise 40-60 word professional summary tailored to the person's field and experience for the job role provided.
     Requirements:
@@ -53,6 +59,18 @@ export async function generateSummary(input: GenerateSummaryValues) {
     resumeJson.projects = projects.map((proj) => ({
       title: proj.title || undefined,
       description: proj.description || undefined,
+    }));
+  }
+
+  if (customSections?.length) {
+    resumeJson.customSections = customSections.map((section) => ({
+      title: section.title || undefined,
+      items: section.items?.map((item) => ({
+        title: item.title || undefined,
+        subTitle: item.subTitle || undefined,
+        description: item.description || undefined,
+        dateRange: item.dateRange || undefined,
+      })),
     }));
   }
 

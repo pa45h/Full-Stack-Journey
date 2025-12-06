@@ -58,6 +58,15 @@ export function mapToResumeValues(data: ResumeServerData): ResumeValues {
       liveUrl: proj.liveUrl || undefined,
       repoUrl: proj.repoUrl || undefined,
     })),
+    customSections: data.customSections.map((section) => ({
+      title: section.title || undefined,
+      items: section.items.map((item) => ({
+        title: item.title || undefined,
+        subTitle: item.subTitle || undefined,
+        description: item.description || undefined,
+        dateRange: item.dateRange || undefined,
+      })),
+    })),
     skills: data.skills || [],
     borderStyle: data.borderStyle,
     colorHex: data.colorHex,

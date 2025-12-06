@@ -101,12 +101,39 @@ export const summarySchema = z.object({
 });
 export type SummaryValues = z.infer<typeof summarySchema>;
 
+export const itemSchema = z.object({
+  items: z
+    .array(
+      z.object({
+        title: optionalString,
+        subTitle: optionalString,
+        description: optionalString,
+        dateRange: optionalString,
+      }),
+    )
+    .optional(),
+});
+export type ItemValues = z.infer<typeof itemSchema>;
+
+export const customSectionSchema = z.object({
+  customSections: z
+    .array(
+      z.object({
+        title: optionalString,
+        items: itemSchema.shape.items,
+      }),
+    )
+    .optional(),
+});
+export type CustomSectionValues = z.infer<typeof customSectionSchema>;
+
 export const resumeSchema = z.object({
   ...generalInfoSchema.shape,
   ...personalInfoSchema.shape,
   ...workExperienceSchema.shape,
   ...educationSchema.shape,
   ...projectSchema.shape,
+  ...customSectionSchema.shape,
   ...skillsSchema.shape,
   ...summarySchema.shape,
   colorHex: optionalString,
@@ -133,6 +160,7 @@ export const generateSummarySchema = z.object({
   ...workExperienceSchema.shape,
   ...educationSchema.shape,
   ...projectSchema.shape,
+  ...customSectionSchema.shape,
   ...skillsSchema.shape,
 });
 export type GenerateSummaryValues = z.infer<typeof generateSummarySchema>;
