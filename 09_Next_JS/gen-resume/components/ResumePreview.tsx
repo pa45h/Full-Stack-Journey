@@ -7,6 +7,14 @@ import { formatDate } from "date-fns";
 import { Badge } from "./ui/badge";
 import { BorderStyles } from "@/app/(main)/editor/BorderStyleButton";
 import Link from "next/link";
+import {
+  Github,
+  Link2,
+  Linkedin,
+  Mail,
+  MapPinHouse,
+  Phone,
+} from "lucide-react";
 
 interface ResumePreviewProps {
   resumeData: ResumeValues;
@@ -27,7 +35,7 @@ function ResumePreview({ resumeData, className }: ResumePreviewProps) {
       ref={containerRef}
     >
       <div
-        className={cn("space-y-6 p-6", !width && "invisible")}
+        className={cn("space-y-4 p-5", !width && "invisible")}
         style={{
           zoom: (1 / 794) * width,
         }}
@@ -80,83 +88,125 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
     return () => URL.revokeObjectURL(objectUrl);
   }, [photo]);
   return (
-    <div className="flex items-center gap-6">
-      {photoSrc && (
-        <Image
-          src={photoSrc}
-          width={100}
-          height={100}
-          alt="Profile Picture"
-          className="aspect-square rounded-md object-cover"
-          style={{
-            borderRadius:
-              borderStyle === BorderStyles.SQUARE
-                ? "0px"
-                : borderStyle === BorderStyles.CIRCLE
-                  ? "9999px"
-                  : "10%",
-          }}
-        />
-      )}
-      <div className="space-y-2.5">
-        <div className="space-y-1">
-          <p
-            className="text-4xl font-bold"
+    <div className="space-y-4">
+      <div className="w-fit mx-auto flex items-center gap-14">
+        {photoSrc && (
+          <Image
+            src={photoSrc}
+            width={120}
+            height={120}
+            alt="Profile Picture"
+            className="aspect-square object-cover"
             style={{
-              color: colorHex,
+              borderRadius:
+                borderStyle === BorderStyles.SQUARE
+                  ? "0px"
+                  : borderStyle === BorderStyles.CIRCLE
+                    ? "9999px"
+                    : "8px",
             }}
-          >
-            {firstName} {lastName}
-          </p>
-          <p
-            className="font-medium"
-            style={{
-              color: colorHex,
-            }}
-          >
-            {jobTitle}
-          </p>
+          />
+        )}
+        <div className="flex flex-col items-start space-y-2">
+          <div className="space-y-1">
+            <h1
+              className="text-5xl font-bold tracking-tight"
+              style={{
+                color: colorHex,
+              }}
+            >
+              {firstName} {lastName}
+            </h1>
+            <p
+              className="text-xl font-medium"
+              style={{
+                color: colorHex,
+              }}
+            >
+              {jobTitle}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-gray-600">
+            {(city || country) && (
+              <div className="flex items-center gap-1.5">
+                <MapPinHouse className="size-4" />
+                <span>
+                  {city}
+                  {city && country ? ", " : ""}
+                  {country}
+                </span>
+              </div>
+            )}
+            {phone && (
+              <div className="flex items-center gap-1.5">
+                <Phone className="size-4" />
+                <Link href={`tel:${phone}`} className="hover:underline">
+                  {phone}
+                </Link>
+              </div>
+            )}
+            {email && (
+              <div className="flex items-center gap-1.5">
+                <Mail className="size-4" />
+                <Link href={`mailto:${email}`} className="hover:underline">
+                  {email}
+                </Link>
+              </div>
+            )}
+          </div>
+
+          <div className="flex flex-wrap gap-4 text-sm font-medium">
+            {linkedinUrl && (
+              <Link
+                href={linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex gap-1.5 hover:underline"
+                style={{ color: colorHex }}
+              >
+                <Linkedin className="size-4" style={{ color: colorHex }} />
+                <span>LinkedIn</span>
+              </Link>
+            )}
+            {githubUrl && (
+              <Link
+                href={githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex gap-1.5 hover:underline"
+                style={{ color: colorHex }}
+              >
+                <Github className="size-4" style={{ color: colorHex }} />
+                <span>GitHub</span>
+              </Link>
+            )}
+            {otherUrl_1 && otherUrlLabel_1 && (
+              <Link
+                href={otherUrl_1}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex gap-1.5 hover:underline items-center"
+                style={{ color: colorHex }}
+              >
+                <Link2 className="size-4" style={{ color: colorHex }} />
+                <span>{otherUrlLabel_1}</span>
+              </Link>
+            )}
+            {otherUrl_2 && otherUrlLabel_2 && (
+              <Link
+                href={otherUrl_2}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline flex gap-1.5 items-center"
+                style={{ color: colorHex }}
+              >
+                <Link2 className="size-4" style={{ color: colorHex }} />
+                <span>{otherUrlLabel_2}</span>
+              </Link>
+            )}
+          </div>
         </div>
-        <p className="text-xs text-gray-500">
-          {city}
-          {city && country ? ", " : ""}
-          {country}
-          {((city || country) && phone) || email ? " | " : ""}
-          <Link href={`tel:${phone}`} className="underline">
-            {phone}
-          </Link>
-          {phone && email ? " | " : ""}
-          <Link href={`mailto:${email}`} className="underline">
-            {email}
-          </Link>
-        </p>
-      </div>
-      <div
-        className="ml-auto flex flex-col items-start space-y-1 border text-xs font-medium underline"
-        style={{
-          color: colorHex,
-        }}
-      >
-        {linkedinUrl && (
-          <Link href={linkedinUrl} target="_blank" rel="noopener noreferrer">
-            LinkedIn
-          </Link>
-        )}
-        {githubUrl && (
-          <Link href={githubUrl} target="_blank" rel="noopener noreferrer">
-            GitHub
-          </Link>
-        )}
-        {otherUrl_1 && otherUrlLabel_1 && (
-          <Link href={otherUrl_1} target="_blank" rel="noopener noreferrer">
-            {otherUrlLabel_1}
-          </Link>
-        )}
-        {otherUrl_2 && otherUrlLabel_2 && (
-          <Link href={otherUrl_2} target="_blank" rel="noopener noreferrer">
-            {otherUrlLabel_2}
-          </Link>
-        )}
       </div>
     </div>
   );
@@ -226,7 +276,7 @@ function WorkExperienceSection({ resumeData }: ResumeSectionProps) {
             >
               <span>{exp.position}</span>
               {exp.startDate && (
-                <span>
+                <span className="text-xs font-normal">
                   {" "}
                   {formatDate(exp.startDate, "MM/yyyy")} -
                   {exp.endDate
@@ -283,7 +333,7 @@ function EducationSection({ resumeData }: ResumeSectionProps) {
                 {edu.fieldOfStudy && ", " + edu.fieldOfStudy}
               </span>
               {edu.startDate && (
-                <span>
+                <span className="text-xs font-normal">
                   {" "}
                   {formatDate(edu.startDate, "yyyy")}
                   {edu.endDate && " - " + formatDate(edu.endDate, "yyyy")}
@@ -432,14 +482,14 @@ function CustomSections({ resumeData }: ResumeSectionProps) {
 
   return (
     <>
-      <div className="break-inside-avoid space-y-6">
+      <div className="break-inside-avoid space-y-4">
         {customSectionsNotEmpty.map((section, index) => {
           const itemsNotEmpty = section.items?.filter(
             (item) => Object.values(item).filter(Boolean).length > 0,
           );
           if (!itemsNotEmpty?.length) return null;
           return (
-            <div key={index} className="space-y-5">
+            <div key={index} className="space-y-4">
               <hr
                 className="border-2 border-black"
                 style={{
@@ -464,7 +514,11 @@ function CustomSections({ resumeData }: ResumeSectionProps) {
                       }}
                     >
                       <span>{item.title}</span>
-                      {item.dateRange && <span>{item.dateRange}</span>}
+                      {item.dateRange && (
+                        <span className="text-xs font-normal">
+                          {item.dateRange}
+                        </span>
+                      )}
                     </div>
                     {item.subTitle && (
                       <p className="text-xs font-semibold">{item.subTitle}</p>
