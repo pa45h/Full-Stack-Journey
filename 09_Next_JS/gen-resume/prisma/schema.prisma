@@ -37,6 +37,7 @@ model Resume {
   educations      Education[]
   workExperiences WorkExperience[]
   projects        Project[]
+  customSections  CustomSection[]
 
   @@map("resumes")
 }
@@ -84,4 +85,30 @@ model Project {
   resume      Resume   @relation(fields: [resumeId], references: [id], onDelete: Cascade)
 
   @@map("projects")
+}
+
+model CustomSection {
+  id        String   @id @default(cuid())
+  resumeId  String
+  title     String
+  items     Item[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  resume    Resume   @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+
+  @@map("custom_sections")
+}
+
+model Item {
+  id              String        @id @default(cuid())
+  customSectionId String
+  title           String
+  subTitle        String?
+  description     String?
+  dateRange       String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  customSection   CustomSection @relation(fields: [customSectionId], references: [id], onDelete: Cascade)
+
+  @@map("items")
 }
