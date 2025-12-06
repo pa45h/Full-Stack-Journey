@@ -38,6 +38,7 @@ function ResumePreview({ resumeData, className }: ResumePreviewProps) {
         <ProjectsSection resumeData={resumeData} />
         <EducationSection resumeData={resumeData} />
         <WorkExperienceSection resumeData={resumeData} />
+        <CustomSections resumeData={resumeData} />
       </div>
     </div>
   );
@@ -415,6 +416,70 @@ function SkillsSection({ resumeData }: ResumeSectionProps) {
             </Badge>
           ))}
         </div>
+      </div>
+    </>
+  );
+}
+
+function CustomSections({ resumeData }: ResumeSectionProps) {
+  const { customSections, colorHex } = resumeData;
+
+  const customSectionsNotEmpty = customSections?.filter(
+    (section) => Object.values(section).filter(Boolean).length > 0,
+  );
+
+  if (!customSectionsNotEmpty?.length) return null;
+
+  return (
+    <>
+      <div className="break-inside-avoid space-y-6">
+        {customSectionsNotEmpty.map((section, index) => {
+          const itemsNotEmpty = section.items?.filter(
+            (item) => Object.values(item).filter(Boolean).length > 0,
+          );
+          if (!itemsNotEmpty?.length) return null;
+          return (
+            <div key={index} className="space-y-5">
+              <hr
+                className="border-2 border-black"
+                style={{
+                  borderColor: colorHex,
+                }}
+              />
+              <p
+                className="text-lg font-semibold"
+                style={{
+                  color: colorHex,
+                }}
+              >
+                {section.title}
+              </p>
+              {itemsNotEmpty.map((item, itemIndex) => (
+                <>
+                  <div key={itemIndex} className="space-y-1">
+                    <div
+                      className="flex items-center justify-between text-sm font-semibold"
+                      style={{
+                        color: colorHex,
+                      }}
+                    >
+                      <span>{item.title}</span>
+                      {item.dateRange && <span>{item.dateRange}</span>}
+                    </div>
+                    {item.subTitle && (
+                      <p className="text-xs font-semibold">{item.subTitle}</p>
+                    )}
+                    {item.description && (
+                      <div className="text-xs whitespace-pre-line">
+                        {item.description}
+                      </div>
+                    )}
+                  </div>
+                </>
+              ))}
+            </div>
+          );
+        })}
       </div>
     </>
   );

@@ -185,8 +185,13 @@ function CustomSectionItem({
         name={`customSections.${index}.title`}
         render={({ field }) => (
           <FormItem>
+            <FormLabel>Section Title</FormLabel>
             <FormControl>
-              <Input {...field} autoFocus placeholder="Section Title" />
+              <Input
+                {...field}
+                autoFocus
+                placeholder="e.g. Hobbies, Certifications..."
+              />
             </FormControl>
             <FormMessage />
           </FormItem>
