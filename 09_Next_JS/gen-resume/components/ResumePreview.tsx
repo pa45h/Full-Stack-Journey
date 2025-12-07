@@ -18,10 +18,15 @@ import {
 
 interface ResumePreviewProps {
   resumeData: ResumeValues;
+  contentRef?: React.Ref<HTMLDivElement>;
   className?: string;
 }
 
-function ResumePreview({ resumeData, className }: ResumePreviewProps) {
+function ResumePreview({
+  resumeData,
+  contentRef,
+  className,
+}: ResumePreviewProps) {
   const containerRef = useRef<HTMLDivElement>(null!);
 
   const { width, height } = useDimentions(containerRef);
@@ -39,6 +44,8 @@ function ResumePreview({ resumeData, className }: ResumePreviewProps) {
         style={{
           zoom: (1 / 794) * width,
         }}
+        ref={contentRef}
+        id="resumePreviewContent"
       >
         <PersonalInfoHeader resumeData={resumeData} />
         <SummarySection resumeData={resumeData} />
@@ -494,7 +501,7 @@ function CustomSections({ resumeData }: ResumeSectionProps) {
 
   return (
     <>
-      <div className="break-inside-avoid space-y-4">
+      <div className="space-y-4">
         {customSectionsNotEmpty.map((section, index) => {
           const itemsNotEmpty = section.items?.filter(
             (item) => Object.values(item).filter(Boolean).length > 0,
@@ -518,7 +525,7 @@ function CustomSections({ resumeData }: ResumeSectionProps) {
               </p>
               {itemsNotEmpty.map((item, itemIndex) => (
                 <>
-                  <div key={itemIndex} className="space-y-1">
+                  <div key={itemIndex} className="break-inside-avoid space-y-1">
                     <div
                       className="flex items-center justify-between text-sm font-semibold"
                       style={{

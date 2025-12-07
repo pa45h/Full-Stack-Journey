@@ -11,9 +11,9 @@ import {
 import { ResumeServerData } from "@/lib/types";
 import { mapToResumeValues } from "@/lib/utils";
 import { formatDate } from "date-fns";
-import { MoreVertical, Trash2 } from "lucide-react";
+import { MoreVertical, Printer, Trash2 } from "lucide-react";
 import Link from "next/link";
-import { useState, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import { toast } from "sonner";
 import { deleteResume } from "./actions";
 import {
@@ -25,12 +25,20 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import LoadingButton from "@/components/LoadingButton";
+import { useReactToPrint } from "react-to-print";
 
 interface ResumeItemProps {
   resume: ResumeServerData;
 }
 
 export default function ResumeItem({ resume }: ResumeItemProps) {
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const reactToPrintFn = useReactToPrint({
+    contentRef,
+    documentTitle: resume.title || "Resume",
+  });
+
   const wasUpdated = resume.updatedAt > resume.createdAt;
 
   return (
@@ -55,20 +63,22 @@ export default function ResumeItem({ resume }: ResumeItemProps) {
       >
         <ResumePreview
           resumeData={mapToResumeValues(resume)}
+          contentRef={contentRef}
           className="overflow-hidden shadow transition-shadow duration-300 group-hover:shadow-lg"
         />
         <div className="absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-white" />
       </Link>
-      <MoreMenu resdumeId={resume.id} />
+      <MoreMenu resdumeId={resume.id} reactToPrintFn={reactToPrintFn} />
     </div>
   );
 }
 
 interface MoreMenuProps {
   resdumeId: string;
+  reactToPrintFn: () => void;
 }
 
-function MoreMenu({ resdumeId }: MoreMenuProps) {
+function MoreMenu({ resdumeId, reactToPrintFn }: MoreMenuProps) {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   return (
@@ -90,6 +100,13 @@ function MoreMenu({ resdumeId }: MoreMenuProps) {
           >
             <Trash2 className="text-destructive size-4" />
             <span className="text-destructive mt-0.5">Delete</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={reactToPrintFn}
+            className="flex items-center gap-2 hover:cursor-pointer"
+          >
+            <Printer className="size-5" />
+            <span className="mt-0.5">Print</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
