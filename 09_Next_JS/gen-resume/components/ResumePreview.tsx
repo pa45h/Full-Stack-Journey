@@ -89,7 +89,12 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
   }, [photo]);
   return (
     <div className="space-y-4">
-      <div className="w-fit mx-auto flex items-center gap-14">
+      <div
+        className={cn(
+          `mx-auto flex w-fit items-center gap-14`,
+          photoSrc ? "" : "justify-center",
+        )}
+      >
         {photoSrc && (
           <Image
             src={photoSrc}
@@ -107,8 +112,15 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
             }}
           />
         )}
-        <div className="flex flex-col items-start space-y-2">
-          <div className="space-y-1">
+        <div
+          className={cn(
+            "flex flex-col items-start space-y-2",
+            photoSrc ? "items-start" : "items-center",
+          )}
+        >
+          <div
+            className={cn("space-y-1", photoSrc ? "text-left" : "text-center")}
+          >
             <h1
               className="text-5xl font-bold tracking-tight"
               style={{
@@ -141,7 +153,7 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
             {phone && (
               <div className="flex items-center gap-1.5">
                 <Phone className="size-4" />
-                <Link href={`tel:${phone}`} className="hover:underline">
+                <Link href={`tel:${phone}`} className="underline">
                   {phone}
                 </Link>
               </div>
@@ -149,7 +161,7 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
             {email && (
               <div className="flex items-center gap-1.5">
                 <Mail className="size-4" />
-                <Link href={`mailto:${email}`} className="hover:underline">
+                <Link href={`mailto:${email}`} className="underline">
                   {email}
                 </Link>
               </div>
@@ -162,7 +174,7 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
                 href={linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex gap-1.5 hover:underline"
+                className="flex gap-1.5 underline"
                 style={{ color: colorHex }}
               >
                 <Linkedin className="size-4" style={{ color: colorHex }} />
@@ -174,7 +186,7 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
                 href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex gap-1.5 hover:underline"
+                className="flex gap-1.5 underline"
                 style={{ color: colorHex }}
               >
                 <Github className="size-4" style={{ color: colorHex }} />
@@ -186,7 +198,7 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
                 href={otherUrl_1}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex gap-1.5 hover:underline items-center"
+                className="flex items-center gap-1.5 underline"
                 style={{ color: colorHex }}
               >
                 <Link2 className="size-4" style={{ color: colorHex }} />
@@ -198,7 +210,7 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
                 href={otherUrl_2}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:underline flex gap-1.5 items-center"
+                className="flex items-center gap-1.5 underline"
                 style={{ color: colorHex }}
               >
                 <Link2 className="size-4" style={{ color: colorHex }} />
