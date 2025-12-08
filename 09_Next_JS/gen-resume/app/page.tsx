@@ -23,7 +23,7 @@ export default function GenResumeLanding() {
     <div className="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-black text-white">
       {/* Animated Grid Background */}
       <div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 z-0 opacity-20"
         style={{
           backgroundImage: `
             linear-gradient(to right, white 1px, transparent 1px),
@@ -36,28 +36,28 @@ export default function GenResumeLanding() {
       />
 
       {/* Geometric Shapes */}
-      <div className="animate-spin-slow absolute top-20 right-20 h-32 w-32 rounded-full border-2 border-white/20" />
+      <div className="animate-spin-slow absolute top-20 right-20 -z-50 h-32 w-32 rounded-full border-2 border-white/20" />
       <div
-        className="absolute bottom-20 left-20 h-24 w-24 rotate-45 border-2 border-white/20"
+        className="absolute bottom-20 left-20 z-0 h-24 w-24 rotate-45 border-2 border-white/20"
         style={{ animation: "spin 8s linear infinite reverse" }}
       />
       <div
-        className="absolute top-1/4 left-1/2 h-16 w-16 border-2 border-white/10"
+        className="absolute top-1/4 left-1/2 z-0 h-16 w-16 border-2 border-white/10"
         style={{ animation: "float 5s ease-in-out infinite" }}
       />
 
       {/* Animated Lines */}
       <div
-        className="absolute top-0 left-[12%] h-full w-px bg-linear-to-b from-transparent via-white to-transparent"
+        className="absolute top-0 left-[12%] z-0 h-full w-px bg-linear-to-b from-transparent via-white to-transparent"
         style={{ animation: "slideDown 3s ease-in-out infinite" }}
       />
       <div
-        className="absolute top-0 left-[55%] h-full w-px bg-linear-to-b from-transparent via-white to-transparent"
+        className="absolute top-0 left-[55%] z-0 h-full w-px bg-linear-to-b from-transparent via-white to-transparent"
         style={{ animation: "slideDown 3s ease-in-out infinite" }}
       />
 
       <div
-        className="absolute top-0 right-[15%] h-full w-px bg-linear-to-b from-transparent via-white to-transparent"
+        className="absolute top-0 right-[15%] z-0 h-full w-px bg-linear-to-b from-transparent via-white to-transparent"
         style={{ animation: "slideDown 3s ease-in-out infinite 1s" }}
       />
 
@@ -100,7 +100,10 @@ export default function GenResumeLanding() {
             <div className="space-y-4">
               <div className="animate-in fade-in slide-in-from-left inline-block border border-white/30 px-4 py-2 backdrop-blur-sm duration-700">
                 <span className="text-xs font-bold tracking-widest">
-                  AI-POWERED RESUME BUILDER
+                  AI-POWERED RESUME BUILDER{" "}
+                  <span className="mr-1 rounded-sm bg-white px-1.5 py-0.5 text-black">
+                    FREE
+                  </span>
                 </span>
               </div>
 
@@ -144,7 +147,7 @@ export default function GenResumeLanding() {
             </div>
 
             {/* Stats */}
-            <div className="animate-in fade-in slide-in-from-left flex items-center gap-8 border-t border-white/10 pt-8 delay-1000 duration-700">
+            <div className="animate-in fade-in slide-in-from-left flex items-center gap-8 border-t border-white/10 delay-1000 duration-700">
               {[
                 { value: "Create", label: "Your Way" },
                 { value: "Refine", label: "With Clarity" },
@@ -253,7 +256,7 @@ export default function GenResumeLanding() {
       </div>
 
       {/* Social Links (Centered) */}
-      <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 flex-col items-center gap-4 text-sm">
+      <div className="absolute bottom-3 left-1/2 z-50 flex -translate-x-1/2 flex-col items-center gap-4 text-sm">
         <div className="flex items-center gap-6 text-white/70">
           {[
             {
@@ -282,10 +285,10 @@ export default function GenResumeLanding() {
       </div>
 
       {/* Copyright (Bottom Right) */}
-      <div className="absolute bottom-3 left-7 flex items-center gap-1.5 text-sm text-white/40">
+      <div className="absolute bottom-2 left-7 flex items-center gap-1.5 text-sm text-white/40">
         GenResume <Copyright className="size-4" /> 2025
       </div>
-      <div className="absolute right-7 bottom-3 flex items-center gap-1.5 text-sm text-white/40">
+      <div className="absolute right-7 bottom-2 flex items-center gap-1.5 text-sm text-white/40">
         ~ Parth Katariya
       </div>
 

@@ -136,3 +136,12 @@
   size: A4;
   margin: 0.6cm;
 }
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}

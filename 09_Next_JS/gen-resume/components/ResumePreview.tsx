@@ -1,3 +1,5 @@
+"use client";
+
 import useDimentions from "@/hooks/useDimentions";
 import { ResumeValues } from "@/lib/validation";
 import React, { useRef } from "react";
