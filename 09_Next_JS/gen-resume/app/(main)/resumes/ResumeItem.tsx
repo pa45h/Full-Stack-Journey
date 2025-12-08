@@ -11,7 +11,7 @@ import {
 import { ResumeServerData } from "@/lib/types";
 import { mapToResumeValues } from "@/lib/utils";
 import { formatDate } from "date-fns";
-import { MoreVertical, Printer, Trash2 } from "lucide-react";
+import { Copy, Download, MoreVertical, Printer, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState, useTransition } from "react";
 import { toast } from "sonner";
@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/dialog";
 import LoadingButton from "@/components/LoadingButton";
 import { useReactToPrint } from "react-to-print";
+import { handleCopy } from "../editor/ShareResume";
 
 interface ResumeItemProps {
   resume: ResumeServerData;
@@ -42,7 +43,7 @@ export default function ResumeItem({ resume }: ResumeItemProps) {
   const wasUpdated = resume.updatedAt > resume.createdAt;
 
   return (
-    <div className="group bg-secondary relative flex flex-col justify-between rounded-md border p-4 transition-all duration-300 hover:shadow-md hover:ring ring-white/30">
+    <div className="group bg-secondary relative flex flex-col justify-between rounded-md border p-4 ring-white/30 transition-all duration-300 hover:shadow-md hover:ring">
       <Link
         href={`/editor?resumeId=${resume.id}`}
         className="inline-block w-full text-center"
@@ -105,8 +106,17 @@ function MoreMenu({ resdumeId, reactToPrintFn }: MoreMenuProps) {
             onClick={reactToPrintFn}
             className="flex items-center gap-2 hover:cursor-pointer"
           >
-            <Printer className="size-5" />
-            <span className="mt-0.5">Print</span>
+            <Download className="size-5" />
+            <span className="mt-0.5">Download</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => {
+              handleCopy(resdumeId);
+            }}
+            className="flex items-center gap-2 hover:cursor-pointer"
+          >
+            <Copy className="size-5" />
+            <span className="mt-0.5">Copy Link</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
