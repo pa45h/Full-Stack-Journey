@@ -18,9 +18,12 @@ function ResumePreviewSection({
 }: ResumePreviewSectionProps) {
   return (
     <div
-      className={cn("group relative hidden w-full md:flex md:w-1/2", className)}
+      className={cn(
+        "group relative z-50 hidden w-full md:flex md:w-1/2",
+        className,
+      )}
     >
-      <div className="absolute top-1 left-0.5 flex flex-none flex-col gap-3 opacity-40 transition-opacity group-hover:opacity-100 lg:top-3 xl:opacity-100">
+      <div className="absolute top-1 left-0.5 flex flex-none flex-col gap-1 opacity-40 transition-opacity group-hover:opacity-100 lg:top-3.5 xl:opacity-100">
         <ColorPicker
           color={resumeData.colorHex}
           onChange={(color) =>

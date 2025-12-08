@@ -32,12 +32,13 @@ function BorderStyleButton({ borderStyle, onChange }: BorderStyleButtonProps) {
 
   return (
     <Button
-      variant="outline"
+      variant="secondary"
       size="icon"
       title="Toggle Border Style"
       onClick={handleClick}
+      className="hover:bg-secondary cursor-pointer transition-transform hover:translate-x-1.5"
     >
-      <Icon className="size-5 text-black" />
+      <Icon className="size-5" />
     </Button>
   );
 }

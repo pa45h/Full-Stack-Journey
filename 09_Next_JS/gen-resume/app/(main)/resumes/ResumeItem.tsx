@@ -42,7 +42,7 @@ export default function ResumeItem({ resume }: ResumeItemProps) {
   const wasUpdated = resume.updatedAt > resume.createdAt;
 
   return (
-    <div className="group bg-secondary relative flex flex-col justify-between rounded-md border p-4 transition-all duration-300 hover:shadow-md hover:ring">
+    <div className="group bg-secondary relative flex flex-col justify-between rounded-md border p-4 transition-all duration-300 hover:shadow-md hover:ring ring-white/30">
       <Link
         href={`/editor?resumeId=${resume.id}`}
         className="inline-block w-full text-center"

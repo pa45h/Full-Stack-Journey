@@ -33,12 +33,13 @@ function ColorPicker({ color, onChange }: ColorPickerProps) {
     <Popover open={showPopover} onOpenChange={setShowPopover}>
       <PopoverTrigger asChild>
         <Button
-          variant="outline"
+          variant="secondary"
           size="icon"
           title="Change Resume Color"
           onClick={() => setShowPopover(true)}
+          className="hover:bg-secondary hover:translate-x-1.5 cursor-pointer transition-transform"
         >
-          <PaletteIcon className="size-5 text-black" />
+          <PaletteIcon className="size-5" />
         </Button>
       </PopoverTrigger>
       <PopoverContent

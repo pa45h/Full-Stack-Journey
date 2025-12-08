@@ -36,14 +36,14 @@ function GeneralInfoForm({ resumeData, setResumeData }: EditorFormProps) {
   }, [form, resumeData, setResumeData]);
 
   return (
-    <div className="mx-auto max-w-xl space-y-6">
+    <div className="relative z-50 mx-auto max-w-xl space-y-6">
       <div className="space-y-1.5 text-center">
         <h1 className="text-2xl font-semibold">General Information</h1>
         <p className="text-muted-foreground text-sm">
           This information will not be part of your resume.
         </p>
         <Form {...form}>
-          <form className="space-y-3">
+          <form className="space-y-3 rounded-lg border border-white/20 bg-black px-3 py-6">
             <FormField
               control={form.control}
               name="title"

@@ -33,7 +33,7 @@ export default async function ResumesPage() {
   ]);
 
   return (
-    <main className="mx-auto w-full max-w-7xl space-y-6 px-3 py-6">
+    <main className="relative mx-auto w-full max-w-7xl space-y-6 rounded-lg border border-white/20 bg-white/5 px-3 py-6">
       <Button asChild className="mx-auto flex w-fit gap-2">
         <Link href="/editor">
           <PlusSquare className="size-5" />
@@ -48,6 +48,45 @@ export default async function ResumesPage() {
           <ResumeItem key={resume.id} resume={resume} />
         ))}
       </div>
+
+      {/* Animated Grid Background */}
+      <div
+        className="absolute inset-0 -z-50 h-screen w-screen opacity-20"     
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, white 1px, transparent 1px),
+            linear-gradient(to bottom, white 1px, transparent 1px)
+          `,
+          backgroundSize: "80px 80px",
+          transform: `perspective(500px) rotateX(60deg) scale(2) translateY(-50%)`,
+          transformOrigin: "center top",
+        }}
+      />
+
+      {/* Geometric Shapes */}
+      <div className="animate-spin-slow absolute top-20 right-20 h-32 w-32 rounded-full border-2 border-white/20" />
+      <div
+        className="absolute bottom-20 left-20 h-24 w-24 rotate-45 border-2 border-white/20"
+        style={{ animation: "spin 8s linear infinite reverse" }}
+      />
+      <div
+        className="absolute top-1/4 left-1/2 h-16 w-16 border-2 border-white/10"
+        style={{ animation: "float 5s ease-in-out infinite" }}
+      />
+
+      {/* Pulsing Dots */}
+      <div
+        className="absolute top-1/3 right-1/4 h-2 w-2 rounded-full bg-white"
+        style={{ animation: "pulse 2s ease-in-out infinite" }}
+      />
+      <div
+        className="absolute bottom-1/3 left-1/2 h-2 w-2 rounded-full bg-white"
+        style={{ animation: "pulse 2s ease-in-out infinite 0.5s" }}
+      />
+      <div
+        className="absolute top-21 left-[10%] h-2 w-2 rounded-full bg-white"
+        style={{ animation: "pulse 2s ease-in-out infinite 1s" }}
+      />
     </main>
   );
 }

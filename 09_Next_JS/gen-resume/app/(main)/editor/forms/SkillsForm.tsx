@@ -39,7 +39,7 @@ function SkillsForm({ resumeData, setResumeData }: EditorFormProps) {
   }, [form, resumeData, setResumeData]);
 
   return (
-    <div className="mx-auto max-w-xl space-y-6">
+    <div className="relative z-50 mx-auto max-w-xl space-y-6">
       <div className="space-y-1.5 text-center">
         <h2 className="text-2xl font-semibold">Skills</h2>
         <p className="text-muted-foreground text-sm">
@@ -47,13 +47,16 @@ function SkillsForm({ resumeData, setResumeData }: EditorFormProps) {
         </p>
       </div>
       <Form {...form}>
-        <form className="space-y-3">
+        <form className="space-y-3 rounded-lg border border-white/20 bg-black px-3 py-6">
           <FormField
             control={form.control}
             name="skills"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="sr-only">Skills</FormLabel>
+                <FormDescription>
+                  Add your skills separated by commas.
+                </FormDescription>
                 <FormControl>
                   <Textarea
                     placeholder="e.g. Java, NextJS, ReactJS, MongoDB, ExpressJS, NodeJS, PostgreSQL, TypeScript, Python, Docker, AWS, Git, etc."

@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { ClerkProvider } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
+import { dark, neobrutalism } from "@clerk/themes";
 import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
@@ -27,13 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.className} bg-white text-black dark:bg-black dark:text-white`}
+        className={`${inter.className} h-screen w-screen overflow-x-hidden overflow-y-scroll bg-white text-black dark:bg-black dark:text-white`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Toaster richColors />
           <ClerkProvider
             appearance={{
-              baseTheme: dark,
+              baseTheme: neobrutalism,
             }}
           >
             {children}

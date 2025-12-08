@@ -37,7 +37,7 @@ function SummaryForm({ resumeData, setResumeData }: EditorFormProps) {
   }, [form, resumeData, setResumeData]);
 
   return (
-    <div className="mx-auto max-w-xl space-y-6">
+    <div className="relative z-50 mx-auto max-w-xl space-y-6">
       <div className="space-y.5 text-center">
         <h2 className="text-2xl font-semibold">Professional Summary</h2>
         <p className="text-muted-foreground text-sm">
@@ -46,13 +46,13 @@ function SummaryForm({ resumeData, setResumeData }: EditorFormProps) {
         </p>
       </div>
       <Form {...form}>
-        <form className="space-y-3">
+        <form className="space-y-3 rounded-lg border border-white/20 bg-black px-3 py-6">
           <FormField
             control={form.control}
             name="summary"
             render={({ field }) => (
               <FormItem>
-                <div className="mb-2 flex justify-end gap-2">
+                <div className="mb-2 flex justify-around gap-2">
                   <GenerateSummaryButton
                     resumeData={resumeData}
                     onSummaryGenerated={(summary) =>

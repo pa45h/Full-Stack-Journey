@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import { steps } from "./steps";
 import Link from "next/link";
-import { FileUserIcon, PenLineIcon } from "lucide-react";
+import { FileUserIcon, PenLineIcon, Printer } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 

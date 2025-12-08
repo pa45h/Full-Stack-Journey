@@ -40,14 +40,7 @@ function ResumeEditor({ resumeToEdit }: ResumeEditorProps) {
   )?.component;
 
   return (
-    <div className="flex grow flex-col">
-      <header className="space-y-1.5 border-b p-2 text-center">
-        <h1 className="text-2xl font-bold">Design Your Resume</h1>
-        <p className="text-muted-foreground text-sm">
-          Follow the steps to create and customize your resume. Your changes
-          will be saved automatically.
-        </p>
-      </header>
+    <div className=" flex grow flex-col border-t z-50">
       <main className="relative grow">
         <div className="absolute top-0 bottom-0 flex w-full">
           <div
