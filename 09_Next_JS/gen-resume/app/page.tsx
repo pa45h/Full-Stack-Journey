@@ -20,7 +20,7 @@ export default function GenResumeLanding() {
   const [isHovering, setIsHovering] = useState(false);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black/90 py-10 text-white sm:px-4">
+    <div className="relative min-h-screen overflow-hidden bg-black/90 py-10 text-white sm:px-4 flex justify-center items-center">
       {/* Animated Grid Background */}
       <div
         className="absolute inset-0 z-0 opacity-20"
