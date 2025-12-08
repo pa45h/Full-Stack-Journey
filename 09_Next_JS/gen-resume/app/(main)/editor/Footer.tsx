@@ -33,21 +33,25 @@ function Footer({
     <footer className="w-full border-t px-6 py-2">
       <div className="mx-auto flex max-w-7xl flex-wrap justify-between gap-3">
         <div className="flex items-center gap-3">
-          <Button
-            variant="secondary"
-            onClick={
-              previousStep ? () => setCurrentStep(previousStep) : undefined
-            }
-            disabled={!previousStep}
-          >
-            Previous
-          </Button>
-          <Button
-            onClick={nextStep ? () => setCurrentStep(nextStep) : undefined}
-            disabled={!nextStep}
-          >
-            Next
-          </Button>
+          {previousStep && (
+            <Button
+              variant="secondary"
+              onClick={
+                previousStep ? () => setCurrentStep(previousStep) : undefined
+              }
+              disabled={!previousStep}
+            >
+              Previous
+            </Button>
+          )}
+          {nextStep && (
+            <Button
+              onClick={nextStep ? () => setCurrentStep(nextStep) : undefined}
+              disabled={!nextStep}
+            >
+              Next
+            </Button>
+          )}
         </div>
         <Button
           variant="outline"

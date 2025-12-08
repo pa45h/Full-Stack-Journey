@@ -20,7 +20,7 @@ export default function GenResumeLanding() {
   const [isHovering, setIsHovering] = useState(false);
 
   return (
-    <div className="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-black text-white">
+    <div className="relative min-h-screen overflow-hidden bg-black/90 py-10 text-white sm:px-4 md:py-20">
       {/* Animated Grid Background */}
       <div
         className="absolute inset-0 z-0 opacity-20"
@@ -36,7 +36,10 @@ export default function GenResumeLanding() {
       />
 
       {/* Geometric Shapes */}
-      <div className="animate-spin-slow absolute top-20 right-20 -z-50 h-32 w-32 rounded-full border-2 border-white/20" />
+      <div
+        className="absolute top-20 right-20 z-0 h-32 w-32 rounded-full border-2 border-white/20"
+        style={{ animation: "float 2s ease-in-out infinite" }}
+      />
       <div
         className="absolute bottom-20 left-20 z-0 h-24 w-24 rotate-45 border-2 border-white/20"
         style={{ animation: "spin 8s linear infinite reverse" }}
@@ -91,7 +94,7 @@ export default function GenResumeLanding() {
                   <Sparkles className="h-7 w-7 text-black" />
                 </div>
               </div>
-              <span className="text-3xl font-black tracking-tighter">
+              <span className="text-4xl font-black tracking-tighter">
                 Gen<span className="text-white/70">Resume</span>
               </span>
             </Link>
@@ -107,7 +110,7 @@ export default function GenResumeLanding() {
                 </span>
               </div>
 
-              <h1 className="animate-in fade-in slide-in-from-left text-7xl leading-none font-black tracking-tight delay-150 duration-700">
+              <h1 className="animate-in fade-in slide-in-from-left text-6xl leading-none font-black tracking-tight delay-150 duration-700 sm:text-7xl">
                 Resumes That
                 <br />
                 <span className="relative mt-2 inline-block">
@@ -118,7 +121,7 @@ export default function GenResumeLanding() {
                 </span>
               </h1>
 
-              <p className="animate-in fade-in slide-in-from-left max-w-xl text-xl leading-relaxed text-white/60 delay-500 duration-700">
+              <p className="animate-in fade-in slide-in-from-left max-w-xl leading-relaxed text-white/60 delay-500 duration-700 sm:text-xl">
                 Transform your career story through an interview-winning resume.
                 AI-powered, ATS-optimized, ready in minutes.
               </p>
@@ -127,7 +130,7 @@ export default function GenResumeLanding() {
             {/* CTA Buttons */}
             <div className="animate-in fade-in slide-in-from-left flex items-center gap-4 delay-700 duration-700">
               <Button
-                className="group relative h-15 w-full cursor-pointer overflow-hidden rounded-none bg-white px-8 py-4 font-bold text-black"
+                className="group relative h-15 cursor-pointer overflow-hidden rounded-none bg-white px-8 py-4 font-bold text-black sm:w-full"
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
                 onClick={() => redirect("/resumes")}
@@ -155,7 +158,7 @@ export default function GenResumeLanding() {
               ].map((stat, idx) => (
                 <div key={idx} className="group cursor-pointer">
                   <div
-                    className="mb-1 text-3xl font-black transition-transform group-hover:scale-110"
+                    className="mb-1 text-xl font-black transition-transform group-hover:scale-110 sm:text-3xl"
                     style={{ animation: "countUp 2s ease-out" }}
                   >
                     {stat.value}
@@ -169,7 +172,7 @@ export default function GenResumeLanding() {
           </div>
 
           {/* Right Section - Features */}
-          <div className="col-span-5 space-y-4">
+          <div className="col-span-5 hidden space-y-4 md:block">
             {[
               {
                 icon: <Brain className="h-6 w-6" />,
@@ -255,8 +258,8 @@ export default function GenResumeLanding() {
         </div>
       </div>
 
-      {/* Social Links (Centered) */}
-      <div className="absolute bottom-3 left-1/2 z-50 flex -translate-x-1/2 flex-col items-center gap-4 text-sm">
+      {/* Social Links */}
+      <div className="absolute bottom-3 left-1/2 z-50 hidden -translate-x-1/2 flex-col items-center gap-4 text-sm sm:flex">
         <div className="flex items-center gap-6 text-white/70">
           {[
             {

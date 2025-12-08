@@ -33,12 +33,15 @@ export default async function ResumesPage() {
   ]);
 
   return (
-    <main className=" mx-auto relative flex min-h-screen w-full max-w-7xl flex-col gap-6 px-3 py-6">
-      <div className="flex w-full items-center justify-between rounded-lg border border-white/20 p-3 shadow-md">
+    <main className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-6 px-3 py-6">
+      <div className="flex w-full flex-col items-center justify-between gap-3 rounded-lg border border-white/20 p-3 text-center shadow-md">
         <div className="space-y-1">
           <h1 className="text-3xl font-bold">Your Resumes ({totalCount})</h1>
         </div>
-        <Button asChild className="flex w-fit gap-2 font-bold shadow-[0px_0px_500px_rgba(255,255,255)] hover:shadow-[0px_0px_10px_rgba(255,255,255)] transition-shadow">
+        <Button
+          asChild
+          className="flex w-fit gap-2 font-bold shadow-[0px_0px_500px_rgba(255,255,255)] transition-shadow hover:shadow-[0px_0px_10px_rgba(255,255,255)]"
+        >
           <Link href="/editor">
             <PlusSquare className="size-5" />
             Create New Resume

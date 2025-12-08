@@ -21,7 +21,7 @@ function Navbar() {
               <Sparkles className="h-7 w-7 text-black" />
             </div>
           </div>
-          <span className="text-3xl font-black tracking-tighter">
+          <span className="text-3xl sm:text-4xl font-black tracking-tighter">
             Gen<span className="text-white/70">Resume</span>
           </span>
         </Link>
