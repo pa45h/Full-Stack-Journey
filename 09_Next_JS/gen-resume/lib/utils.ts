@@ -70,6 +70,7 @@ export function mapToResumeValues(data: ResumeServerData): ResumeValues {
     skills: data.skills || [],
     borderStyle: data.borderStyle,
     colorHex: data.colorHex,
+    template: data.template,
     summary: data.summary || undefined,
   };
 }

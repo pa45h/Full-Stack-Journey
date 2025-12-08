@@ -4,6 +4,7 @@ import React from "react";
 import ColorPicker from "./ColorPicker";
 import BorderStyleButton from "./BorderStyleButton";
 import { cn } from "@/lib/utils";
+import TemplatePicker from "./TemplatePicker";
 
 interface ResumePreviewSectionProps {
   resumeData: ResumeValues;
@@ -34,6 +35,13 @@ function ResumePreviewSection({
           borderStyle={resumeData.borderStyle}
           onChange={(borderStyle) =>
             setResumeData({ ...resumeData, borderStyle: borderStyle })
+          }
+        />
+        <TemplatePicker
+          resumeData={resumeData}
+          template={resumeData.template}
+          onChange={(template) =>
+            setResumeData({ ...resumeData, template: template })
           }
         />
       </div>

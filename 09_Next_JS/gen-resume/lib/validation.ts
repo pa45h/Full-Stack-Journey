@@ -138,6 +138,7 @@ export const resumeSchema = z.object({
   ...summarySchema.shape,
   colorHex: optionalString,
   borderStyle: optionalString,
+  template: optionalString,
 });
 export type ResumeValues = Omit<z.infer<typeof resumeSchema>, "photo"> & {
   id?: string;

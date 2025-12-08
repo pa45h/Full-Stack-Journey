@@ -15,6 +15,7 @@ model Resume {
   photoUrl    String?
   colorHex    String  @default("#000000")
   borderStyle String  @default("squircle")
+  template    String  @default("classic")
   summary     String?
   firstName   String?
   lastName    String?

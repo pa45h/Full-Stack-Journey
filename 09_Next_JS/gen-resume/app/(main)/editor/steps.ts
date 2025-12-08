@@ -28,7 +28,6 @@ export const steps: {
     component: SkillsForm,
     key: "skills",
   },
-
   {
     title: "Education",
     component: EducationForm,
