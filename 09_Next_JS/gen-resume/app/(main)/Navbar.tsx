@@ -1,11 +1,8 @@
 "use client";
 
 import { UserButton } from "@clerk/nextjs";
-import { CreditCard, FileUser, Home, Sparkles } from "lucide-react";
-import Image from "next/image";
+import { FileUser, Home, Sparkles } from "lucide-react";
 import Link from "next/link";
-import React from "react";
-import logo from "../icon.svg";
 
 function Navbar() {
   return (
@@ -13,15 +10,15 @@ function Navbar() {
       <div className="relative z-50 mx-auto flex max-w-7xl items-center justify-between gap-3 px-6 py-4">
         <Link
           href="/"
-          className="group flex w-fit cursor-pointer items-center gap-3"
+          className="group z-50 flex w-fit cursor-pointer items-center gap-3"
         >
           <div className="relative">
-            <div className="absolute inset-0 bg-white opacity-50 blur-xl" />
-            <div className="relative bg-white p-3">
+            <div className="absolute inset-0 bg-white opacity-50 blur-xl transition-opacity group-hover:opacity-100" />
+            <div className="relative transform bg-white p-3 transition-transform duration-300 group-hover:rotate-12">
               <Sparkles className="h-7 w-7 text-black" />
             </div>
           </div>
-          <span className="text-3xl sm:text-4xl font-black tracking-tighter">
+          <span className="text-4xl font-black tracking-tighter">
             Gen<span className="text-white/70">Resume</span>
           </span>
         </Link>

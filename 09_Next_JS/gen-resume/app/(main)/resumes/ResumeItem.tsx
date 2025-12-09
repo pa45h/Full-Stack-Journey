@@ -43,7 +43,7 @@ export default function ResumeItem({ resume }: ResumeItemProps) {
   const wasUpdated = resume.updatedAt > resume.createdAt;
 
   return (
-    <div className="group bg-secondary relative flex flex-col justify-between rounded-md border p-4 ring-white/30 transition-all duration-300 hover:shadow-md hover:ring">
+    <div className="group bg-secondary relative flex flex-col justify-between rounded-md border p-4 ring-white/50 transition-all duration-300 hover:shadow-md hover:ring">
       <Link
         href={`/editor?resumeId=${resume.id}`}
         className="inline-block w-full text-center"
@@ -106,7 +106,7 @@ function MoreMenu({ resdumeId, reactToPrintFn }: MoreMenuProps) {
             onClick={reactToPrintFn}
             className="flex items-center gap-2 hover:cursor-pointer"
           >
-            <Download className="size-5" />
+            <Download className="size-4 text-white" />
             <span className="mt-0.5">Download</span>
           </DropdownMenuItem>
           <DropdownMenuItem
@@ -115,7 +115,7 @@ function MoreMenu({ resdumeId, reactToPrintFn }: MoreMenuProps) {
             }}
             className="flex items-center gap-2 hover:cursor-pointer"
           >
-            <Copy className="size-5" />
+            <Copy className="size-4 text-white" />
             <span className="mt-0.5">Copy Link</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
