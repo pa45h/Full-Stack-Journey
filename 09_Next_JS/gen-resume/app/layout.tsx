@@ -28,6 +28,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.className} h-screen w-screen overflow-x-hidden overflow-y-scroll bg-white text-black dark:bg-black dark:text-white`}
+        suppressHydrationWarning
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Toaster richColors />

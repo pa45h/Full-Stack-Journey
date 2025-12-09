@@ -24,7 +24,7 @@ function TemplatePicker({
   const [showTemplates, setShowTemplates] = useState(false);
   return (
     <Popover open={showTemplates} onOpenChange={setShowTemplates}>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button
           variant="secondary"
           size="icon"

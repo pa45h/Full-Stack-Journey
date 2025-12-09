@@ -354,11 +354,10 @@ export function EducationSection({ resumeData }: ResumeSectionProps) {
                     style={{ color: colorHex }}
                   >
                     {edu.degree}
-                    {edu.fieldOfStudy && ", " + edu.fieldOfStudy}
-                  </h3>
-                  <p className="text-sm font-semibold text-gray-700">
+                    {edu.fieldOfStudy && " - " + edu.fieldOfStudy}
+                    {", "}
                     {edu.institution}
-                  </p>
+                  </h3>
                 </div>
                 {edu.startDate && (
                   <span className="text-sm whitespace-nowrap text-gray-600">
@@ -481,7 +480,7 @@ export function SkillsSection({ resumeData }: ResumeSectionProps) {
         {skills.map((skill, index) => (
           <Badge
             key={index}
-            className="px-3 py-1 text-sm font-medium text-white hover:bg-black"
+            className="bg-black px-3 py-1 text-sm font-medium text-white"
             style={{
               backgroundColor: colorHex,
               borderRadius:

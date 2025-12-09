@@ -12,7 +12,6 @@ import { EditorFormProps } from "@/lib/types";
 import { personalInfoSchema, PersonalInfoValues } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect, useRef } from "react";
-import { resume } from "react-dom/server";
 import { useForm } from "react-hook-form";
 
 function PersonalInfoForm({ resumeData, setResumeData }: EditorFormProps) {
@@ -63,7 +62,7 @@ function PersonalInfoForm({ resumeData, setResumeData }: EditorFormProps) {
             render={({ field: { value, ...fieldValues } }) => (
               <FormItem>
                 <FormLabel>Profile Picture</FormLabel>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-col items-center gap-2 sm:flex-row">
                   <FormControl>
                     <Input
                       type="file"
@@ -77,7 +76,7 @@ function PersonalInfoForm({ resumeData, setResumeData }: EditorFormProps) {
                     />
                   </FormControl>
                   <Button
-                    variant="secondary"
+                    variant="destructive"
                     type="button"
                     onClick={() => {
                       fieldValues.onChange(null);

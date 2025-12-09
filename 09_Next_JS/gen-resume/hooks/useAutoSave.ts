@@ -9,7 +9,7 @@ import { fileReplacer } from "@/lib/utils";
 export default function useAutoSave(resumeData: ResumeValues) {
   const searchParams = useSearchParams();
 
-  const debouncedResumeData = useDebounce(resumeData, 1500);
+  const debouncedResumeData = useDebounce(resumeData, 2000);
 
   const [resumeId, setResumeId] = useState(resumeData.id);
 
@@ -54,7 +54,6 @@ export default function useAutoSave(resumeData: ResumeValues) {
             `?${newSearchParams.toString()}`,
           );
         }
-        console.log("Auto-Save Successful---", updatedResume);
         toast.success("All Changes Saved!");
       } catch (error) {
         setIsError(true);
@@ -86,5 +85,6 @@ export default function useAutoSave(resumeData: ResumeValues) {
     hasUnsavedChanges:
       JSON.stringify(resumeData, fileReplacer) !==
       JSON.stringify(lastSavedData, fileReplacer),
+    resumeId,
   };
 }

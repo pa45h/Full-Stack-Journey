@@ -26,7 +26,7 @@ export default async function ResumesPage() {
   const [resumes, totalCount] = await Promise.all([
     prisma.resume.findMany({
       where: { userId },
-      orderBy: { createdAt: "desc" },
+      orderBy: { updatedAt: "desc" },
       include: resumeDataInclude,
     }),
     prisma.resume.count({ where: { userId } }),

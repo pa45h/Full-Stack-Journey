@@ -17,7 +17,11 @@ import { formatDate } from "date-fns";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
 
-function Professional({ resumeData, contentRef, className }: ResumePreviewProps) {
+function Professional({
+  resumeData,
+  contentRef,
+  className,
+}: ResumePreviewProps) {
   const containerRef = useRef<HTMLDivElement>(null!);
   const { width } = useDimentions(containerRef);
 
@@ -38,14 +42,20 @@ function Professional({ resumeData, contentRef, className }: ResumePreviewProps)
         id="resumePreviewContent"
       >
         {/* Header Section */}
-        <div className="border-b-4 p-8 pb-6" style={{ borderColor: resumeData.colorHex }}>
+        <div
+          className="border-b-4 p-8 pb-6"
+          style={{ borderColor: resumeData.colorHex }}
+        >
           <PersonalInfoHeader resumeData={resumeData} />
         </div>
 
         {/* Main Content - Two Columns */}
         <div className="flex">
           {/* Left Column */}
-          <div className="w-[38%] space-y-5 border-r-2 p-6 pr-5" style={{ borderColor: resumeData.colorHex }}>
+          <div
+            className="w-[38%] space-y-5 border-r-2 p-6 pr-5"
+            style={{ borderColor: resumeData.colorHex }}
+          >
             <ContactSection resumeData={resumeData} />
             <SkillsSection resumeData={resumeData} />
             <EducationSection resumeData={resumeData} />
@@ -69,7 +79,8 @@ interface ResumeSectionProps {
 }
 
 function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
-  const { photo, firstName, lastName, jobTitle, borderStyle, colorHex } = resumeData;
+  const { photo, firstName, lastName, jobTitle, borderStyle, colorHex } =
+    resumeData;
 
   const [photoSrc, setPhotoSrc] = useState(photo instanceof File ? "" : photo);
 
@@ -101,12 +112,13 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
         />
       )}
       <div className="flex-1 space-y-2">
-        <h1 className="text-5xl font-bold tracking-tight" style={{ color: colorHex }}>
+        <h1
+          className="text-5xl font-bold tracking-tight"
+          style={{ color: colorHex }}
+        >
           {firstName} {lastName}
         </h1>
-        <p className="text-lg font-medium text-gray-700">
-          {jobTitle}
-        </p>
+        <p className="text-lg font-medium text-gray-700">{jobTitle}</p>
       </div>
     </div>
   );
@@ -127,14 +139,22 @@ function ContactSection({ resumeData }: ResumeSectionProps) {
     colorHex,
   } = resumeData;
 
-  const hasContact = city || country || phone || email || linkedinUrl || githubUrl || otherUrl_1 || otherUrl_2;
+  const hasContact =
+    city ||
+    country ||
+    phone ||
+    email ||
+    linkedinUrl ||
+    githubUrl ||
+    otherUrl_1 ||
+    otherUrl_2;
 
   if (!hasContact) return null;
 
   return (
     <div className="space-y-3">
       <h2
-        className="border-b pb-1.5 text-sm font-bold uppercase tracking-wider"
+        className="border-b pb-1.5 text-sm font-bold tracking-wider uppercase"
         style={{ color: colorHex, borderColor: colorHex }}
       >
         Contact
@@ -159,7 +179,10 @@ function ContactSection({ resumeData }: ResumeSectionProps) {
               className="mt-0.5 size-4 shrink-0"
               style={{ color: colorHex }}
             />
-            <Link href={`tel:${phone}`} className="break-all leading-relaxed underline">
+            <Link
+              href={`tel:${phone}`}
+              className="leading-relaxed break-all underline"
+            >
               {phone}
             </Link>
           </div>
@@ -170,7 +193,10 @@ function ContactSection({ resumeData }: ResumeSectionProps) {
               className="mt-0.5 size-4 shrink-0"
               style={{ color: colorHex }}
             />
-            <Link href={`mailto:${email}`} className="break-all leading-relaxed underline">
+            <Link
+              href={`mailto:${email}`}
+              className="leading-relaxed break-all underline"
+            >
               {email}
             </Link>
           </div>
@@ -184,7 +210,7 @@ function ContactSection({ resumeData }: ResumeSectionProps) {
             <Link
               href={linkedinUrl}
               target="_blank"
-              className="break-all leading-relaxed underline"
+              className="leading-relaxed break-all underline"
             >
               LinkedIn Profile
             </Link>
@@ -199,7 +225,7 @@ function ContactSection({ resumeData }: ResumeSectionProps) {
             <Link
               href={githubUrl}
               target="_blank"
-              className="break-all leading-relaxed underline"
+              className="leading-relaxed break-all underline"
             >
               GitHub Profile
             </Link>
@@ -214,7 +240,7 @@ function ContactSection({ resumeData }: ResumeSectionProps) {
             <Link
               href={otherUrl_1}
               target="_blank"
-              className="break-all leading-relaxed underline"
+              className="leading-relaxed break-all underline"
             >
               {otherUrlLabel_1}
             </Link>
@@ -229,7 +255,7 @@ function ContactSection({ resumeData }: ResumeSectionProps) {
             <Link
               href={otherUrl_2}
               target="_blank"
-              className="break-all leading-relaxed underline"
+              className="leading-relaxed break-all underline"
             >
               {otherUrlLabel_2}
             </Link>
@@ -248,7 +274,7 @@ function SkillsSection({ resumeData }: ResumeSectionProps) {
   return (
     <div className="space-y-3">
       <h2
-        className="border-b pb-1.5 text-sm font-bold uppercase tracking-wider"
+        className="border-b pb-1.5 text-sm font-bold tracking-wider uppercase"
         style={{ color: colorHex, borderColor: colorHex }}
       >
         Skills
@@ -288,7 +314,7 @@ function EducationSection({ resumeData }: ResumeSectionProps) {
   return (
     <div className="space-y-3">
       <h2
-        className="border-b pb-1.5 text-sm font-bold uppercase tracking-wider"
+        className="border-b pb-1.5 text-sm font-bold tracking-wider uppercase"
         style={{ color: colorHex, borderColor: colorHex }}
       >
         Education
@@ -297,7 +323,7 @@ function EducationSection({ resumeData }: ResumeSectionProps) {
         {educationsNotEmpty.map((edu, index) => (
           <div key={index} className="space-y-1">
             <h3
-              className="text-sm font-bold leading-tight"
+              className="text-sm leading-tight font-bold"
               style={{ color: colorHex }}
             >
               {edu.degree}
@@ -332,12 +358,12 @@ function SummarySection({ resumeData }: ResumeSectionProps) {
   return (
     <div className="space-y-2">
       <h2
-        className="border-b-2 pb-1.5 text-base font-bold uppercase tracking-wider"
+        className="border-b-2 pb-1.5 text-base font-bold tracking-wider uppercase"
         style={{ color: colorHex, borderColor: colorHex }}
       >
         Professional Summary
       </h2>
-      <p className="text-sm leading-relaxed text-gray-700 whitespace-pre-line">
+      <p className="text-sm leading-relaxed whitespace-pre-line text-gray-700">
         {summary}
       </p>
     </div>
@@ -356,7 +382,7 @@ function WorkExperienceSection({ resumeData }: ResumeSectionProps) {
   return (
     <div className="space-y-3">
       <h2
-        className="border-b-2 pb-1.5 text-base font-bold uppercase tracking-wider"
+        className="border-b-2 pb-1.5 text-base font-bold tracking-wider uppercase"
         style={{ color: colorHex, borderColor: colorHex }}
       >
         Work Experience
@@ -369,14 +395,14 @@ function WorkExperienceSection({ resumeData }: ResumeSectionProps) {
                 {exp.position}
               </h3>
               {exp.startDate && (
-                <span className="text-xs text-gray-600 whitespace-nowrap">
+                <span className="text-xs whitespace-nowrap text-gray-600">
                   {formatDate(exp.startDate, "MM/yyyy")} -{" "}
                   {exp.endDate ? formatDate(exp.endDate, "MM/yyyy") : "Present"}
                 </span>
               )}
             </div>
             <p className="text-xs font-semibold text-gray-700">{exp.company}</p>
-            <div className="text-sm leading-relaxed text-gray-700 whitespace-pre-line">
+            <div className="text-sm leading-relaxed whitespace-pre-line text-gray-700">
               {exp.description}
             </div>
           </div>
@@ -398,7 +424,7 @@ function ProjectsSection({ resumeData }: ResumeSectionProps) {
   return (
     <div className="space-y-3">
       <h2
-        className="border-b-2 pb-1.5 text-base font-bold uppercase tracking-wider"
+        className="border-b-2 pb-1.5 text-base font-bold tracking-wider uppercase"
         style={{ color: colorHex, borderColor: colorHex }}
       >
         Projects
@@ -433,7 +459,7 @@ function ProjectsSection({ resumeData }: ResumeSectionProps) {
                 )}
               </div>
             </div>
-            <div className="text-sm leading-relaxed text-gray-700 whitespace-pre-line">
+            <div className="text-sm leading-relaxed whitespace-pre-line text-gray-700">
               {proj.description}
             </div>
           </div>
@@ -462,7 +488,7 @@ function CustomSections({ resumeData }: ResumeSectionProps) {
         return (
           <div key={index} className="space-y-3">
             <h2
-              className="border-b-2 pb-1.5 text-base font-bold uppercase tracking-wider"
+              className="border-b-2 pb-1.5 text-base font-bold tracking-wider uppercase"
               style={{ color: colorHex, borderColor: colorHex }}
             >
               {section.title}
@@ -478,7 +504,7 @@ function CustomSections({ resumeData }: ResumeSectionProps) {
                       {item.title}
                     </h3>
                     {item.dateRange && (
-                      <span className="text-xs text-gray-600 whitespace-nowrap">
+                      <span className="text-xs whitespace-nowrap text-gray-600">
                         {item.dateRange}
                       </span>
                     )}
@@ -489,7 +515,7 @@ function CustomSections({ resumeData }: ResumeSectionProps) {
                     </p>
                   )}
                   {item.description && (
-                    <div className="text-sm leading-relaxed text-gray-700 whitespace-pre-line">
+                    <div className="text-sm leading-relaxed whitespace-pre-line text-gray-700">
                       {item.description}
                     </div>
                   )}

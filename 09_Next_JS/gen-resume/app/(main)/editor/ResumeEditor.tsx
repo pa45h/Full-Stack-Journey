@@ -22,12 +22,22 @@ function ResumeEditor({ resumeToEdit }: ResumeEditorProps) {
   const currentStep = searchParams?.get("step") || steps[0].key;
 
   const [resumeData, setResumeData] = useState<ResumeValues>(
-    resumeToEdit ? mapToResumeValues(resumeToEdit) : {},
+    resumeToEdit
+      ? mapToResumeValues(resumeToEdit)
+      : {
+          colorHex: "#000000",
+          borderStyle: "squircle",
+          template: "classic",
+        },
   );
   const [resumePreview, setResumePreview] = useState(false);
 
-  const { isSaving, hasUnsavedChanges } = useAutoSave(resumeData);
+  const { isSaving, hasUnsavedChanges, resumeId } = useAutoSave(resumeData);
   useUnloadWarning(hasUnsavedChanges);
+
+  if (resumeId && resumeData.id !== resumeId) {
+    setResumeData({ ...resumeData, id: resumeId });
+  }
 
   function setCurrentStep(step: string) {
     const newSearchParams = new URLSearchParams(searchParams.toString());
